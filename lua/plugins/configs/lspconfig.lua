@@ -64,14 +64,13 @@ require("lspconfig").lua_ls.setup {
   },
 }
 
-local servers = {"tsserver","tailwindcss","eslint"}
+local servers = { "tsserver", "eslint" }
 
 for _, lsp in ipairs(servers) do
-  require("lspconfig")[lsp].setup({
+  require("lspconfig")[lsp].setup {
     on_attach = M.on_attach,
-    capabilities = M.capabilities
-  })
+    capabilities = M.capabilities,
+  }
 end
-
 
 return M

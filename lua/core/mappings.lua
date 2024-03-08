@@ -39,6 +39,8 @@ M.general = {
     -- page down and center
     ["<C-f>"] = { "<C-f>zz", "Move page down and center", opts = { silent = true } },
 
+    [";"] = { ":", "Command mode", opts = { silent = true, expr = true } },
+
     -- search and center
     ["N"] = { "Nzz", "Search and center", opts = { silent = true } },
     ["n"] = { "nzz", "Search and center", opts = { silent = true } },
@@ -106,12 +108,7 @@ M.tabufline = {
     },
 
     -- close buffer + hide terminal buffer
-    ["<leader>x"] = {
-      function()
-        require("nvchad.tabufline").close_buffer()
-      end,
-      "Close buffer",
-    },
+    ["<leader>x"] = { "<cmd>:bdelete<CR>", "Close buffer" },
   },
 }
 
@@ -217,7 +214,12 @@ M.nvimtree = {
     ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
 
     -- focus
-    ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "Focus nvimtree" },
+    ["<leader>e"] = {
+      function()
+        require("oil").toggle_float()
+      end,
+      "Focus nvimtree",
+    },
   },
 }
 

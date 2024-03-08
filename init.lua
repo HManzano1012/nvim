@@ -18,6 +18,8 @@ end
 
 dofile(vim.g.base46_cache .. "defaults")
 vim.opt.rtp:prepend(lazypath)
-vim.cmd "hi WhichKeyFloat ctermbg=BLACK ctermfg=BLACK"
+
 require "plugins"
 vim.cmd "colorscheme catppuccin-mocha"
+vim.cmd "hi WhichKeyFloat ctermbg=BLACK ctermfg=BLACK"
+vim.cmd "set winhighlight=Normal:MyNormal,NormalNC:MyNormalNC"

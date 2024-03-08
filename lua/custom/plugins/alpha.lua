@@ -34,7 +34,7 @@ local alpha_dash = {
       }
       dashboard.section.buttons.val = {
         dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
-        dashboard.button("f", "  Find file", ":NvimTreeFocus <CR>"),
+        dashboard.button("l", "  Last session", ":lua require('persistence').load()<CR>"),
         dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
         dashboard.button("u", "  Update plugins", ":Lazy update<CR>"),
         dashboard.button("q", "  Quit", ":qa<CR>"),

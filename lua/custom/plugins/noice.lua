@@ -24,4 +24,4 @@ local noice = {
   },
 }
 
-return noice
+return {}
