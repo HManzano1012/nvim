@@ -39,7 +39,7 @@ M.general = {
     -- page down and center
     ["<C-f>"] = { "<C-f>zz", "Move page down and center", opts = { silent = true } },
 
-    [";"] = { ":", "Command mode", opts = { silent = true, expr = true } },
+    [";"] = { ":", "Command mode", opts = { silent = true } },
 
     -- search and center
     ["N"] = { "Nzz", "Search and center", opts = { silent = true } },
