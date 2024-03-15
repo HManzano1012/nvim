@@ -12,7 +12,7 @@ local lspconfig = {
       ensure_installed = {
         "eslint-lsp",
         "prettierd",
-        -- "tailwindcss-language-server",
+        "tailwindcss-language-server",
         "typescript-language-server",
         "gopls",
         "black",
@@ -21,13 +21,15 @@ local lspconfig = {
         "pyright",
         "phpactor",
         "stylua",
-        "htmx-lsp",
       },
     },
   },
   {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
+    dependencies = {
+      "nvimtools/none-ls-extras.nvim",
+    },
     opts = function()
       return require "custom.configs.null-ls"
     end,
@@ -69,6 +71,7 @@ local lspconfig = {
         "go",
         "python",
         "php",
+        "vue",
       }
       return opts
     end,

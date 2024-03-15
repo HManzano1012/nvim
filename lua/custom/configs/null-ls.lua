@@ -11,12 +11,10 @@ local opts = {
     null_ls.builtins.formatting.black, -- python
     null_ls.builtins.formatting.phpcbf, -- php
     null_ls.builtins.formatting.stylua, -- lua
-    null_ls.builtins.formatting.htmlbeautifier, -- html
 
     -- linters
     null_ls.builtins.diagnostics.mypy, -- python
-    null_ls.builtins.diagnostics.ruff, -- ruby
-    null_ls.builtins.diagnostics.eslint_d, -- javascript, typescript, vue, json
+    require "none-ls.diagnostics.eslint_d",
   },
   on_attach = function(client, bufnr)
     if client.supports_method "textDocument/formatting" then
