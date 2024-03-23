@@ -51,6 +51,14 @@ M.general = {
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
 
+    --
+    ["<C-h>"] = { "<cmd>NvimTmuxNavigateLeft<CR>", "Tmux navigate left" },
+    ["<C-j>"] = { "<cmd>NvimTmuxNavigateDown<CR>", "Tmux navigate down" },
+    ["<C-k>"] = { "<cmd>NvimTmuxNavigateUp<CR>", "Tmux navigate up" },
+    ["<C-l>"] = { "<cmd>NvimTmuxNavigateRight<CR>", "Tmux navigate right" },
+    ["<C-\\>"] = { "<cmd>NvimTmuxNavigateLastActive<CR>", "Tmux navigate last active" },
+    ["<C-Space>"] = { "<cmd>NvimTmuxNavigateNext<CR>", "Tmux navigate next" },
+
     -- line numbers
 
     -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -232,67 +240,67 @@ M.telescope = {
 M.nvterm = {
   plugin = true,
 
-  t = {
-    -- toggle in terminal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
-    },
-  },
+  -- t = {
+  --   -- toggle in terminal mode
+  --   ["<A-i>"] = {
+  --     function()
+  --       require("nvterm.terminal").toggle "float"
+  --     end,
+  --     "Toggle floating term",
+  --   },
+  --
+  --   ["<A-h>"] = {
+  --     function()
+  --       require("nvterm.terminal").toggle "horizontal"
+  --     end,
+  --     "Toggle horizontal term",
+  --   },
+  --
+  --   ["<A-v>"] = {
+  --     function()
+  --       require("nvterm.terminal").toggle "vertical"
+  --     end,
+  --     "Toggle vertical term",
+  --   },
+  -- },
 
   n = {
     -- toggle in normal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "Toggle floating term",
-    },
-
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "Toggle horizontal term",
-    },
-
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "Toggle vertical term",
-    },
-
-    -- new
-    ["<leader>h"] = {
-      function()
-        require("nvterm.terminal").new "horizontal"
-      end,
-      "New horizontal term",
-    },
-
-    ["<leader>v"] = {
-      function()
-        require("nvterm.terminal").new "vertical"
-      end,
-      "New vertical term",
-    },
+    -- ["<A-i>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "float"
+    --   end,
+    --   "Toggle floating term",
+    -- },
+    --
+    -- ["<A-h>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "horizontal"
+    --   end,
+    --   "Toggle horizontal term",
+    -- },
+    --
+    -- ["<A-v>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "vertical"
+    --   end,
+    --   "Toggle vertical term",
+    -- },
+    --
+    -- -- new
+    -- ["<leader>h"] = {
+    --   function()
+    --     require("nvterm.terminal").new "horizontal"
+    --   end,
+    --   "New horizontal term",
+    -- },
+    --
+    -- ["<leader>v"] = {
+    --   function()
+    --     require("nvterm.terminal").new "vertical"
+    --   end,
+    --   "New vertical term",
+    -- },
   },
 }
 
