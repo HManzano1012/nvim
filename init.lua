@@ -1,0 +1,5 @@
+require("config.options")
+require("config.lazy")
+require("lazy").setup({ { import = "plugins" } })
+require("config.mappings")
+require("config.autocommands")
