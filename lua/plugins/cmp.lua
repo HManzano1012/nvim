@@ -80,8 +80,15 @@ local cmp = {
 						local kind =
 							require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
-						kind.kind = " " .. (strings[1] or "") .. " "
 						kind.menu = "    (" .. (strings[2] or "") .. ")"
+						kind.kind = " " .. (strings[1] or "") .. " "
+
+						local tw_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+						if tw_item.kind == "XX" then
+							return tw_item
+						end
+
+						kind.abbr = tw_item.abbr
 
 						return kind
 					end,

@@ -1,6 +1,9 @@
+local vim = vim
 vim.g.mapleader = " "
 
 vim.g.maplocalleader = " "
+
+vim.keymap.set("n", ";", ":", { noremap = true })
 
 -- File explorer
 vim.keymap.set("n", "<leader>e", "<cmd>:Oil --float<CR>", { silent = true })
@@ -10,13 +13,14 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { silent = true })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { silent = true })
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { silent = true })
---vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+--vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing bufferss" })
 vim.keymap.set("n", "<leader>fo", function()
 	builtin.live_grep({
 		grep_open_files = true,
 		prompt_title = "Live Grep in Open Files",
 	})
 end, { silent = true })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { silent = true })
 
 -- Comments
 vim.keymap.set("n", "<leader>/", function()
@@ -69,7 +73,7 @@ vim.keymap.set("n", "<S-Tab>", "<cmd>:bprevious<CR>", { silent = true })
 vim.keymap.set("n", "<Tab>", "<cmd>:bnext<CR>", { silent = true })
 
 -- Buffers
-vim.keymap.set("n", "<leader>x", "<cmd>:BufferClose<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>:bdelete<CR>", { silent = true })
 vim.keymap.set("n", "<C-s>", "<cmd>:w<CR>", { silent = true })
 
 -- tmux navigation
@@ -79,6 +83,18 @@ vim.keymap.set("n", "<C-k>", "<cmd>NvimTmuxNavigateUp<CR>")
 vim.keymap.set("n", "<C-l>", "<cmd>NvimTmuxNavigateRight<CR>")
 vim.keymap.set("n", "<C-\\>", "<cmd>NvimTmuxNavigateLastActive<CR>")
 vim.keymap.set("n", "<C-Space>", "<cmd>NvimTmuxNavigateNext<CR>")
+
+-- -- split navigation if theres is split
+-- vim.keymap.set("n", '<leader>"', "<cmd>:split<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>%", "<cmd>:vsplit<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-h>", "<cmd>:wincmd h<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-j>", "<cmd>:wincmd j<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-k>", "<cmd>:wincmd k<CR>", { silent = true })
+-- vim.keymap.set("n", "<S-l>", "<cmd>:wincmd l<CR>", { silent = true })
+
+-- move selected line / block of text in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- LSP
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
@@ -98,10 +114,10 @@ vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<CR>", { silent = true })
 -- global note
 vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
 
--- split navigation
-vim.keymap.set("n", '<leader>"', "<cmd>:split<CR>", { silent = true })
-vim.keymap.set("n", "<leader>%", "<cmd>:vsplit<CR>", { silent = true })
-vim.keymap.set("n", "<S-h>", "<cmd>:wincmd h<CR>", { silent = true })
-vim.keymap.set("n", "<S-j>", "<cmd>:wincmd j<CR>", { silent = true })
-vim.keymap.set("n", "<S-k>", "<cmd>:wincmd k<CR>", { silent = true })
-vim.keymap.set("n", "<S-l>", "<cmd>:wincmd l<CR>", { silent = true })
+-- Obsidian
+vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })
+vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
+vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
+
+-- Trouble
+vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { silent = true })

@@ -19,7 +19,9 @@ local lspconfig = {
 				"ruff",
 				"pyright",
 				"phpactor",
+				"intelephense",
 				"stylua",
+				"dockerls",
 			},
 		},
 	},
@@ -46,7 +48,8 @@ local lspconfig = {
 
 					-- linters
 					null_ls.builtins.diagnostics.mypy, -- python
-					require("none-ls.diagnostics.eslint_d"),
+					require("none-ls.diagnostics.eslint_d"), -- javascript, typescript
+					null_ls.builtins.diagnostics.golangci_lint, -- go
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
@@ -66,6 +69,15 @@ local lspconfig = {
 			}
 
 			return opts
+		end,
+	},
+	{
+		"roobert/tailwindcss-colorizer-cmp.nvim",
+		-- optionally, override the default options:
+		config = function()
+			require("tailwindcss-colorizer-cmp").setup({
+				color_square_width = 2,
+			})
 		end,
 	},
 }

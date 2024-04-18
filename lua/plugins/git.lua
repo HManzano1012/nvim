@@ -22,12 +22,12 @@ local git = {
 		config = function()
 			require("gitsigns").setup({
 				signs = {
-					add = { text = "│" },
-					change = { text = "│" },
-					delete = { text = "_" },
-					topdelete = { text = "‾" },
-					changedelete = { text = "~" },
-					untracked = { text = "┆" },
+					add = { text = "▌", bold = true },
+					change = { text = "▌", bold = true },
+					delete = { text = "▌", bold = true },
+					topdelete = { text = "‾", bold = true },
+					changedelete = { text = "▌", bold = true },
+					untracked = { text = "┆", bold = true },
 				},
 				signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 				numhl = false, -- Toggle with `:Gitsigns toggle_numhl`

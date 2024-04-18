@@ -18,7 +18,7 @@ local utils = {
 	},
 	{
 		"alexghergh/nvim-tmux-navigation",
-		enable = true,
+		enabled = true,
 		lazy = false,
 		config = function()
 			local nvim_tmux_nav = require("nvim-tmux-navigation")

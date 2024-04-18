@@ -10,9 +10,10 @@ local oil = {
 				use_default_keymaps = false,
 				float = {
 					border = "single",
-					winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:BorderBG",
+					winhighlight = "Normal:NormalFloat,FloatBorder:TelescopeBorder",
 					padding = 2,
 				},
+
 				keymaps = {
 					["g?"] = "actions.show_help",
 					["<CR>"] = "actions.select",

@@ -21,7 +21,7 @@ opt.smartcase = true
 opt.mouse = "a"
 
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 500
 
 -- Numbers
 opt.number = true

@@ -44,7 +44,6 @@ return {
 						border = "TelescopeBorder",
 						accent = mauve_highlight,
 					},
-					pumblend = 5,
 					min_width = "100%",
 					min_height = "25%",
 					max_height = "25%",

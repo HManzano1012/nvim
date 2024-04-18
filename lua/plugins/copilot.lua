@@ -25,7 +25,6 @@ local copilot = {
 	},
 	{
 		"AndreM222/copilot-lualine",
-		after = "lualine.nvim",
 	},
 }
 

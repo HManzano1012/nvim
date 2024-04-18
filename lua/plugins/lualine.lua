@@ -52,10 +52,7 @@ local config = {
 				"oil",
 			},
 		},
-		theme = {
-			normal = { c = { fg = colors.fg, bg = colors.bg } },
-			inactive = { c = { fg = colors.fg, bg = colors.bg } },
-		},
+		theme = "auto",
 	},
 	sections = {
 		-- these are to remove the defaults
@@ -88,29 +85,21 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
-ins_left({
-	function()
-		return "▊"
-	end,
-	color = { fg = colors.blue }, -- Sets highlighting of component
-	padding = { left = 0, right = 1 }, -- We don't need space before this
-})
-
 local mode_alias = {
-	n = "NORMAL",
-	i = "INSERT",
-	c = "COMMAND",
-	V = "VISUAL",
-	[""] = "VISUAL",
-	v = "VISUAL",
-	R = "REPLACE",
-	t = "TERMINAL",
+	n = "󰬕 ",
+	i = "󰬐 ",
+	c = "󰬊 ",
+	V = "󰬝 ",
+	[""] = "󰬝 ",
+	v = "󰬝 ",
+	R = "󰬙 ",
+	t = "󰬛 ",
 }
 ins_left({
 
 	-- mode component
 	function()
-		return "  " .. mode_alias[vim.fn.mode()]
+		return "  " .. mode_alias[vim.fn.mode()]
 	end,
 	color = function()
 		-- auto change color according to neovims mode
@@ -138,7 +127,7 @@ ins_left({
 		}
 		return { fg = mode_color[vim.fn.mode()] }
 	end,
-	padding = { right = 1 },
+	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
 
 ins_left({
@@ -178,6 +167,10 @@ ins_left({
 
 ins_left({
 	"harpoon2",
+	indicators = { "a", "s", "d", "f", "g" },
+	active_indicators = { "[a]", "[s]", "[d]", "[f]", "[g]" },
+	_separator = " ",
+	no_harpoon = "Harpoon not loaded",
 })
 
 ins_right({

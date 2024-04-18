@@ -31,6 +31,25 @@ local theme = {
 			})
 		end,
 	},
+	{
+		"maxmx03/dracula.nvim",
+	},
+	{
+		"navarasu/onedark.nvim",
+	},
+	{
+		"rose-pine/neovim",
+		as = "rose-pine",
+	},
+	{
+		"cpea2506/one_monokai.nvim",
+	},
+	{
+		"projekt0n/github-nvim-theme",
+	},
+	{
+		"folke/tokyonight.nvim",
+	},
 }
 
 return theme
