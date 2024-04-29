@@ -43,6 +43,23 @@ local utils = {
 			})
 		end,
 	},
+	{
+		"folke/noice.nvim",
+		config = function()
+			require("noice").setup({
+				cmdline = {
+					enabled = false,
+				},
+				views = {
+					mini = {
+						win_options = {
+							winblend = 0,
+						},
+					},
+				},
+			})
+		end,
+	},
 }
 
 return utils

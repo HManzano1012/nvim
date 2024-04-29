@@ -19,7 +19,6 @@ local lspconfig = {
 				"ruff",
 				"pyright",
 				"phpactor",
-				"intelephense",
 				"stylua",
 				"dockerls",
 			},

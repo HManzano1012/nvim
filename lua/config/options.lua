@@ -22,6 +22,7 @@ opt.mouse = "a"
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500
+vim.o.cmdheight = 0
 
 -- Numbers
 opt.number = true

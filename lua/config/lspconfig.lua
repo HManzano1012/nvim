@@ -1,8 +1,12 @@
 local M = {}
+local navic = require("nvim-navic")
 
 M.on_attach = function(client, bufnr)
 	client.server_capabilities.documentFormattingProvider = false
 	client.server_capabilities.documentRangeFormattingProvider = false
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -16,8 +20,8 @@ local servers = {
 	"tsserver",
 	"eslint",
 	"pyright",
-	"phpactor",
-  "intelephense",
+	-- "phpactor",
+	"intelephense",
 	"tailwindcss",
 	"lua_ls",
 	"vuels",

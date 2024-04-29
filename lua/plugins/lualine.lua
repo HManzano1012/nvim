@@ -34,6 +34,8 @@ local conditions = {
 	end,
 }
 
+local navic = require("nvim-navic")
+
 -- Config
 local config = {
 	options = {
@@ -85,27 +87,60 @@ local function ins_right(component)
 	table.insert(config.sections.lualine_x, component)
 end
 
+ins_left({
+	function()
+		return "▊"
+	end,
+	color = function()
+		-- auto change color according to neovim's mode
+		local mode_color = {
+			n = colors.green,
+			i = colors.red,
+			v = colors.blue,
+			[""] = colors.blue,
+			V = colors.blue,
+			c = colors.magenta,
+			no = colors.red,
+			s = colors.orange,
+			S = colors.orange,
+			[""] = colors.orange,
+			ic = colors.yellow,
+			R = colors.violet,
+			Rv = colors.violet,
+			cv = colors.red,
+			ce = colors.red,
+			r = colors.cyan,
+			rm = colors.cyan,
+			["r?"] = colors.cyan,
+			["!"] = colors.red,
+			t = colors.red,
+		}
+		return { fg = mode_color[vim.fn.mode()] }
+	end,
+	padding = { left = 0, right = 1 }, -- We don't need space before this
+})
+
 local mode_alias = {
-	n = "󰬕 ",
-	i = "󰬐 ",
-	c = "󰬊 ",
-	V = "󰬝 ",
-	[""] = "󰬝 ",
-	v = "󰬝 ",
-	R = "󰬙 ",
-	t = "󰬛 ",
+	n = "NORMAL",
+	i = "INSERT",
+	c = "COMMAND",
+	V = "VISUAL",
+	[""] = "VISUAL",
+	v = "VISUAL",
+	R = "REPLACE",
+	t = "TERMINAL",
 }
 ins_left({
 
 	-- mode component
 	function()
-		return "  " .. mode_alias[vim.fn.mode()]
+		return "  " .. mode_alias[vim.fn.mode()]
 	end,
 	color = function()
-		-- auto change color according to neovims mode
+		-- auto change color according to neovim's mode
 		local mode_color = {
-			n = colors.red,
-			i = colors.green,
+			n = colors.green,
+			i = colors.red,
 			v = colors.blue,
 			[""] = colors.blue,
 			V = colors.blue,
@@ -138,11 +173,20 @@ ins_left({
 
 ins_left({
 	"filename",
+	path = 1,
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.mint, gui = "bold" },
 })
 
-ins_left({ "location" })
+ins_left({
+	function()
+		return navic.get_location()
+	end,
+	cond = function()
+		return navic.is_available()
+	end,
+})
+-- ins_left({ "location" })
 
 ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
@@ -263,7 +307,6 @@ ins_right({
 })
 
 -- Now don't forget to initialize lualine
-
 local lualine = {
 	{
 		"nvim-lualine/lualine.nvim",

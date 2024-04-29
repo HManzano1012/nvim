@@ -1,13 +1,9 @@
 return {
 	{
 		"gelguy/wilder.nvim",
-		keys = {
-			":",
-			"/",
-			"?",
-		},
+		enable = true,
 		dependencies = {
-
+			"kyazdani42/nvim-web-devicons",
 			"catppuccin/nvim",
 		},
 		config = function()
@@ -19,8 +15,6 @@ return {
 				wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = macchiato.text } })
 			local mauve_highlight =
 				wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = macchiato.mauve } })
-
-			-- Enable wilder when pressing :, / or ?
 			wilder.setup({ modes = { ":", "/", "?" } })
 
 			-- Enable fuzzy matching for commands and buffers
@@ -37,19 +31,19 @@ return {
 
 			wilder.set_option(
 				"renderer",
-				wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
+				wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
+					border = "single",
+					left = { " ", wilder.popupmenu_devicons() },
+					right = { " ", wilder.popupmenu_scrollbar() },
+					max_height = "25%", -- max height of the palette
+					max_width = "50%", -- max width of the palette
 					highlighter = wilder.basic_highlighter(),
 					highlights = {
 						default = text_highlight,
 						border = "TelescopeBorder",
 						accent = mauve_highlight,
 					},
-					min_width = "100%",
-					min_height = "25%",
-					max_height = "25%",
-					border = "single",
-					left = { " ", wilder.popupmenu_devicons() },
-					right = { " ", wilder.popupmenu_scrollbar() },
+					prompt_position = "top", -- 'top' or 'bottom' to set the location of the prompt
 				}))
 			)
 		end,

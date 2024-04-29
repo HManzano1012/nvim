@@ -1,12 +1,13 @@
 local vim = vim
 vim.g.mapleader = " "
-
 vim.g.maplocalleader = " "
+vim.opt.timeoutlen = 1000
 
+-- set ; to enter on command mode like :
 vim.keymap.set("n", ";", ":", { noremap = true })
 
 -- File explorer
-vim.keymap.set("n", "<leader>e", "<cmd>:Oil --float<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>:Oil<CR>", { silent = true })
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -84,7 +85,6 @@ vim.keymap.set("n", "<C-l>", "<cmd>NvimTmuxNavigateRight<CR>")
 vim.keymap.set("n", "<C-\\>", "<cmd>NvimTmuxNavigateLastActive<CR>")
 vim.keymap.set("n", "<C-Space>", "<cmd>NvimTmuxNavigateNext<CR>")
 
--- -- split navigation if theres is split
 -- vim.keymap.set("n", '<leader>"', "<cmd>:split<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>%", "<cmd>:vsplit<CR>", { silent = true })
 -- vim.keymap.set("n", "<S-h>", "<cmd>:wincmd h<CR>", { silent = true })
@@ -92,7 +92,7 @@ vim.keymap.set("n", "<C-Space>", "<cmd>NvimTmuxNavigateNext<CR>")
 -- vim.keymap.set("n", "<S-k>", "<cmd>:wincmd k<CR>", { silent = true })
 -- vim.keymap.set("n", "<S-l>", "<cmd>:wincmd l<CR>", { silent = true })
 
--- move selected line / block of text in visual mode
+-- move selected line / block of text in visual mode d
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -118,6 +118,3 @@ vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
 vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
 vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
-
--- Trouble
-vim.keymap.set("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { silent = true })
