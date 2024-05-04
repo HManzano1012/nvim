@@ -7,7 +7,7 @@ vim.opt.timeoutlen = 1000
 vim.keymap.set("n", ";", ":", { noremap = true })
 
 -- File explorer
-vim.keymap.set("n", "<leader>e", "<cmd>:Oil<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>:Oil --float<CR>", { silent = true })
 
 -- Telescope
 local builtin = require("telescope.builtin")

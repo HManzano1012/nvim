@@ -1,23 +1,16 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
-
--- Color table for highlights
--- stylua: ignore
--- TODO: Add more colors
 local colors = {
-  bg       = '#181825',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
-  mint     = '#6bbfbd',
+	bg = "#181825",
+	fg = "#bbc2cf",
+	yellow = "#ECBE7B",
+	cyan = "#008080",
+	darkblue = "#081633",
+	green = "#98be65",
+	orange = "#FF8800",
+	violet = "#a9a1e1",
+	magenta = "#c678dd",
+	blue = "#51afef",
+	red = "#ec5f67",
+	mint = "#6bbfbd",
 }
 
 local conditions = {
@@ -33,8 +26,6 @@ local conditions = {
 		return gitdir and #gitdir > 0 and #gitdir < #filepath
 	end,
 }
-
-local navic = require("nvim-navic")
 
 -- Config
 local config = {
@@ -120,21 +111,11 @@ ins_left({
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
 
-local mode_alias = {
-	n = "NORMAL",
-	i = "INSERT",
-	c = "COMMAND",
-	V = "VISUAL",
-	[""] = "VISUAL",
-	v = "VISUAL",
-	R = "REPLACE",
-	t = "TERMINAL",
-}
 ins_left({
 
 	-- mode component
 	function()
-		return "  " .. mode_alias[vim.fn.mode()]
+		return "󰯙  "
 	end,
 	color = function()
 		-- auto change color according to neovim's mode
@@ -166,9 +147,7 @@ ins_left({
 })
 
 ins_left({
-	-- filesize component
-	"filesize",
-	cond = conditions.buffer_not_empty,
+	"fancy_branch",
 })
 
 ins_left({
@@ -177,18 +156,6 @@ ins_left({
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.mint, gui = "bold" },
 })
-
-ins_left({
-	function()
-		return navic.get_location()
-	end,
-	cond = function()
-		return navic.is_available()
-	end,
-})
--- ins_left({ "location" })
-
-ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
 ins_left({
 	"diagnostics",
@@ -310,7 +277,8 @@ ins_right({
 local lualine = {
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "meuter/lualine-so-fancy.nvim" },
+
 		config = function()
 			require("lualine").setup(config)
 		end,

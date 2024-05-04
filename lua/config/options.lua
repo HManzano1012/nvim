@@ -29,8 +29,9 @@ opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
 opt.relativenumber = true
-opt.colorcolumn = "80"
+opt.colorcolumn = "85"
 opt.scrolloff = 8
+opt.cmdheight = 0
 -- disable nvim intro
 opt.shortmess:append("sI")
 

@@ -32,7 +32,7 @@ local alpha_dash = {
 				 ⠀⣰⠅⠊⠀⠀⠀⠀⠀⠀⠈⠦⠔⠁⣸⣓⣿⠏⠀⠀⠸⣿⣷⣾⠘⢄⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠳
 				 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠉⠉⠁⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]]
 
-			art = string.rep("\n", 8) .. art .. "\n\n"
+			art = string.rep("\n", 8) .. art .. "\n"
 			dashboard.section.header.val = vim.split(art, "\n")
 			dashboard.section.buttons.val = {
 				dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
