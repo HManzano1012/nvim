@@ -26,6 +26,13 @@ local cmp = {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			{
+				"MattiasMTS/cmp-dbee",
+				dependencies = {
+					{ "kndndrj/nvim-dbee" },
+				},
+				ft = "sql", -- optional but good to have
+			},
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -40,13 +47,13 @@ local cmp = {
 
 				window = {
 					completion = {
-						winhighlight = "Normal:CmpPmenu,CursorLine:Pmenu,Search:None,FloatBorder:TelescopeBorder",
+						winhighlight = "Normal:CmpPmenu,FloatBorder:TelescopeBorder",
 						scrollbar = true,
 						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 					},
 					documentation = {
 						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-						winhighlight = "Normal:TelescopeNormal,FloatBorder:TelescopeBorder",
+						winhighlight = "Normal:CmpPmenu,FloatBorder:TelescopeBorder",
 					},
 				},
 				snippet = {
@@ -54,6 +61,7 @@ local cmp = {
 					expand = function(args)
 						require("luasnip").lsp_expand(args.body)
 					end,
+					maxwidth = 10,
 				},
 
 				mapping = {
@@ -74,6 +82,7 @@ local cmp = {
 					{ name = "buffer" },
 					{ name = "nvim_lua" },
 					{ name = "path" },
+					{ name = "cmp-dbee" },
 				},
 				formatting = {
 					fields = { "kind", "abbr", "menu" },

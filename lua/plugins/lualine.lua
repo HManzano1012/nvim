@@ -38,11 +38,13 @@ local config = {
 				"alpha",
 				"NvimTree",
 				"oil",
+				"TelescopePrompt",
 			},
 			winbar = {
 				"alpha",
 				"NvimTree",
 				"oil",
+				"TelescopePrompt",
 			},
 		},
 		theme = "auto",
@@ -168,8 +170,6 @@ ins_left({
 	},
 })
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
 ins_left({
 	function()
 		return "%="
@@ -232,27 +232,6 @@ ins_right({
 	color = { fg = "#ffffff", gui = "bold" },
 })
 
--- Add components to right sections
-ins_right({
-	"o:encoding", -- option component same as &encoding in viml
-	fmt = string.upper, -- I'm not sure why it's upper case either ;)
-	cond = conditions.hide_in_width,
-	color = { fg = colors.green, gui = "bold" },
-})
-
-ins_right({
-	"fileformat",
-	fmt = string.upper,
-	icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-	color = { fg = colors.green, gui = "bold" },
-})
-
-ins_right({
-	"branch",
-	icon = "",
-	color = { fg = colors.violet, gui = "bold" },
-})
-
 ins_right({
 	"diff",
 	-- Is it me or the symbol for modified us really weird
@@ -266,10 +245,41 @@ ins_right({
 })
 
 ins_right({
+	"fancy_filetype",
+	ts_icon = "",
+	color = { fg = colors.mint, gui = "bold" },
+})
+
+ins_right({
 	function()
 		return "▊"
 	end,
-	color = { fg = colors.blue },
+	color = function()
+		-- auto change color according to neovim's mode
+		local mode_color = {
+			n = colors.green,
+			i = colors.red,
+			v = colors.blue,
+			[""] = colors.blue,
+			V = colors.blue,
+			c = colors.magenta,
+			no = colors.red,
+			s = colors.orange,
+			S = colors.orange,
+			[""] = colors.orange,
+			ic = colors.yellow,
+			R = colors.violet,
+			Rv = colors.violet,
+			cv = colors.red,
+			ce = colors.red,
+			r = colors.cyan,
+			rm = colors.cyan,
+			["r?"] = colors.cyan,
+			["!"] = colors.red,
+			t = colors.red,
+		}
+		return { fg = mode_color[vim.fn.mode()] }
+	end,
 	padding = { left = 1 },
 })
 

@@ -1,9 +1,9 @@
 return {
 	{
 		"gelguy/wilder.nvim",
-		enable = true,
+		enabled = true,
 		dependencies = {
-			"kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-web-devicons",
 			"catppuccin/nvim",
 		},
 		config = function()

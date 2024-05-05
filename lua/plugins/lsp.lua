@@ -22,7 +22,9 @@ local lspconfig = {
 				"intelephense",
 				"stylua",
 				"dockerls",
+				"sqlls",
 			},
+			auto_install = true,
 		},
 	},
 	{
@@ -32,8 +34,8 @@ local lspconfig = {
 			"nvimtools/none-ls-extras.nvim",
 		},
 		opts = function()
-      local opts = require("config.null-ls")
-      return opts
+			local opts = require("config.null-ls")
+			return opts
 		end,
 	},
 	{

@@ -14,13 +14,14 @@ local opts = {
 			args = { "--standard=PSR12" },
 		}), -- php
 		null_ls.builtins.formatting.stylua, -- lua
+		null_ls.builtins.formatting.sqlformat, -- sql
 
 		-- linters
-		null_ls.builtins.diagnostics.mypy, -- python
 		require("none-ls.diagnostics.eslint_d"), -- javascript, typescript
+		null_ls.builtins.diagnostics.mypy, -- python
 		null_ls.builtins.diagnostics.golangci_lint, -- go
 		null_ls.builtins.diagnostics.phpcs, -- php
-		null_ls.builtins.diagnostics.luacheck, -- lua
+		null_ls.builtins.diagnostics.sqlfluff, -- sql
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
