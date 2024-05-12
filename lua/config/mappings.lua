@@ -1,13 +1,12 @@
 local vim = vim
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.opt.timeoutlen = 1000
 
 -- set ; to enter on command mode like :
 vim.keymap.set("n", ";", ":", { noremap = true })
 
 -- File explorer
-vim.keymap.set("n", "<leader>e", "<cmd>:Oil --float<CR>", { silent = true })
+vim.keymap.set("n", "<leader>e", "<cmd>:Oil<CR>", { silent = true })
 
 -- Telescope
 local builtin = require("telescope.builtin")
@@ -43,7 +42,7 @@ vim.keymap.set("n", "N", "Nzz", { silent = true })
 -- Harpoon
 local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>hh", function()
-	harpoon:list():append()
+	harpoon:list():add()
 end)
 vim.keymap.set("n", "<leader>hl", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -113,6 +112,9 @@ vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<CR>", { silent = true })
 
 -- global note
 vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
+
+-- diffview
+vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<CR>", { silent = true })
 
 -- Obsidian
 vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })

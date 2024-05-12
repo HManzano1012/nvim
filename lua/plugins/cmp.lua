@@ -26,13 +26,6 @@ local cmp = {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
-			{
-				"MattiasMTS/cmp-dbee",
-				dependencies = {
-					{ "kndndrj/nvim-dbee" },
-				},
-				ft = "sql", -- optional but good to have
-			},
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -47,13 +40,13 @@ local cmp = {
 
 				window = {
 					completion = {
-						winhighlight = "Normal:CmpPmenu,FloatBorder:TelescopeBorder",
+						winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,FloatBorder:TelescopeBorder",
 						scrollbar = true,
 						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
 					},
 					documentation = {
 						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
-						winhighlight = "Normal:CmpPmenu,FloatBorder:TelescopeBorder",
+						winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,FloatBorder:TelescopeBorder",
 					},
 				},
 				snippet = {
@@ -82,16 +75,15 @@ local cmp = {
 					{ name = "buffer" },
 					{ name = "nvim_lua" },
 					{ name = "path" },
-					{ name = "cmp-dbee" },
 				},
 				formatting = {
-					fields = { "kind", "abbr", "menu" },
+					fields = { "abbr", "kind", "menu" },
 					format = function(entry, vim_item)
 						local kind =
 							require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
 						local strings = vim.split(kind.kind, "%s", { trimempty = true })
-						kind.menu = "    (" .. (strings[2] or "") .. ")"
-						kind.kind = " " .. (strings[1] or "") .. " "
+
+						kind.kind = " " .. ((strings[1] .. " " .. strings[2]) or "") .. " "
 
 						local tw_item = require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
 						if tw_item.kind == "XX" then

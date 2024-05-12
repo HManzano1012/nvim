@@ -1,9 +1,12 @@
+local vim = vim
 local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+opt.conceallevel = 2
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
+opt.timeoutlen = 1000
 
 opt.clipboard = "unnamedplus"
 opt.cursorline = true

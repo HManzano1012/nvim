@@ -1,3 +1,4 @@
+local vim = vim
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require("null-ls")
 
@@ -18,11 +19,12 @@ local opts = {
 
 		-- linters
 		require("none-ls.diagnostics.eslint_d"), -- javascript, typescript
-		null_ls.builtins.diagnostics.mypy, -- python
+		require("none-ls.diagnostics.ruff"), -- python
 		null_ls.builtins.diagnostics.golangci_lint, -- go
 		null_ls.builtins.diagnostics.phpcs, -- php
 		null_ls.builtins.diagnostics.sqlfluff, -- sql
 	},
+	debug = true,
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({
