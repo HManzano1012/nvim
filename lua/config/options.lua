@@ -2,6 +2,7 @@ local vim = vim
 local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- vim.g.vim_dadbod_completion_mark = "MYMARK"
 
 opt.conceallevel = 2
 opt.laststatus = 3 -- global statusline
@@ -25,7 +26,8 @@ opt.mouse = "a"
 
 vim.o.timeout = true
 vim.o.timeoutlen = 500
-vim.o.cmdheight = 0
+vim.o.cmdheight = 1
+opt.cmdheight = 1
 
 -- Numbers
 opt.number = true
@@ -34,7 +36,7 @@ opt.ruler = false
 opt.relativenumber = true
 opt.colorcolumn = "85"
 opt.scrolloff = 8
-opt.cmdheight = 0
+opt.cmdheight = 1
 -- disable nvim intro
 opt.shortmess:append("sI")
 

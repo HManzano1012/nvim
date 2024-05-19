@@ -69,11 +69,24 @@ vim.keymap.set("n", "<leader>hg", function()
 end)
 
 -- barbar
-vim.keymap.set("n", "<S-Tab>", "<cmd>:bprevious<CR>", { silent = true })
-vim.keymap.set("n", "<Tab>", "<cmd>:bnext<CR>", { silent = true })
+--
+vim.keymap.set("n", "<S-Tab>", function()
+	local buf = vim.api.nvim_get_current_buf()
+	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" then
+		vim.api.nvim_command("bprevious")
+	end
+end, { silent = true })
+vim.keymap.set("n", "<Tab>", function()
+	local buf = vim.api.nvim_get_current_buf()
+	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" then
+		vim.api.nvim_command("bnext")
+	end
+end, { silent = true })
 
 -- Buffers
-vim.keymap.set("n", "<leader>x", "<cmd>:bdelete<CR>", { silent = true })
+vim.keymap.set("n", "<C-q>", "<cmd>:bdelete<CR>", { silent = true })
 vim.keymap.set("n", "<C-s>", "<cmd>:w<CR>", { silent = true })
 
 -- tmux navigation
@@ -114,9 +127,11 @@ vim.keymap.set("n", "<leader>gf", "<cmd>:Fugit2<CR>", { silent = true })
 vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
 
 -- diffview
-vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<CR>", { silent = true })
-
+vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<cr>", { silent = true })
 -- Obsidian
 vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
 vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
+
+-- DBUI
+vim.keymap.set("n", "<leader>dd", "<cmd>:DBUIToggle<CR>", { silent = true })

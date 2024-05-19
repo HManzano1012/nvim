@@ -44,22 +44,18 @@ local utils = {
 		end,
 	},
 	{
-		"folke/noice.nvim",
+		"brenoprata10/nvim-highlight-colors",
+		enabled = true,
 		config = function()
-			require("noice").setup({
-				cmdline = {
-					enabled = false,
-				},
-				views = {
-					mini = {
-						win_options = {
-							winblend = 0,
-						},
-					},
-				},
-				presets = {
-					lsp_doc_border = true,
-				},
+			require("nvim-highlight-colors").setup({
+				---Render style
+				---@usage 'background'|'foreground'|'virtual'
+				render = "virtual",
+
+				---Set virtual symbol (requires render to be set to 'virtual')
+				virtual_symbol = "●",
+
+				enable_tailwind = true,
 			})
 		end,
 	},

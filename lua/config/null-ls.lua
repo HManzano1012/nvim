@@ -15,14 +15,12 @@ local opts = {
 			args = { "--standard=PSR12" },
 		}), -- php
 		null_ls.builtins.formatting.stylua, -- lua
-		null_ls.builtins.formatting.sqlformat, -- sql
 
 		-- linters
 		require("none-ls.diagnostics.eslint_d"), -- javascript, typescript
 		require("none-ls.diagnostics.ruff"), -- python
 		null_ls.builtins.diagnostics.golangci_lint, -- go
 		null_ls.builtins.diagnostics.phpcs, -- php
-		null_ls.builtins.diagnostics.sqlfluff, -- sql
 	},
 	debug = true,
 	on_attach = function(client, bufnr)

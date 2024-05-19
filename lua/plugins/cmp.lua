@@ -42,10 +42,28 @@ local cmp = {
 					completion = {
 						winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,FloatBorder:TelescopeBorder",
 						scrollbar = true,
-						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+						border = {
+							{ "󱐋", "WarningMsg" },
+							{ "─", "CmpPmenu" },
+							{ "┐", "CmpPmenu" },
+							{ "│", "CmpPmenu" },
+							{ "┘", "CmpPmenu" },
+							{ "─", "CmpPmenu" },
+							{ "└", "CmpPmenu" },
+							{ "│", "CmpPmenu" },
+						},
 					},
 					documentation = {
-						border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" },
+						border = {
+							{ "", "DiagnosticHint" },
+							{ "─", "CmpPmenu" },
+							{ "┐", "CmpPmenu" },
+							{ "│", "CmpPmenu" },
+							{ "┘", "CmpPmenu" },
+							{ "─", "CmpPmenu" },
+							{ "└", "CmpPmenu" },
+							{ "│", "CmpPmenu" },
+						},
 						winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,FloatBorder:TelescopeBorder",
 					},
 				},
@@ -75,6 +93,7 @@ local cmp = {
 					{ name = "buffer" },
 					{ name = "nvim_lua" },
 					{ name = "path" },
+					{ name = "vim-dadbod-completion" },
 				},
 				formatting = {
 					fields = { "abbr", "kind", "menu" },

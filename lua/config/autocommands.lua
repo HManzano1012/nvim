@@ -23,3 +23,7 @@ vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
 
 -- enable treesitter
 vim.cmd("TSEnable highlight")
+
+-- set cmd height = 1
+vim.cmd("set cmdheight=1")
+vim.cmd("set cmdwinheight=5")
