@@ -34,22 +34,34 @@ local theme = {
 				},
 				custom_highlights = function(C)
 					local white_hightlight = "#cdd6f5"
+					local background_hightlight = "#1e1e2e"
+
 					return {
-						TelescopeBorder = { fg = white_hightlight },
+						-- Normal
 						NormalFloat = { bg = C.bg, fg = white_hightlight },
 						FloatBorder = { fg = white_hightlight },
+						TextError = { fg = C.red },
+						TextWarning = { fg = C.yellow },
+						TextInfo = { fg = C.blue },
+						TextHint = { fg = C.green },
+
+						-- Telescope
+						TelescopeBorder = { fg = white_hightlight },
+						TelescopePromptTitle = { fg = background_hightlight, bg = C.lavender },
+						TelescopeResultsTitle = { fg = background_hightlight, bg = C.red },
+						TelescopePreviewTitle = { fg = background_hightlight, bg = C.green },
+
+						-- Mason
 						MasonNormal = { fg = white_hightlight },
+
+						-- Noice
 						NoicePopupBorder = { fg = white_hightlight },
 						NoiceCmdlinePopupBorder = { fg = white_hightlight },
 						NoiceSearchPopupBorder = { fg = white_hightlight },
 						NoiceCmdlinePopupBorderSearch = { fg = white_hightlight },
 						NoiceCmdlinePopupTitle = { fg = white_hightlight },
-						LazyNormal = { fg = white_hightlight },
-						FloatTitle = { fg = white_hightlight },
-						TextError = { fg = C.red },
-						TextWarning = { fg = C.yellow },
-						TextInfo = { fg = C.blue },
-						TextHint = { fg = C.green },
+
+						-- Cmp
 						CmpSel = { fg = C.base, bg = C.blue },
 						CmpItemKindSnippet = { fg = C.mauve },
 						CmpItemKindKeyword = { fg = C.red },
@@ -86,26 +98,6 @@ local theme = {
 				},
 			})
 			require("lspconfig.ui.windows").default_options.border = "single"
-		end,
-	},
-	{
-		"maxmx03/dracula.nvim",
-	},
-	{
-		"navarasu/onedark.nvim",
-	},
-	{
-		"cpea2506/one_monokai.nvim",
-	},
-	{
-		"projekt0n/github-nvim-theme",
-	},
-	{
-		"folke/tokyonight.nvim",
-		config = function()
-			require("tokyonight").setup({
-				transparent = true,
-			})
 		end,
 	},
 }

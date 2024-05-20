@@ -1,6 +1,7 @@
 local barbecue = {
 	{
 		"utilyre/barbecue.nvim",
+		event = "BufRead",
 		name = "barbecue",
 		version = "*",
 		dependencies = {

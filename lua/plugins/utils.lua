@@ -29,33 +29,27 @@ local utils = {
 		end,
 	},
 	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
-	},
-	{
-		"backdround/global-note.nvim",
-		config = function()
-			local global_note = require("global-note")
-			global_note.setup({
-				filename = "global.md",
-				directory = "~/Obsidian/notes/",
-			})
-		end,
-	},
-	{
 		"brenoprata10/nvim-highlight-colors",
 		enabled = true,
 		config = function()
 			require("nvim-highlight-colors").setup({
-				---Render style
-				---@usage 'background'|'foreground'|'virtual'
 				render = "virtual",
-
-				---Set virtual symbol (requires render to be set to 'virtual')
-				virtual_symbol = "●",
-
+				virtual_symbol = "  ",
 				enable_tailwind = true,
+			})
+		end,
+	},
+	{
+		"rachartier/tiny-devicons-auto-colors.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "VeryLazy",
+		config = function()
+			local theme_colors = require("catppuccin.palettes").get_palette("mocha")
+
+			require("tiny-devicons-auto-colors").setup({
+				colors = theme_colors,
 			})
 		end,
 	},

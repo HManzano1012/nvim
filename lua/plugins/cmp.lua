@@ -1,5 +1,6 @@
 local cmp = {
 	{
+
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
@@ -26,6 +27,15 @@ local cmp = {
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			{
+				"roobert/tailwindcss-colorizer-cmp.nvim",
+				-- optionally, override the default options:
+				config = function()
+					require("tailwindcss-colorizer-cmp").setup({
+						color_square_width = 2,
+					})
+				end,
+			},
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -93,7 +103,7 @@ local cmp = {
 					{ name = "buffer" },
 					{ name = "nvim_lua" },
 					{ name = "path" },
-					{ name = "vim-dadbod-completion" },
+					{ name = "cmp-dbee" },
 				},
 				formatting = {
 					fields = { "abbr", "kind", "menu" },

@@ -1,8 +1,7 @@
 local oil = {
 	{
 		"stevearc/oil.nvim",
-		enabled = true,
-		lazy = false,
+		cmd = "Oil",
 		opts = {},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()

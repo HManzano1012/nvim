@@ -13,14 +13,13 @@ local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { silent = true })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { silent = true })
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { silent = true })
---vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing bufferss" })
+vim.keymap.set("n", "<leader><leader>", builtin.buffers, { silent = true })
 vim.keymap.set("n", "<leader>fo", function()
 	builtin.live_grep({
 		grep_open_files = true,
 		prompt_title = "Live Grep in Open Files",
 	})
 end, { silent = true })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { silent = true })
 
 -- Comments
 vim.keymap.set("n", "<leader>/", function()
@@ -68,21 +67,11 @@ vim.keymap.set("n", "<leader>hg", function()
 	harpoon:list():select(5)
 end)
 
--- barbar
---
 vim.keymap.set("n", "<S-Tab>", function()
-	local buf = vim.api.nvim_get_current_buf()
-	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" then
-		vim.api.nvim_command("bprevious")
-	end
+	vim.api.nvim_command("bprevious")
 end, { silent = true })
 vim.keymap.set("n", "<Tab>", function()
-	local buf = vim.api.nvim_get_current_buf()
-	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" then
-		vim.api.nvim_command("bnext")
-	end
+	vim.api.nvim_command("bnext")
 end, { silent = true })
 
 -- Buffers
@@ -114,7 +103,7 @@ vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = t
 vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true })
 vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true })
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
-vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
+-- vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { silent = true })
 vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent = true })
 
 -- LazyGit
@@ -128,10 +117,22 @@ vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
 
 -- diffview
 vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<cr>", { silent = true })
--- Obsidian
-vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })
-vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
-vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
 
--- DBUI
-vim.keymap.set("n", "<leader>dd", "<cmd>:DBUIToggle<CR>", { silent = true })
+-- DBee
+vim.keymap.set("n", "<leader>dd", function()
+	if require("dbee").is_open() then
+		vim.api.nvim_command("Dbee close")
+		vim.api.nvim_command("set relativenumber")
+		vim.api.nvim_command("set signcolumn=yes")
+	else
+		vim.api.nvim_command("Dbee open")
+	end
+end, { silent = true })
+
+vim.keymap.set("n", "<C-s>", function()
+	if require("dbee").is_open() then
+		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("BB", true, true, true), "n", true)
+	else
+		vim.api.nvim_command("w")
+	end
+end, { silent = true })

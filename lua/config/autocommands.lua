@@ -1,3 +1,5 @@
+local vim = vim
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -13,6 +15,7 @@ vim.cmd.colorscheme("catppuccin-mocha")
 vim.cmd("sign define DiagnosticSignError text= texthl=TextError linehl= numhl=")
 vim.cmd("sign define DiagnosticSignInfo text= texthl=TextInfo linehl= numhl=")
 vim.cmd("sign define DiagnosticSignHint text= texthl=TextHint linehl= numhl=")
+vim.cmd("sign define DiagnosticSignWarn text= texthl=TextWarn linehl= numhl=")
 
 -- background opacity
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
@@ -27,3 +30,28 @@ vim.cmd("TSEnable highlight")
 -- set cmd height = 1
 vim.cmd("set cmdheight=1")
 vim.cmd("set cmdwinheight=5")
+
+-- dbee
+vim.api.nvim_create_autocmd("WinNew", {
+	pattern = "dbee-call-log",
+	callback = function()
+		-- do whatever you want in here, e.g.
+		vim.wo.relativenumber = true
+	end,
+})
+
+vim.api.nvim_create_autocmd("WinNew", {
+	pattern = "dbee-drawer",
+	callback = function()
+		-- do whatever you want in here, e.g.
+		vim.wo.relativenumber = true
+	end,
+})
+
+vim.api.nvim_create_autocmd("WinNew", {
+	pattern = "dbee-result",
+	callback = function()
+		-- do whatever you want in here, e.g.
+		vim.wo.relativenumber = true
+	end,
+})

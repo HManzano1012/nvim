@@ -9,37 +9,36 @@ local treesitter = {
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
-				autotag = { enable = true },
+				-- autotag = { enable = true },
 			}
 
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	{
-		"windwp/nvim-ts-autotag",
-		ft = {
-			"html",
-			"javascript",
-			"typescript",
-			"javascriptreact",
-			"typescriptreact",
-			"svelte",
-			"vue",
-			"tsx",
-			"jsx",
-			"rescript",
-			"xml",
-			"php",
-			"markdown",
-			"astro",
-			"glimmer",
-			"handlebars",
-			"hbs",
-		},
-		config = function()
-			require("nvim-ts-autotag").setup()
-		end,
-	},
+	-- {
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	ft = {
+	-- 		"html",
+	-- 		"javascript",
+	-- 		"typescript",
+	-- 		"javascriptreact",
+	-- 		"typescriptreact",
+	-- 		"svelte",
+	-- 		"vue",
+	-- 		"tsx",
+	-- 		"jsx",
+	-- 		"rescript",
+	-- 		"xml",
+	-- 		"php",
+	-- 		"markdown",
+	-- 		"astro",
+	-- 		"glimmer",
+	-- 		"handlebars",
+	-- 	},
+	-- 	config = function()
+	-- 		require("nvim-ts-autotag").setup()
+	-- 	end,
+	-- },
 }
 
 return treesitter

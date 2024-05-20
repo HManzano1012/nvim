@@ -1,3 +1,4 @@
+local vim = vim
 local colors = {
 	bg = "#181825",
 	fg = "#bbc2cf",

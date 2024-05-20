@@ -1,5 +1,4 @@
 local comments = {
-	-- TODO Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -8,9 +7,7 @@ local comments = {
 	},
 	{
 		"numToStr/Comment.nvim",
-		opts = {
-			-- add any options here
-		},
+		opts = {},
 		lazy = false,
 	},
 }

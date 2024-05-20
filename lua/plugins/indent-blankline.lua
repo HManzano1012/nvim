@@ -1,5 +1,11 @@
 local indent_blankline = {
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			indent = { char = "▏" },
+		},
+	},
 }
 
-return {}
+return indent_blankline

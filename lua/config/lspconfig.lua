@@ -47,7 +47,6 @@ local servers = {
 	"dockerls",
 	"html",
 	"cssls",
-	"sqlls",
 }
 local util = require("lspconfig/util")
 

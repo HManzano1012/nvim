@@ -22,7 +22,6 @@ local lspconfig = {
 				"intelephense",
 				"stylua",
 				"dockerls",
-				"sqlls",
 			},
 			auto_install = true,
 		},
@@ -36,15 +35,6 @@ local lspconfig = {
 		opts = function()
 			local opts = require("config.null-ls")
 			return opts
-		end,
-	},
-	{
-		"roobert/tailwindcss-colorizer-cmp.nvim",
-		-- optionally, override the default options:
-		config = function()
-			require("tailwindcss-colorizer-cmp").setup({
-				color_square_width = 2,
-			})
 		end,
 	},
 }

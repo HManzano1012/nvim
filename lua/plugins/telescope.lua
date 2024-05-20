@@ -29,6 +29,8 @@ local telescope = {
 						"vendor/*",
 						"*/__pycache__",
 					},
+					prompt_prefix = "󰼛 ",
+					selection_caret = "󱞩 ",
 				},
 			})
 
