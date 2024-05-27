@@ -1,3 +1,4 @@
+local vim = vim
 local M = {}
 local navic = require("nvim-navic")
 

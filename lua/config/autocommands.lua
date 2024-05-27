@@ -27,31 +27,23 @@ vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
 -- enable treesitter
 vim.cmd("TSEnable highlight")
 
--- set cmd height = 1
-vim.cmd("set cmdheight=1")
-vim.cmd("set cmdwinheight=5")
-
--- dbee
-vim.api.nvim_create_autocmd("WinNew", {
-	pattern = "dbee-call-log",
+local function clear_cmdarea()
+	vim.defer_fn(function()
+		vim.api.nvim_echo({}, false, {})
+	end, 800)
+end
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	callback = function()
-		-- do whatever you want in here, e.g.
-		vim.wo.relativenumber = true
-	end,
-})
+		local buf = vim.api.nvim_get_current_buf()
+		local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+		if ft == "sql" then
+			vim.cmd("silent w")
 
-vim.api.nvim_create_autocmd("WinNew", {
-	pattern = "dbee-drawer",
-	callback = function()
-		-- do whatever you want in here, e.g.
-		vim.wo.relativenumber = true
-	end,
-})
+			local time = os.date("%I:%M %p")
 
-vim.api.nvim_create_autocmd("WinNew", {
-	pattern = "dbee-result",
-	callback = function()
-		-- do whatever you want in here, e.g.
-		vim.wo.relativenumber = true
+			-- print nice colored msg
+			vim.api.nvim_echo({ { "󰄳", "LazyProgressDone" }, { " file autosaved at " .. time } }, false, {})
+			clear_cmdarea()
+		end
 	end,
 })

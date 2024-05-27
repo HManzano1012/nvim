@@ -256,6 +256,15 @@ ins_right({
 	ts_icon = "",
 	color = { fg = colors.mint, gui = "bold" },
 })
+ins_right({
+	"tabs",
+	tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
+	max_length = vim.o.columns / 3, -- Maximum width of tabs component.
+	mode = 1,
+	cond = function()
+		return #vim.fn.gettabinfo() > 1
+	end,
+})
 
 ins_right({
 	function()

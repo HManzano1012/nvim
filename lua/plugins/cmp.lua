@@ -1,3 +1,4 @@
+local vim = vim
 local cmp = {
 	{
 
@@ -43,6 +44,7 @@ local cmp = {
 			luasnip.config.setup({})
 
 			cmp.setup({
+				preselect = cmp.PreselectMode.None,
 				completion = {
 					completeopt = "menu,menuone,noinsert,noselect",
 					scrollbar = true,

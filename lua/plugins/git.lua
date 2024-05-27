@@ -81,9 +81,6 @@ local git = {
 			},
 		},
 		cmd = { "Fugit2", "Fugit2Graph" },
-		keys = {
-			{ "<leader>F", mode = "n", "<cmd>Fugit2<cr>" },
-		},
 	},
 	{
 		"sindrets/diffview.nvim",

@@ -27,7 +27,9 @@ opt.mouse = "a"
 vim.o.timeout = true
 vim.o.timeoutlen = 500
 vim.o.cmdheight = 1
-opt.cmdheight = 1
+-- vim.o.showtabline = 0
+opt.cmdheight = 0
+-- opt.showtabline = 0
 
 -- Numbers
 opt.number = true

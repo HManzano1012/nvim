@@ -1,5 +1,4 @@
 local vim = vim
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -32,6 +31,9 @@ vim.keymap.set(
 	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
 	{ silent = true }
 )
+
+vim.keymap.set("n", "<leader>ct", "<cmd>:TodoTrouble<cr>", { silent = true })
+vim.keymap.set("n", "<leader>cc", "<cmd>:TodoTelescope<cr>", { silent = true })
 
 -- Center screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
@@ -69,10 +71,18 @@ vim.keymap.set("n", "<leader>hg", function()
 end)
 
 vim.keymap.set("n", "<S-Tab>", function()
-	vim.api.nvim_command("bprevious")
+	local buf = vim.api.nvim_get_current_buf()
+	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" and ft ~= "dbout" then
+		vim.api.nvim_command("bprevious")
+	end
 end, { silent = true })
 vim.keymap.set("n", "<Tab>", function()
-	vim.api.nvim_command("bnext")
+	local buf = vim.api.nvim_get_current_buf()
+	local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+	if ft ~= "sql" and ft ~= "mysql" and ft ~= "mariadb" and ft ~= "dbui" and ft ~= "dbee" and ft ~= "dbout" then
+		vim.api.nvim_command("bnext")
+	end
 end, { silent = true })
 
 -- Buffers
@@ -119,21 +129,18 @@ vim.keymap.set("n", "<leader>nn", "<cmd>:GlobalNote<cr>", { silent = true })
 -- diffview
 vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<cr>", { silent = true })
 
--- DBee
+-- Obsidian
+vim.keymap.set("n", "<leader>no", "<cmd>:ObsidianNew<CR>", { silent = true })
+vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
+vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
+
+-- Dbee
 vim.keymap.set("n", "<leader>dd", function()
-	if require("dbee").is_open() then
-		vim.api.nvim_command("Dbee close")
-		vim.api.nvim_command("set relativenumber")
-		vim.api.nvim_command("set signcolumn=yes")
-	else
-		vim.api.nvim_command("Dbee open")
-	end
+	vim.api.nvim_command("Projector toggle")
+	vim.api.nvim_command("set relativenumber")
+	vim.api.nvim_command("set signcolumn=yes")
 end, { silent = true })
 
-vim.keymap.set("n", "<C-s>", function()
-	if require("dbee").is_open() then
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("BB", true, true, true), "n", true)
-	else
-		vim.api.nvim_command("w")
-	end
-end, { silent = true })
+-- Trouble
+vim.keymap.set("n", "<leader>tt", "<cmd>:TroubleToggle<CR>", { silent = true })
+vim.keymap.set("n", "<leader>td", "<cmd>:TodoTelescope<CR>", { silent = true })

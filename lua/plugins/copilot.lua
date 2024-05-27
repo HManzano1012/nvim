@@ -1,3 +1,4 @@
+local vim = vim
 local copilot = {
 
 	{

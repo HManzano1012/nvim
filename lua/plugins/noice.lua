@@ -24,6 +24,9 @@ local noice = {
 							style = "single",
 							padding = { 0, 1 },
 						},
+						win_options = {
+							winhighlight = { Normal = "TelescopeBorder", FloatBorder = "TelescopeBorder" },
+						},
 
 						size = {
 							width = 70,
@@ -39,6 +42,20 @@ local noice = {
 						size = {
 							width = 70,
 							height = 10,
+						},
+						border = {
+							style = "single",
+							padding = { 0, 1 },
+						},
+						win_options = {
+							winhighlight = { Normal = "TelescopeBorder", FloatBorder = "TelescopeBorder" },
+						},
+					},
+					hover = {
+						relative = "cursor",
+						position = {
+							row = 2,
+							col = 0,
 						},
 						border = {
 							style = "single",

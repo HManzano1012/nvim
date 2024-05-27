@@ -37,6 +37,14 @@ local lspconfig = {
 			return opts
 		end,
 	},
+	{
+		"folke/trouble.nvim",
+		cmd = { "TroubleToggle", "Trouble", "TodoTrouble" },
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			position = "right",
+		},
+	},
 }
 
 return lspconfig

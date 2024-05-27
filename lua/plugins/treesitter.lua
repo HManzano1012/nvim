@@ -15,30 +15,30 @@ local treesitter = {
 			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
-	-- {
-	-- 	"windwp/nvim-ts-autotag",
-	-- 	ft = {
-	-- 		"html",
-	-- 		"javascript",
-	-- 		"typescript",
-	-- 		"javascriptreact",
-	-- 		"typescriptreact",
-	-- 		"svelte",
-	-- 		"vue",
-	-- 		"tsx",
-	-- 		"jsx",
-	-- 		"rescript",
-	-- 		"xml",
-	-- 		"php",
-	-- 		"markdown",
-	-- 		"astro",
-	-- 		"glimmer",
-	-- 		"handlebars",
-	-- 	},
-	-- 	config = function()
-	-- 		require("nvim-ts-autotag").setup()
-	-- 	end,
-	-- },
+	{
+		"windwp/nvim-ts-autotag",
+		ft = {
+			"html",
+			"javascript",
+			"typescript",
+			"javascriptreact",
+			"typescriptreact",
+			"svelte",
+			"vue",
+			"tsx",
+			"jsx",
+			"rescript",
+			"xml",
+			"php",
+			"markdown",
+			"astro",
+			"glimmer",
+			"handlebars",
+		},
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
 }
 
 return treesitter
