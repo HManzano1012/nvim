@@ -1,0 +1,6 @@
+{
+  "commands": {
+    "ls:la": "ls -tls",
+    "current:ls": "ls -la ${currentBuffer}"
+  }
+}

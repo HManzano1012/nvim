@@ -21,9 +21,7 @@ local cmp = {
 					},
 				},
 			},
-			{
-				"onsails/lspkind.nvim",
-			},
+			"onsails/lspkind.nvim",
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",

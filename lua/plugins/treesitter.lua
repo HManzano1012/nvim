@@ -9,10 +9,10 @@ local treesitter = {
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
-				autotag = { enable = true },
+				-- autotag = { enable = true },
 			}
 
-			--require("nvim-treesitter.configs").setup(opts)
+			require("nvim-treesitter.configs").setup(opts)
 		end,
 	},
 	{

@@ -28,6 +28,10 @@ local conditions = {
 	end,
 }
 
+-- Transparent lualine
+local custom_gruvbox = require("lualine.themes.gruvbox")
+custom_gruvbox.normal.c.bg = "NONE"
+
 -- Config
 local config = {
 	options = {
@@ -54,7 +58,7 @@ local config = {
 				"lazygit",
 			},
 		},
-		theme = "catppuccin",
+		theme = custom_gruvbox,
 	},
 	sections = {
 		-- these are to remove the defaults
@@ -158,14 +162,7 @@ ins_left({
 
 ins_left({
 	"fancy_branch",
-	color = { bg = "none", gui = "bold" },
-})
-
-ins_left({
-	"filename",
-	path = 1,
-	cond = conditions.buffer_not_empty,
-	color = { fg = colors.mint, bg = "none", gui = "bold" },
+	color = { fg = "#cdd6f5", bg = "NONE" },
 })
 
 ins_left({
@@ -178,13 +175,39 @@ ins_left({
 		color_info = { fg = colors.cyan },
 	},
 
-	color = { bg = "none", gui = "bold" },
+	color = { bg = "none" },
 })
 
 ins_left({
 	function()
 		return "%="
 	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_left({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_right({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_right({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
 })
 
 ins_right({
@@ -213,7 +236,7 @@ ins_right({
 	show_colors = false,
 	show_loading = true,
 
-	color = { fg = "#ffffff", bg = "NONE", gui = "bold" },
+	color = { fg = "#ffffff", bg = "NONE" },
 })
 
 ins_right({
@@ -233,8 +256,39 @@ ins_right({
 		end
 		return msg
 	end,
-	icon = " LSP:",
-	color = { fg = "#ffffff", bg = "NONE", gui = "bold" },
+	icon = " [lsp]:",
+	color = { fg = "#cdd6f5", bg = "NONE" },
+})
+
+ins_right({
+	function()
+		local linters = require("lint").linters_by_ft[vim.bo.filetype] or {}
+		if #linters == 0 then
+			return ""
+		end
+		return "󰨮 " .. table.concat(linters, ", ")
+	end,
+
+	color = { fg = "#cdd6f5", bg = "NONE" },
+})
+
+ins_right({
+	function()
+		local ok, conform = pcall(require, "conform")
+		local formatters = table.concat(conform.formatters_by_ft[vim.bo.filetype], " ")
+		local buf_client_names = {}
+		if ok then
+			for formatter in formatters:gmatch("%w+") do
+				if formatter then
+					table.insert(buf_client_names, formatter)
+				end
+			end
+		end
+
+		return "󰦕 " .. table.concat(buf_client_names, ", ")
+	end,
+
+	color = { fg = "#cdd6f5", bg = "NONE" },
 })
 
 ins_right({
@@ -247,32 +301,13 @@ ins_right({
 		removed = { fg = colors.red },
 	},
 	cond = conditions.hide_in_width,
-	color = { fg = "#ffffff", bg = "NONE", gui = "bold" },
+	color = { fg = "#ffffff", bg = "NONE" },
 })
 
 ins_right({
 	"fancy_filetype",
 	ts_icon = "",
-	color = { fg = colors.mint, bg = "none", gui = "bold" },
-})
-ins_right({
-	"tabs",
-	tab_max_length = 40, -- Maximum width of each tab. The content will be shorten dynamically (example: apple/orange -> a/orange)
-	max_length = vim.o.columns / 3, -- Maximum width of tabs component.
-	mode = 1,
-	cond = function()
-		return #vim.fn.gettabinfo() > 1
-	end,
-})
-
-ins_right({
-	function()
-		local linters = require("lint").get_running()
-		if #linters == 0 then
-			return "󰦕 " .. table.concat(linters, ", ")
-		end
-		return "󱉶  " .. table.concat(linters, ", ")
-	end,
+	color = { fg = colors.mint, bg = "none" },
 })
 
 return config

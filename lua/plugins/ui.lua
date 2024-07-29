@@ -70,6 +70,24 @@ local ui = {
 			alpha.setup(dashboard.opts)
 		end,
 	},
+	{
+		"folke/noice.nvim",
+		dependencies = {
+			"muniftanjim/nui.nvim",
+		},
+		config = function()
+			local config = require("plugins.config.noice-config")
+			require("noice").setup(config)
+		end,
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		config = function()
+			local config = require("plugins.config.inline-diagnostics-config")
+			require("tiny-inline-diagnostic").setup(config)
+		end,
+	},
 }
 
 return ui

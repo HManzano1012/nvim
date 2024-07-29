@@ -3,9 +3,6 @@ local M = {}
 local navic = require("nvim-navic")
 
 M.on_attach = function(client, bufnr)
-	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint(bufnr, true)
-	end
 	client.server_capabilities.documentFormattingProvider = false
 	client.server_capabilities.documentRangeFormattingProvider = false
 	client.server_capabilities.semanticTokensProvider = nil
@@ -42,13 +39,14 @@ local servers = {
 	"tsserver",
 	"eslint",
 	"pyright",
-	"phpactor",
-	-- "intelephense",
+	-- "phpactor",
+	"intelephense",
 	"tailwindcss",
 	"lua_ls",
 	"vuels",
 	"jsonls",
 	"dockerls",
+	"jsonls",
 	"html",
 	"cssls",
 }

@@ -1,7 +1,4 @@
 local vim = vim
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- set ; to enter on command mode like :
 vim.keymap.set("n", ";", ":", { noremap = true })
 
@@ -10,7 +7,7 @@ vim.keymap.set("n", "<leader>e", "<cmd>:Oil<CR>", { silent = true })
 
 -- Telescope
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>fk", builtin.keymaps, { silent = true })
+-- vim.keymap.set("n", "<leader>fk", builtin.keymaps, { silent = true })
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { silent = true })
 vim.keymap.set("n", "<leader>fw", builtin.live_grep, { silent = true })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { silent = true })
@@ -53,12 +50,9 @@ vim.keymap.set("n", "<C-l>", "<cmd>NvimTmuxNavigateRight<CR>")
 vim.keymap.set("n", "<C-\\>", "<cmd>NvimTmuxNavigateLastActive<CR>")
 vim.keymap.set("n", "<C-Space>", "<cmd>NvimTmuxNavigateNext<CR>")
 
--- vim.keymap.set("n", '<leader>"', "<cmd>:split<CR>", { silent = true })
--- vim.keymap.set("n", "<leader>%", "<cmd>:vsplit<CR>", { silent = true })
--- vim.keymap.set("n", "<S-h>", "<cmd>:wincmd h<CR>", { silent = true })
--- vim.keymap.set("n", "<S-j>", "<cmd>:wincmd j<CR>", { silent = true })
--- vim.keymap.set("n", "<S-k>", "<cmd>:wincmd k<CR>", { silent = true })
--- vim.keymap.set("n", "<S-l>", "<cmd>:wincmd l<CR>", { silent = true })
+-- Split buffers
+vim.keymap.set("n", "<leader>-", "<cmd>:split<CR>", { silent = true })
+vim.keymap.set("n", "<leader>|", "<cmd>:vsplit<CR>", { silent = true })
 
 vim.keymap.set("n", "<S-Tab>", function()
 	vim.api.nvim_command("bprevious")
@@ -83,21 +77,17 @@ vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { silent 
 -- LazyGit
 vim.keymap.set("n", "<leader>gl", "<cmd>:LazyGit<CR>", { silent = true })
 
--- diffview
-vim.keymap.set("n", "<leader>gd", "<cmd>:DiffviewOpen<cr>", { silent = true })
-
 -- Obsidian
 vim.keymap.set("n", "<leader>nn", "<cmd>:ObsidianNew<CR>", { silent = true })
 vim.keymap.set("n", "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", { silent = true })
 vim.keymap.set("n", "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", { silent = true })
 
--- Dbee
-vim.keymap.set("n", "<leader>dd", function()
-	vim.api.nvim_command("Projector toggle")
-	vim.api.nvim_command("set relativenumber")
-	vim.api.nvim_command("set signcolumn=yes")
-end, { silent = true })
+-- DAP
+vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { silent = true })
+vim.keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", { silent = true })
+vim.keymap.set("n", "<leader>dpr", "<cmd>:lua require('dap-python').test_method() <CR>", { silent = true })
 
 -- Trouble
-vim.keymap.set("n", "<leader>tt", "<cmd>:Trouble diagnostics toggle<CR>", { silent = true })
-vim.keymap.set("n", "<leader>td", "<cmd>:Trouble todo toggle<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tt", "<cmd>:Trouble diagnostics toggle win.position=right<CR>", { silent = true })
+vim.keymap.set("n", "<leader>tl", "<cmd>:Trouble loclist toggle win.position=right<CR>", { silent = true })
+vim.keymap.set("n", "<leader>td", "<cmd>:Trouble todo toggle win.position=right<CR>", { silent = true })

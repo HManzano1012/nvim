@@ -29,7 +29,7 @@ local catppuccin_config = {
 		treesitter_context = false,
 	},
 	custom_highlights = function(C)
-		local white_hightlight = "#cdd6f5"
+		local white_hightlight = "#b7bdf8"
 		local background_hightlight = "#1e1e2e"
 
 		require("lspconfig.ui.windows").default_options.border = "single"
@@ -57,6 +57,7 @@ local catppuccin_config = {
 			NoiceSearchPopupBorder = { fg = white_hightlight },
 			NoiceCmdlinePopupBorderSearch = { fg = white_hightlight },
 			NoiceCmdlinePopupTitle = { fg = white_hightlight },
+			NoicePopupMenu = { bg = C.bg, fg = white_hightlight },
 
 			-- Cmp
 			CmpSel = { fg = C.base, bg = C.blue },

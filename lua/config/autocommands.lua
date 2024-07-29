@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.cmd.colorscheme("catppuccin-mocha")
+vim.cmd.colorscheme("catppuccin-macchiato")
 
 -- change background color for floating windows
 local modes = { "normal", "insert", "visual", "replace", "terminal", "command" }
@@ -34,11 +34,15 @@ vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
 -- enable treesitter
 vim.cmd("TSEnable highlight")
 
+-- hide virtual text from diagnostics
+vim.diagnostic.config({ virtual_text = false })
+
 local function clear_cmdarea()
 	vim.defer_fn(function()
 		vim.api.nvim_echo({}, false, {})
 	end, 800)
 end
+
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	callback = function()
 		local buf = vim.api.nvim_get_current_buf()
@@ -54,4 +58,3 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 		end
 	end,
 })
-

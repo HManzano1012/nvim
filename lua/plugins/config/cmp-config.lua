@@ -61,7 +61,7 @@ local cmp_config = {
 		{ name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = "cmp-dbee" },
+		{ name = "neorg" },
 	},
 	formatting = {
 		format = function(entry, item)

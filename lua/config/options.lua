@@ -14,7 +14,7 @@ opt.cursorline = true
 
 -- Indenting
 opt.expandtab = true
-opt.shiftwidth = 2
+opt.shiftwidth = 0
 opt.smartindent = true
 opt.tabstop = 2
 opt.softtabstop = 2
@@ -65,4 +65,3 @@ opt.guicursor = {
 	"a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
 	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
-
