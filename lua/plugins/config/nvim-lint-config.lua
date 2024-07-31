@@ -11,6 +11,7 @@ require("lint").linters_by_ft = {
 	html = { "htmlhint" },
 	css = { "stylelint" },
 	vue = { "eslint_d" },
+	groovy = { "npm-groovy-lint" },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

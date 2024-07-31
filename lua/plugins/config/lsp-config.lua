@@ -49,6 +49,7 @@ local servers = {
 	"jsonls",
 	"html",
 	"cssls",
+	"groovyls",
 }
 local util = require("lspconfig/util")
 

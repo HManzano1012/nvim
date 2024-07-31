@@ -1,3 +1,4 @@
+local vim = vim
 -- fuzzy finder (files, lsp, etc)
 local telescope = {
 	{
