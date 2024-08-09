@@ -88,6 +88,13 @@ local ui = {
 			require("tiny-inline-diagnostic").setup(config)
 		end,
 	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			indent = { char = "▏" },
+		},
+	},
 }
 
 return ui

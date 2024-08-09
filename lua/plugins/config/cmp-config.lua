@@ -8,7 +8,7 @@ local cmp_config = {
 
 	window = {
 		completion = {
-			winhighlight = "normal:cmppmenu,cursorline:cmpsel,floatborder:telescopeborder",
+			winhighlight = "normal:cmppmenu,cursorline:cmpsel,floatborder:TelescopeBorder",
 			scrollbar = true,
 			border = {
 				{ "󱐋", "warningmsg" },
@@ -32,7 +32,7 @@ local cmp_config = {
 				{ "└", "cmppmenu" },
 				{ "│", "cmppmenu" },
 			},
-			winhighlight = "normal:cmppmenu,cursorline:cmpsel,floatborder:telescopeborder",
+			winhighlight = "normal:cmppmenu,cursorline:cmpsel,floatborder:TelescopeBorder",
 		},
 	},
 	snippet = {
@@ -61,7 +61,6 @@ local cmp_config = {
 		{ name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = "neorg" },
 	},
 	formatting = {
 		format = function(entry, item)

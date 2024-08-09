@@ -62,7 +62,7 @@ local utils = {
 		},
 		event = "VeryLazy",
 		config = function()
-			local theme_colors = require("catppuccin.palettes").get_palette("mocha")
+			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
 			require("tiny-devicons-auto-colors").setup({
 				colors = theme_colors,
 			})

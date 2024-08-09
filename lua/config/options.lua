@@ -1,9 +1,9 @@
 local vim = vim
 local opt = vim.opt
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-
 opt.conceallevel = 2
 opt.laststatus = 3 -- global statusline
 opt.showmode = false
@@ -36,7 +36,7 @@ opt.number = true
 opt.numberwidth = 2
 opt.ruler = false
 opt.relativenumber = true
-opt.colorcolumn = "85"
+opt.colorcolumn = "79"
 opt.scrolloff = 8
 opt.cmdheight = 1
 -- disable nvim intro

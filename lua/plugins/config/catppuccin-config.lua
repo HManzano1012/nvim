@@ -29,38 +29,37 @@ local catppuccin_config = {
 		treesitter_context = false,
 	},
 	custom_highlights = function(C)
-		local white_hightlight = "#b7bdf8"
+		local catppuccin_hightlight = C.lavender
 		local background_hightlight = "#1e1e2e"
 
 		require("lspconfig.ui.windows").default_options.border = "single"
 		return {
 			-- Normal
-			NormalFloat = { bg = C.bg, fg = white_hightlight },
-			FloatBorder = { fg = white_hightlight },
+			NormalFloat = { bg = C.bg, fg = catppuccin_hightlight },
+			FloatBorder = { fg = catppuccin_hightlight },
 			TextError = { fg = C.red },
 			TextWarning = { fg = C.yellow },
 			TextInfo = { fg = C.blue },
 			TextHint = { fg = C.green },
 
 			-- Telescope
-			TelescopeBorder = { fg = white_hightlight },
-			TelescopePromptTitle = { fg = background_hightlight, bg = C.lavender },
+			TelescopeBorder = { fg = catppuccin_hightlight },
+			TelescopePromptTitle = { fg = background_hightlight, bg = catppuccin_hightlight },
 			TelescopeResultsTitle = { fg = background_hightlight, bg = C.red },
 			TelescopePreviewTitle = { fg = background_hightlight, bg = C.green },
-
 			-- Mason
-			MasonNormal = { fg = white_hightlight },
+			MasonNormal = { fg = catppuccin_hightlight },
 
 			-- Noice
-			NoicePopupBorder = { fg = white_hightlight },
-			NoiceCmdlinePopupBorder = { fg = white_hightlight },
-			NoiceSearchPopupBorder = { fg = white_hightlight },
-			NoiceCmdlinePopupBorderSearch = { fg = white_hightlight },
-			NoiceCmdlinePopupTitle = { fg = white_hightlight },
-			NoicePopupMenu = { bg = C.bg, fg = white_hightlight },
+			NoicePopupBorder = { fg = catppuccin_hightlight },
+			NoiceCmdlinePopupBorder = { fg = catppuccin_hightlight },
+			NoiceSearchPopupBorder = { fg = catppuccin_hightlight },
+			NoiceCmdlinePopupBorderSearch = { fg = catppuccin_hightlight },
+			NoiceCmdlinePopupTitle = { fg = catppuccin_hightlight },
+			NoicePopupMenu = { bg = C.bg, fg = catppuccin_hightlight },
 
 			-- Cmp
-			CmpSel = { fg = C.base, bg = C.blue },
+			CmpSel = { fg = C.base, bg = catppuccin_hightlight },
 			CmpItemKindSnippet = { fg = C.mauve },
 			CmpItemKindKeyword = { fg = C.red },
 			CmpItemKindText = { fg = C.teal },
