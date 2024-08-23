@@ -36,25 +36,3 @@ vim.cmd("TSEnable highlight")
 
 -- hide virtual text from diagnostics
 vim.diagnostic.config({ virtual_text = false })
-
-local function clear_cmdarea()
-	vim.defer_fn(function()
-		vim.api.nvim_echo({}, false, {})
-	end, 800)
-end
-
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-	callback = function()
-		local buf = vim.api.nvim_get_current_buf()
-		local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-		if ft == "sql" then
-			vim.cmd("silent w")
-
-			local time = os.date("%I:%M %p")
-
-			-- print nice colored msg
-			vim.api.nvim_echo({ { "󰄳", "LazyProgressDone" }, { " file autosaved at " .. time } }, false, {})
-			clear_cmdarea()
-		end
-	end,
-})

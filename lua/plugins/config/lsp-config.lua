@@ -50,6 +50,7 @@ local servers = {
 	"html",
 	"cssls",
 	"groovyls",
+	"sqlls",
 }
 local util = require("lspconfig/util")
 

@@ -21,10 +21,9 @@ local catppuccin_config = {
 		telescope = true,
 		indent_blankline = {
 			enabled = true,
-			colored_indent_levels = false,
+			colored_indent_levels = true,
 		},
 		notify = true,
-		overseer = false,
 		fidget = true,
 		treesitter_context = false,
 	},

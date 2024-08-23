@@ -20,6 +20,7 @@ local telescope = {
 			local telescope = require("telescope")
 			telescope.setup({ config })
 			telescope.load_extension("fzf")
+			telescope.load_extension("rest")
 		end,
 	},
 }

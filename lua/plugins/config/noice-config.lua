@@ -10,7 +10,7 @@ local noice_config = {
 		},
 		cmdline_popup = {
 			position = {
-				row = 5,
+				row = 8,
 				col = "50%",
 			},
 			border = {
@@ -29,7 +29,7 @@ local noice_config = {
 		popupmenu = {
 			relative = "editor",
 			position = {
-				row = 8,
+				row = 11,
 				col = "50%",
 			},
 			size = {
@@ -38,7 +38,7 @@ local noice_config = {
 			},
 			border = {
 				style = "single",
-				padding = { 0, 1 },
+				padding = { 0, 0 },
 			},
 			win_options = {
 				winhighlight = { normal = "telescopeborder", floatborder = "telescopeborder" },

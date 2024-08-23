@@ -27,8 +27,8 @@ opt.mouse = "a"
 vim.o.timeout = true
 vim.o.timeoutlen = 500
 vim.o.cmdheight = 1
--- vim.o.showtabline = 0
 opt.cmdheight = 0
+-- vim.o.showtabline = 0
 -- opt.showtabline = 0
 
 -- Numbers
@@ -38,7 +38,6 @@ opt.ruler = false
 opt.relativenumber = true
 opt.colorcolumn = "79"
 opt.scrolloff = 8
-opt.cmdheight = 1
 -- disable nvim intro
 opt.shortmess:append("sI")
 

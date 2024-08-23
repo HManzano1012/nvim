@@ -10,7 +10,11 @@ local ui = {
 	},
 	{
 		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons", "meuter/lualine-so-fancy.nvim", "AndreM222/copilot-lualine" },
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"meuter/lualine-so-fancy.nvim",
+			"AndreM222/copilot-lualine",
+		},
 		config = function()
 			local config = require("plugins.config.lualine-config")
 			require("lualine").setup(config)
@@ -93,6 +97,7 @@ local ui = {
 		main = "ibl",
 		opts = {
 			indent = { char = "▏" },
+			-- indent = { char = "│" },
 		},
 	},
 	{
@@ -102,11 +107,20 @@ local ui = {
 		},
 		event = "VeryLazy",
 		config = function()
-			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
+			local palettes = require("catppuccino.palettes")
+			local theme_colors = palettes.get_palette("macchiato")
 			require("tiny-devicons-auto-colors").setup({
 				colors = theme_colors,
 			})
 		end,
+	},
+	{
+		"lukas-reineke/virt-column.nvim",
+		opts = {
+			char = { "│" },
+			vircolumn = { vim.opt.colorcolumn },
+			highlight = { "IblIndent" },
+		},
 	},
 }
 

@@ -21,6 +21,7 @@ local comform_config = {
 		css = { "prettierd" },
 		xml = { "xmlformatter" },
 		vue = { "prettierd" },
+		sql = { "sqlformat" },
 	},
 	format_on_save = {
 		timeout_ms = 3000,

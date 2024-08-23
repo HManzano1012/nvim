@@ -56,6 +56,19 @@ local utils = {
 		end,
 	},
 	{
+		"rachartier/tiny-devicons-auto-colors.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		event = "VeryLazy",
+		config = function()
+			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
+			require("tiny-devicons-auto-colors").setup({
+				colors = theme_colors,
+			})
+		end,
+	},
+	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
@@ -87,6 +100,10 @@ local utils = {
 		config = function()
 			require("live-server-nvim").setup({})
 		end,
+	},
+	{
+		"rest-nvim/rest.nvim",
+		cmd = "Rest",
 	},
 }
 

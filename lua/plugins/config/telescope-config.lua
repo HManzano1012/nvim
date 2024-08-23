@@ -10,6 +10,7 @@ require("telescope").setup({
 			"env/*",
 			"vendor/*",
 			"*/__pycache__/*",
+			"__pycache__",
 		},
 		prompt_prefix = "󰼛 ",
 		selection_caret = "󱞩 ",

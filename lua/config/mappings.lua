@@ -92,3 +92,5 @@ vim.keymap.set("n", "<leader>dpr", "<cmd>:lua require('dap-python').test_method(
 vim.keymap.set("n", "<leader>tt", "<cmd>:Trouble diagnostics toggle win.position=right<CR>", { silent = true })
 vim.keymap.set("n", "<leader>tl", "<cmd>:Trouble loclist toggle win.position=right<CR>", { silent = true })
 vim.keymap.set("n", "<leader>td", "<cmd>:Trouble todo toggle win.position=right<CR>", { silent = true })
+
+vim.keymap.set("c", "<esc>", "<cmd>:Noice dismiss<cr>", { silent = true })
