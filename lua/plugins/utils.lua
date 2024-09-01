@@ -7,6 +7,7 @@ local utils = {
 	},
 	{
 		"numToStr/Comment.nvim",
+		event = "BufRead",
 		opts = {},
 		lazy = false,
 	},
@@ -21,7 +22,7 @@ local utils = {
 	},
 	{
 		"m4xshen/autoclose.nvim",
-		enabled = true,
+		event = "BufRead",
 		config = function()
 			require("autoclose").setup()
 		end,
@@ -46,7 +47,7 @@ local utils = {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		enabled = true,
+		event = "BufRead",
 		config = function()
 			require("nvim-highlight-colors").setup({
 				render = "background",
@@ -71,7 +72,7 @@ local utils = {
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
+		event = "BufRead",
 		config = function()
 			require("nvim-surround").setup({
 				-- Configuration here, or leave empty to use defaults
@@ -83,6 +84,7 @@ local utils = {
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
 		cmd = { "ObsidianQuickSwitch", "ObsidianNew", "ObsidianBacklinks" },
+		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
@@ -95,7 +97,7 @@ local utils = {
 	},
 	{
 		"ngtuonghy/live-server-nvim",
-		event = "VeryLazy",
+		cmd = { "LiveServerStart", "LiveServerStop", "LiveServerToggle", "LiveServerInstall" },
 		build = ":LiveServerInstall",
 		config = function()
 			require("live-server-nvim").setup({})
@@ -104,6 +106,11 @@ local utils = {
 	{
 		"rest-nvim/rest.nvim",
 		cmd = "Rest",
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		opts = {},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 	},
 }
 

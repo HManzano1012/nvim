@@ -8,16 +8,21 @@ local catppuccin_config = {
 				hints = { "italic" },
 				warnings = { "italic" },
 				information = { "italic" },
+				ok = { "italic" },
 			},
 			underlines = {
 				errors = { "underline" },
 				hints = { "underline" },
 				warnings = { "underline" },
 				information = { "underline" },
+				ok = { "underline" },
+			},
+			inlay_hints = {
+				background = true,
 			},
 		},
 		cmp = true,
-		gitsigns = false,
+		gitsigns = true,
 		telescope = true,
 		indent_blankline = {
 			enabled = true,
@@ -25,11 +30,21 @@ local catppuccin_config = {
 		},
 		notify = true,
 		fidget = true,
+		noice = true,
 		treesitter_context = false,
+		alpha = true,
+		barbecue = {
+			dim_dirname = true, -- directory name is dimmed by default
+			bold_basename = true,
+			dim_context = false,
+			alt_background = false,
+		},
+		render_markdown = true,
+		lsp_trouble = true,
 	},
 	custom_highlights = function(C)
 		local catppuccin_hightlight = C.lavender
-		local background_hightlight = "#1e1e2e"
+		local background_hightlight = "#24273a"
 
 		require("lspconfig.ui.windows").default_options.border = "single"
 		return {
@@ -40,6 +55,8 @@ local catppuccin_config = {
 			TextWarning = { fg = C.yellow },
 			TextInfo = { fg = C.blue },
 			TextHint = { fg = C.green },
+			InlayHint = { fg = C.blue, bg = background_hightlight },
+			LspInlayHint = { fg = C.blue, bg = background_hightlight },
 
 			-- Telescope
 			TelescopeBorder = { fg = catppuccin_hightlight },

@@ -36,13 +36,13 @@ local capabilities = M.capabilities
 local lspconfig = require("lspconfig")
 
 local servers = {
-	"tsserver",
-	"eslint",
-	"pyright",
+	-- "tsserver",
+	"eslint_d",
+	"basedpyright",
 	-- "phpactor",
 	"intelephense",
 	"tailwindcss",
-	"lua_ls",
+	-- "lua_ls",
 	"vuels",
 	"jsonls",
 	"dockerls",
@@ -50,7 +50,6 @@ local servers = {
 	"html",
 	"cssls",
 	"groovyls",
-	"sqlls",
 }
 local util = require("lspconfig/util")
 
@@ -60,6 +59,25 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			hint = {
+				enable = true,
+			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
+
+lspconfig.tsserver.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
 lspconfig.gopls.setup({
 	on_attach = on_attach,
@@ -75,6 +93,15 @@ lspconfig.gopls.setup({
 				unusedparams = true,
 			},
 			staticcheck = true,
+			hints = {
+				rangeVariableTypes = true,
+				parameterNames = true,
+				constantValues = true,
+				assignVariableTypes = true,
+				compositeLiteralFields = true,
+				compositeLiteralTypes = true,
+				functionTypeParameters = true,
+			},
 		},
 	},
 })
@@ -138,12 +165,12 @@ return function(ops)
 		init_options = {
 			["language_server_worse_reflection.inlay_hints.enable"] = true,
 			["language_server_worse_reflection.inlay_hints.params"] = true,
-			-- ["language_server_worse_reflection.inlay_hints.types"] = true,
+			["language_server_worse_reflection.inlay_hints.types"] = true,
 			["language_server_configuration.auto_config"] = false,
 			["code_transform.import_globals"] = true,
-			["language_server_phpstan.enabled"] = true,
-			["language_server_phpstan.level"] = 7,
-			["language_server_phpstan.bin"] = "phpstan",
+			-- ["language_server_phpstan.enabled"] = true,
+			-- ["language_server_phpstan.level"] = 7,
+			-- ["language_server_phpstan.bin"] = "phpstan",
 		},
 		handlers = {
 			["textDocument/inlayHint"] = function(err, result, ...)

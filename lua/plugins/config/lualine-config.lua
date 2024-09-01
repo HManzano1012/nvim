@@ -183,7 +183,6 @@ ins_left({
 	function()
 		return "%="
 	end,
-
 	color = { bg = "NONE" },
 })
 

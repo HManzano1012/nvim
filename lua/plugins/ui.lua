@@ -1,3 +1,4 @@
+local vim = vim
 local ui = {
 	{
 		"stevearc/oil.nvim",
@@ -76,6 +77,7 @@ local ui = {
 	},
 	{
 		"folke/noice.nvim",
+		version = "4.2.1",
 		dependencies = {
 			"muniftanjim/nui.nvim",
 		},
@@ -86,7 +88,7 @@ local ui = {
 	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy",
+		event = "BufRead",
 		config = function()
 			local config = require("plugins.config.inline-diagnostics-config")
 			require("tiny-inline-diagnostic").setup(config)
@@ -94,6 +96,7 @@ local ui = {
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = "BufRead",
 		main = "ibl",
 		opts = {
 			indent = { char = "▏" },
@@ -116,6 +119,7 @@ local ui = {
 	},
 	{
 		"lukas-reineke/virt-column.nvim",
+		event = "BufRead",
 		opts = {
 			char = { "│" },
 			vircolumn = { vim.opt.colorcolumn },

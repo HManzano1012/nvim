@@ -1,5 +1,9 @@
 local cmp = require("cmp")
 local cmp_config = {
+	performance = {
+		debounce = 0,
+		throttle = 0,
+	},
 	-- preselect = cmp.preselectmode.none,
 	completion = {
 		completeopt = "menu,menuone,noinsert,noselect",
