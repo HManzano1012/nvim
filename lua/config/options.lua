@@ -1,5 +1,6 @@
 local vim = vim
 local opt = vim.opt
+opt.statuscolumn = [[%1*%s %{v:relnum?v:relnum:v:lnum} %= ]]
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -27,6 +28,8 @@ opt.mouse = "a"
 vim.o.timeout = true
 vim.o.timeoutlen = 500
 vim.o.cmdheight = 1
+
+vim.o.conceallevel = 1
 opt.cmdheight = 0
 -- vim.o.showtabline = 0
 -- opt.showtabline = 0
@@ -39,8 +42,7 @@ opt.relativenumber = true
 opt.colorcolumn = "79"
 opt.scrolloff = 8
 -- disable nvim intro
-opt.shortmess:append("sI")
-
+opt.shortmess:append("s")
 opt.signcolumn = "yes"
 opt.splitbelow = true
 opt.splitright = true

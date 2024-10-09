@@ -45,6 +45,10 @@ local noice_config = {
 			},
 		},
 		hover = {
+			size = {
+				width = 50,
+				height = "auto",
+			},
 			relative = "cursor",
 			position = {
 				row = 2,

@@ -22,6 +22,8 @@ local comform_config = {
 		css = { "prettierd" },
 		xml = { "xmlformatter" },
 		vue = { "prettierd" },
+		cpp = { "clang-format" },
+		c = { "clang-format" },
 		-- sql = { "sqlformat" },
 	},
 	format_on_save = {

@@ -163,7 +163,7 @@ ins_left({
 
 ins_left({
 	"fancy_branch",
-	color = { fg = "#cdd6f5", bg = "NONE" },
+	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_left({
@@ -236,7 +236,7 @@ ins_right({
 	show_colors = false,
 	show_loading = true,
 
-	color = { fg = "#ffffff", bg = "NONE" },
+	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_right({
@@ -257,7 +257,7 @@ ins_right({
 		return msg
 	end,
 	icon = " [lsp]:",
-	color = { fg = "#cdd6f5", bg = "NONE" },
+	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_right({
@@ -269,7 +269,7 @@ ins_right({
 		return "󰨮 " .. table.concat(linters, ", ")
 	end,
 
-	color = { fg = "#cdd6f5", bg = "NONE" },
+	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_right({
@@ -288,7 +288,7 @@ ins_right({
 		return "󰦕 " .. table.concat(buf_client_names, ", ")
 	end,
 
-	color = { fg = "#cdd6f5", bg = "NONE" },
+	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_right({

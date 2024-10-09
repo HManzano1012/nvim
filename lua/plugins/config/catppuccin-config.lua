@@ -1,5 +1,6 @@
 local catppuccin_config = {
 	integrations = {
+		barbar = true,
 		treesitter = true,
 		native_lsp = {
 			enabled = true,
@@ -39,7 +40,7 @@ local catppuccin_config = {
 			dim_context = false,
 			alt_background = false,
 		},
-		render_markdown = true,
+		render_markdown = false,
 		lsp_trouble = true,
 	},
 	custom_highlights = function(C)
@@ -57,6 +58,12 @@ local catppuccin_config = {
 			TextHint = { fg = C.green },
 			InlayHint = { fg = C.blue, bg = background_hightlight },
 			LspInlayHint = { fg = C.blue, bg = background_hightlight },
+
+			-- Singcolumn numbers
+			LineNr = { fg = "#717790" },
+
+			-- Trouble
+			TroubleNormal = { bg = background_hightlight },
 
 			-- Telescope
 			TelescopeBorder = { fg = catppuccin_hightlight },
@@ -102,6 +109,15 @@ local catppuccin_config = {
 			CmpItemKindOperator = { fg = C.blue },
 			CmpItemKindTypeParameter = { fg = C.blue },
 			CmpItemKindCopilot = { fg = C.teal },
+
+			-- Markdown preview
+			markdownH1 = { fg = C.teal },
+			markdownH2 = { fg = C.blue },
+			markdownH3 = { fg = C.peach },
+			markdownH4 = { fg = C.yellow },
+			markdownH5 = { fg = C.pink },
+			markdownH6 = { fg = C.mauve },
+			RenderMarkdownProccess = { fg = C.pink },
 		}
 	end,
 }

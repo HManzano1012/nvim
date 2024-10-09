@@ -12,6 +12,10 @@ M.on_attach = function(client, bufnr)
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
 M.capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
 	snippetSupport = true,
@@ -36,9 +40,9 @@ local capabilities = M.capabilities
 local lspconfig = require("lspconfig")
 
 local servers = {
-	-- "tsserver",
-	"eslint_d",
+	"ts_ls",
 	"basedpyright",
+	-- "eslint-ls",
 	-- "phpactor",
 	"intelephense",
 	"tailwindcss",
@@ -72,11 +76,6 @@ lspconfig.lua_ls.setup({
 			},
 		},
 	},
-})
-
-lspconfig.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
 })
 
 lspconfig.gopls.setup({
