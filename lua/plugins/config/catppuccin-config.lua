@@ -45,7 +45,7 @@ local catppuccin_config = {
 	},
 	custom_highlights = function(C)
 		local catppuccin_hightlight = C.lavender
-		local background_hightlight = "#24273a"
+		local background_hightlight = C.base
 
 		require("lspconfig.ui.windows").default_options.border = "single"
 		return {
@@ -118,6 +118,15 @@ local catppuccin_config = {
 			markdownH5 = { fg = C.pink },
 			markdownH6 = { fg = C.mauve },
 			RenderMarkdownProccess = { fg = C.pink },
+
+			-- Markview
+			fg_cyan = { fg = C.sky },
+			fg_pink = { fg = C.pink },
+			fg_green = { fg = C.green },
+			fg_red = { fg = C.red },
+			fg_purple = { fg = C.mauve },
+			fg_yellow = { fg = C.yellow },
+			fg_gray = { fg = C.overlay2 },
 		}
 	end,
 }

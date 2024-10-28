@@ -10,10 +10,6 @@ local git = {
 		end,
 	},
 	{
-		"f-person/git-blame.nvim",
-		event = "BufRead",
-	},
-	{
 		"akinsho/git-conflict.nvim",
 		event = "BufRead",
 		version = "*",

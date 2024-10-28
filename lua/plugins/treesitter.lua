@@ -23,17 +23,12 @@ local treesitter = {
 			"typescript",
 			"javascriptreact",
 			"typescriptreact",
-			"svelte",
 			"vue",
 			"tsx",
 			"jsx",
-			"rescript",
 			"xml",
 			"php",
 			"markdown",
-			"astro",
-			"glimmer",
-			"handlebars",
 		},
 		config = function()
 			require("nvim-ts-autotag").setup({

@@ -5,6 +5,7 @@ vim.keymap.set("n", ";", ":", { noremap = true })
 
 -- replace word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- File explorer
 vim.keymap.set("n", "<leader>e", "<cmd>:Oil<CR>", { silent = true })
@@ -88,7 +89,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 -- vim.keymap.set("v", "L", "$", { silent = true })
 
 -- LSP
-vim.keymap.set("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
+
+vim.keymap.set({ "v", "n" }, "ca", require("actions-preview").code_actions)
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true })
 vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true })
@@ -139,3 +141,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.keymap.set("n", "k", "<cmd>cN<CR>zz<cmd>wincmd p<CR>", opts)
 	end,
 })
+-- Precognition
+vim.keymap.set("n", "<leader>pt", "<cmd>:Precognition toggle<cr>")

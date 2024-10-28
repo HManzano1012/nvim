@@ -12,16 +12,16 @@ local utils = {
 		opts = {},
 		lazy = false,
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		enabled = false,
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			local config = require("plugins.config.copilot-config")
-			require("copilot").setup(config)
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	enabled = false,
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		local config = require("plugins.config.copilot-config")
+	-- 		require("copilot").setup(config)
+	-- 	end,
+	-- },
 	{
 		"m4xshen/autoclose.nvim",
 		event = "BufRead",
@@ -60,29 +60,6 @@ local utils = {
 		end,
 	},
 	{
-		"rachartier/tiny-devicons-auto-colors.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		event = "VeryLazy",
-		config = function()
-			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
-			require("tiny-devicons-auto-colors").setup({
-				colors = theme_colors,
-			})
-		end,
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "*", -- Use for stability; omit to use `main` branch for the latest features
-		event = "BufRead",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	},
-	{
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
@@ -104,19 +81,6 @@ local utils = {
 		opts = {}, -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 	},
-	{
-		"ngtuonghy/live-server-nvim",
-		cmd = { "LiveServerStart", "LiveServerStop", "LiveServerToggle", "LiveServerInstall" },
-		build = ":LiveServerInstall",
-		config = function()
-			require("live-server-nvim").setup({})
-		end,
-	},
-	-- {
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	opts = require("plugins.config.render-markdown"),
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-	-- },
 	{
 		"OXY2DEV/markview.nvim",
 		-- lazy = false, -- Recommended
@@ -153,7 +117,6 @@ local utils = {
 				highlight = "sh", -- Highlight surrounding
 				replace = "sr", -- Replace surrounding
 				update_n_lines = "sn", -- Update `n_lines`
-
 				suffix_last = "l", -- Suffix to search with "prev" method
 				suffix_next = "n", -- Suffix to search with "next" method
 			},
@@ -173,6 +136,62 @@ local utils = {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			require("treesj").setup({})
+		end,
+	},
+	{
+		"tris203/precognition.nvim",
+		cmd = "Precognition",
+
+		--event = "VeryLazy",
+		opts = {
+			startVisible = true,
+			showBlankVirtLine = true,
+			highlightColor = { link = "Comment" },
+			hints = {
+				Caret = { text = "^", prio = 2 },
+				Dollar = { text = "$", prio = 1 },
+				MatchingPair = { text = "%", prio = 5 },
+				Zero = { text = "0", prio = 1 },
+				w = { text = "w", prio = 10 },
+				b = { text = "b", prio = 9 },
+				e = { text = "e", prio = 8 },
+				W = { text = "W", prio = 7 },
+				B = { text = "B", prio = 6 },
+				E = { text = "E", prio = 5 },
+			},
+			gutterHints = {
+				G = { text = "G", prio = 10 },
+				gg = { text = "gg", prio = 9 },
+				PrevParagraph = { text = "{", prio = 8 },
+				NextParagraph = { text = "}", prio = 8 },
+			},
+			disabled_fts = {
+				"startify",
+			},
+		},
+	},
+	{
+		"aznhe21/actions-preview.nvim",
+		config = function()
+			require("actions-preview").setup({
+				backend = { "telescope" },
+				telescope = vim.tbl_extend(
+					"force",
+					-- telescope theme: https://github.com/nvim-telescope/telescope.nvim#themes
+					require("telescope.themes").get_ivy(),
+					-- a table for customizing content
+					{
+						-- a function to make a table containing the values to be displayed.
+						-- fun(action: Action): { title: string, client_name: string|nil }
+						make_value = nil,
+
+						-- a function to make a function to be used in `display` of a entry.
+						-- see also `:h telescope.make_entry` and `:h telescope.pickers.entry_display`.
+						-- fun(values: { index: integer, action: Action, title: string, client_name: string }[]): function
+						make_make_display = nil,
+					}
+				),
+			})
 		end,
 	},
 }

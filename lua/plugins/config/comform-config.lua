@@ -9,6 +9,17 @@ local comform_config = {
 			},
 			stdin = false,
 		},
+		-- prettier = {
+		-- 	command = function(self, bufnr)
+		-- 		local cmd = util.find_executable({ ".yarn/sdks/prettier/bin-prettier.js" }, "")(self, bufnr)
+		-- 		if cmd ~= "" then
+		-- 			return cmd
+		-- 		end
+		-- 		-- return type of util.from_node_modules is fun(self: conform.FormatterConfig, ctx: conform.Context): string
+		-- 		---@diagnostic disable-next-line
+		-- 		return util.from_node_modules(fs.is_windows and "prettier.cmd" or "prettier")(self, bufnr)
+		-- 	end,
+		-- },
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
@@ -16,6 +27,7 @@ local comform_config = {
 		python = { "isort", "black" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
+		typescriptreact = { "prettierd" },
 		go = { "gofmt", "goimports-reviser", "golines" },
 		php = { "phpcbf", "php-cs-fixer" },
 		html = { "prettierd" },

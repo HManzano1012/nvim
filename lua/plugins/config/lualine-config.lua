@@ -162,7 +162,8 @@ ins_left({
 })
 
 ins_left({
-	"fancy_branch",
+	"branch",
+	icon = { "󰊢", color = { fg = "#ec5f67" } },
 	color = { fg = colors["fg"], bg = "NONE" },
 })
 
@@ -220,7 +221,7 @@ ins_right({
 				sleep = " ", -- auto-trigger disabled
 				disabled = " ",
 				warning = " ",
-				unknown = " ",
+				unknown = "",
 			},
 			hl = {
 				enabled = "#50FA7B",
@@ -277,15 +278,19 @@ ins_right({
 		local ok, conform = pcall(require, "conform")
 		local formatters = table.concat(conform.formatters_by_ft[vim.bo.filetype], " ")
 		local buf_client_names = {}
+		local current_formatter = ""
 		if ok then
 			for formatter in formatters:gmatch("%w+") do
 				if formatter then
-					table.insert(buf_client_names, formatter)
+					if current_formatter == "" then
+						current_formatter = formatter
+					end
+					-- table.insert(buf_client_names, formatter)
 				end
 			end
 		end
 
-		return "󰦕 " .. table.concat(buf_client_names, ", ")
+		return "󰦕 " .. current_formatter
 	end,
 
 	color = { fg = colors["fg"], bg = "NONE" },

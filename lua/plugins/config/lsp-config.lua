@@ -44,7 +44,7 @@ local servers = {
 	"basedpyright",
 	-- "eslint-ls",
 	-- "phpactor",
-	"intelephense",
+	-- "intelephense",
 	"tailwindcss",
 	-- "lua_ls",
 	"vuels",
@@ -63,6 +63,14 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+lspconfig.intelephense.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	root_dir = function()
+		return vim.loop.cwd()
+	end,
+})
+
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

@@ -31,51 +31,6 @@ local ui = {
 		},
 		opts = {},
 	},
-	-- {
-	-- 	"goolord/alpha-nvim",
-	-- 	enabled = false,
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		local alpha = require("alpha")
-	-- 		local dashboard = require("alpha.themes.dashboard")
-	-- 		local art = [[
-	--          ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣤⣤⣤⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠀⠀⣀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⣾⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⡿⣷⡀⠀⠀⠀⠀⠀⠀
-	-- 			 ⢸⣿⣿⣿⡇⣿⣿⣿⣿⣿⢱⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠘⣿⣿⣷⢻⣿⣿⣿⡙⣷⡀⠀⠀⠀⠀⠀
-	-- 			 ⣼⣿⣿⣿⡇⣿⣿⣿⣿⡇⣿⣿⣿⣿⡿⣿⣿⡿⣹⣿⣿⣿⠇⠀⠘⣿⣿⡆⣿⣿⣿⣧⠘⢷⠀⠀⠀⠀⠀
-	-- 			 ⢹⣿⣿⣿⡇⢿⣿⣿⣿⢰⣿⣿⣿⠟⢲⣿⣟⠁⣿⣿⣿⡟⢀⡠⠔⠘⣿⣧⢸⣿⣿⣿⡄⠈⣇⠀⠀⠀⠀
-	-- 			 ⢸⣿⣿⣿⣷⢸⣿⣿⣿⢸⣿⣟⣁⣠⣿⣋⡈⢻⣿⣿⡟⠘⣁⣴⣒⣒⣺⣿⢸⣿⣿⣿⡇⠀⠈⠀⠀⠀⠀
-	-- 			 ⠈⣿⣿⣿⣿⡆⢿⡟⣿⢸⡟⣙⣿⣿⣿⡇⢁⣿⣿⠟⠀⠀⢩⣭⣿⣿⡟⣿⢸⣿⣿⢿⡇⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠸⣿⣿⣿⣿⡜⣿⡸⣾⡇⠻⠿⠿⠟⠀⣼⡿⠋⠀⠀⠀⠀⠙⠛⠟⠃⢸⣿⣿⣿⢸⡇⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⢹⡿⣿⣿⣿⣞⢷⣽⡁⠀⠀⠀⢀⡾⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣸⣿⡏⠀⡇⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠱⠙⢿⡿⣿⣿⣷⣑⠀⠀⠀⠈⠀⠀⣀⣀⣤⠄⠀⠀⠀⠀⠀⣀⣤⢟⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠈⠻⢌⠛⢿⣝⠿⢿⣶⣿⣿⣿⣟⣛⣛⡛⠛⢶⣶⠟⢋⣿⠏⠸⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⡿⠿⠿⣿⠿⣿⣿⣿⣿⢻⠱⣄⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠀⠀⣴⣿⡏⠀⢀⡎⠁⢠⠏⠘⠲⣍⠁⣧⠉⣇⢧⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠀⣼⣿⣿⠃⠀⡼⠀⢠⣎⣀⣀⣀⣹⠀⢸⡀⠸⣌⠆⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠸⠛⠉⠀⠀⢠⣯⢷⣏⣼⣍⣽⣛⣦⣀⣸⠧⣄⣾⣴⠾⠻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡰⣶⣏⣵⣤⠿⣿⣷⣶⣿⠿⡿⠷⣾⣽⣿⣿⠦⠯⢐⡤⢄⠀⠀⠀⠀⠀⠀⠀⠀
-	-- 			 ⠀⠀⠀⠀⠀⢀⠠⢲⠝⠊⠉⡟⢋⣞⡧⠿⠵⡶⣶⠙⡭⠭⠭⢭⡿⢿⡀⠀⠀⠉⠒⠯⡐⡤⢀⠀⠀⠀⠀
-	-- 			 ⠀⠀⡀⠴⢊⠝⠊⠀⠀⠀⢰⠁⠉⢡⡿⠶⣶⣴⠃⠀⢷⣦⡤⣼⡆⠀⠱⡀⠀⠀⠀⠀⠀⠁⠂⢬⡐⠠⡀
-	-- 			 ⠀⣰⠅⠊⠀⠀⠀⠀⠀⠀⠈⠦⠔⠁⣸⣓⣿⠏⠀⠀⠸⣿⣷⣾⠘⢄⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠳
-	-- 			 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀⠀⠀⠀⠀⠉⠉⠁⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-	--         ]]
-	--
-	-- 		art = string.rep("\n", 8) .. art .. "\n"
-	-- 		dashboard.section.header.val = vim.split(art, "\n")
-	-- 		dashboard.section.buttons.val = {
-	-- 			dashboard.button("e", "  New file", ":ene <BAR> startinsert<CR>"),
-	-- 			dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
-	-- 			dashboard.button("u", "  Update plugins", ":Lazy update<CR>"),
-	-- 			dashboard.button("q", "  Quit", ":qa<CR>"),
-	-- 		}
-	-- 		alpha.setup(dashboard.opts)
-	-- 	end,
-	-- },
 	{
 		"folke/noice.nvim",
 		version = "4.2.1",
@@ -96,46 +51,6 @@ local ui = {
 			require("tiny-inline-diagnostic").setup(config)
 		end,
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	event = "BufRead",
-	-- 	main = "ibl",
-	-- 	opts = {
-	-- 		indent = { char = "▏" },
-	-- 		-- indent = { char = "│" },
-	-- 	},
-	-- },
-	-- {
-	-- 	"echasnovski/mini.indentscope",
-	-- 	version = false, -- wait till new 0.7.0 release to put it back on semver
-	-- 	opts = {
-	-- 		symbol = "▏",
-	-- 		-- symbol = "│",
-	-- 		options = { try_as_border = true },
-	-- 	},
-	-- 	init = function()
-	-- 		vim.api.nvim_create_autocmd("FileType", {
-	-- 			pattern = {
-	-- 				"alpha",
-	-- 				"dashboard",
-	-- 				"fzf",
-	-- 				"help",
-	-- 				"lazy",
-	-- 				"lazyterm",
-	-- 				"mason",
-	-- 				"neo-tree",
-	-- 				"notify",
-	-- 				"toggleterm",
-	-- 				"Trouble",
-	-- 				"trouble",
-	-- 			},
-	-- 			callback = function()
-	-- 				vim.b.miniindentscope_disable = true
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
-
 	{
 		"rachartier/tiny-devicons-auto-colors.nvim",
 		dependencies = {
@@ -143,8 +58,7 @@ local ui = {
 		},
 		event = "VeryLazy",
 		config = function()
-			local palettes = require("catppuccino.palettes")
-			local theme_colors = palettes.get_palette("macchiato")
+			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
 			require("tiny-devicons-auto-colors").setup({
 				colors = theme_colors,
 			})
@@ -159,12 +73,59 @@ local ui = {
 			highlight = { "IblIndent" },
 		},
 	},
+
 	{
-		"OXY2DEV/helpview.nvim",
-		lazy = false, -- Recommended
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
+		"gelguy/wilder.nvim",
+		keys = {
+			":",
+			"/",
+			"?",
 		},
+		dependencies = {
+
+			"catppuccin/nvim",
+		},
+		config = function()
+			local wilder = require("wilder")
+			local macchiato = require("catppuccin.palettes").get_palette("macchiato")
+
+			-- Create a highlight group for the popup menu
+			local text_highlight =
+				wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = macchiato.text } })
+			local mauve_highlight =
+				wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = macchiato.lavender } })
+			wilder.setup({ modes = { ":", "/", "?" } })
+
+			-- Enable fuzzy matching for commands and buffers
+			wilder.set_option("pipeline", {
+				wilder.branch(
+					wilder.cmdline_pipeline({
+						fuzzy = 1,
+					}),
+					wilder.vim_search_pipeline({
+						fuzzy = 1,
+					})
+				),
+			})
+
+			wilder.set_option(
+				"renderer",
+				wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
+					border = "single",
+					left = { " ", wilder.popupmenu_devicons() },
+					right = { " ", wilder.popupmenu_scrollbar() },
+					max_height = "25%", -- max height of the palette
+					max_width = "50%", -- max width of the palette
+					highlighter = wilder.basic_highlighter(),
+					highlights = {
+						default = text_highlight,
+						border = "TelescopeBorder",
+						accent = mauve_highlight,
+					},
+					prompt_position = "top", -- 'top' or 'bottom' to set the location of the prompt
+				}))
+			)
+		end,
 	},
 }
 
