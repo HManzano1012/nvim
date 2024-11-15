@@ -42,7 +42,7 @@ vim.keymap.set(
 )
 
 -- TODO Comments
-vim.keymap.set("n", "<leader>cc", "<cmd>:TodoTelescope<cr>", { silent = true })
+-- vim.keymap.set("n", "<leader>cc", "<cmd>:TodoTelescope<cr>", { silent = true })
 
 -- Center screen
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { silent = true })
@@ -143,3 +143,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 -- Precognition
 vim.keymap.set("n", "<leader>pt", "<cmd>:Precognition toggle<cr>")
+
+-- CodeSnap
+vim.keymap.set("x", "<leader>ci", "<cmd>'<,'>CodeSnap<cr>")

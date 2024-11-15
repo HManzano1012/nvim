@@ -168,6 +168,50 @@ ins_left({
 })
 
 ins_left({
+	"diff",
+	-- Is it me or the symbol for modified us really weird
+	symbols = { added = " ", modified = "󰝤 ", removed = " " },
+	diff_color = {
+		added = { fg = colors.green },
+		modified = { fg = colors.orange },
+		removed = { fg = colors.red },
+	},
+	cond = conditions.hide_in_width,
+	color = { fg = "#ffffff", bg = "NONE" },
+})
+
+ins_left({
+	function()
+		return "%="
+	end,
+	color = { bg = "NONE" },
+})
+
+ins_left({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_right({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_right({
+	function()
+		return "%="
+	end,
+
+	color = { bg = "NONE" },
+})
+
+ins_right({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	symbols = { error = " ", warn = " ", info = " " },
@@ -176,39 +220,7 @@ ins_left({
 		color_warn = { fg = colors.yellow },
 		color_info = { fg = colors.cyan },
 	},
-
 	color = { bg = "none" },
-})
-
-ins_left({
-	function()
-		return "%="
-	end,
-	color = { bg = "NONE" },
-})
-
-ins_left({
-	function()
-		return "%="
-	end,
-
-	color = { bg = "NONE" },
-})
-
-ins_right({
-	function()
-		return "%="
-	end,
-
-	color = { bg = "NONE" },
-})
-
-ins_right({
-	function()
-		return "%="
-	end,
-
-	color = { bg = "NONE" },
 })
 
 ins_right({
@@ -290,23 +302,10 @@ ins_right({
 			end
 		end
 
-		return "󰦕 " .. current_formatter
+		return "󰉢 " .. current_formatter
 	end,
 
 	color = { fg = colors["fg"], bg = "NONE" },
-})
-
-ins_right({
-	"diff",
-	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
-	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
-	},
-	cond = conditions.hide_in_width,
-	color = { fg = "#ffffff", bg = "NONE" },
 })
 
 ins_right({

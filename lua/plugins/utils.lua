@@ -194,6 +194,27 @@ local utils = {
 			})
 		end,
 	},
+	{
+		"mistricky/codesnap.nvim",
+		build = "make",
+		opts = {
+			save_path = "~/Pictures",
+			has_breadcrumbs = true,
+			has_line_number = true,
+			bg_color = "#A7ADE3",
+			watermark = "",
+			code_font_family = "VictorMono Nerd Font",
+			bg_padding = 20,
+		},
+	},
+	{ "meznaric/key-analyzer.nvim", opts = {} },
+	{
+		"AdiY00/copy-tree.nvim",
+		cmd = "CopyTree",
+		config = function()
+			require("copy-tree").setup()
+		end,
+	},
 }
 
 return utils

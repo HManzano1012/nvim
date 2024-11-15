@@ -1,6 +1,6 @@
 local noice_config = {
 	cmdline = {
-		enabled = false,
+		enabled = true,
 	},
 	views = {
 		mini = {
