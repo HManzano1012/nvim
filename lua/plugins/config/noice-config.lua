@@ -1,6 +1,7 @@
 local noice_config = {
 	cmdline = {
 		enabled = true,
+		view = "cmdline",
 	},
 	views = {
 		mini = {

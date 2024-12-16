@@ -289,7 +289,6 @@ ins_right({
 	function()
 		local ok, conform = pcall(require, "conform")
 		local formatters = table.concat(conform.formatters_by_ft[vim.bo.filetype], " ")
-		local buf_client_names = {}
 		local current_formatter = ""
 		if ok then
 			for formatter in formatters:gmatch("%w+") do

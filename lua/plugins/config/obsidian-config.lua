@@ -1,3 +1,4 @@
+local vim = vim
 local obsidian_config = {
 
 	attachments = {

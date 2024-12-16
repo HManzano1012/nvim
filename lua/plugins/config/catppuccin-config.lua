@@ -61,7 +61,6 @@ local catppuccin_config = {
 
 			-- Singcolumn numbers
 			LineNr = { fg = "#717790" },
-
 			-- Trouble
 			TroubleNormal = { bg = background_hightlight },
 

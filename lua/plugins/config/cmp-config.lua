@@ -65,6 +65,7 @@ local cmp_config = {
 		{ name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+		{ name = "ecolog" },
 	},
 	formatting = {
 		format = function(entry, item)

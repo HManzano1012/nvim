@@ -1,5 +1,6 @@
 local vim = vim
 local ui = {
+
 	{
 		"stevearc/oil.nvim",
 		cmd = "Oil",
@@ -73,60 +74,87 @@ local ui = {
 			highlight = { "IblIndent" },
 		},
 	},
-
 	-- {
-	-- 	"gelguy/wilder.nvim",
-	-- 	keys = {
-	-- 		":",
-	-- 		"/",
-	-- 		"?",
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	event = "BufRead",
+	-- 	main = "ibl",
+	-- 	opts = {
+	-- 		indent = { char = "▏" },
+	-- 		-- indent = { char = "│" },
 	-- 	},
-	-- 	dependencies = {
-	--
-	-- 		"catppuccin/nvim",
+	-- },
+	-- {
+	-- 	"echasnovski/mini.indentscope",
+	-- 	version = false, -- wait till new 0.7.0 release to put it back on semver
+	-- 	opts = {
+	-- 		symbol = "▏",
+	-- 		-- symbol = "│",
+	-- 		options = { try_as_border = true },
 	-- 	},
-	-- 	config = function()
-	-- 		local wilder = require("wilder")
-	-- 		local macchiato = require("catppuccin.palettes").get_palette("macchiato")
-	--
-	-- 		-- Create a highlight group for the popup menu
-	-- 		local text_highlight =
-	-- 			wilder.make_hl("WilderText", { { a = 1 }, { a = 1 }, { foreground = macchiato.text } })
-	-- 		local mauve_highlight =
-	-- 			wilder.make_hl("WilderMauve", { { a = 1 }, { a = 1 }, { foreground = macchiato.mauve } })
-	-- 		wilder.setup({ modes = { ":", "/", "?" } })
-	--
-	-- 		-- Enable fuzzy matching for commands and buffers
-	-- 		wilder.set_option("pipeline", {
-	-- 			wilder.branch(
-	-- 				wilder.cmdline_pipeline({
-	-- 					fuzzy = 1,
-	-- 				}),
-	-- 				wilder.vim_search_pipeline({
-	-- 					fuzzy = 1,
-	-- 				})
-	-- 			),
+	-- 	init = function()
+	-- 		vim.api.nvim_create_autocmd("FileType", {
+	-- 			pattern = {
+	-- 				"alpha",
+	-- 				"dashboard",
+	-- 				"fzf",
+	-- 				"help",
+	-- 				"lazy",
+	-- 				"lazyterm",
+	-- 				"mason",
+	-- 				"neo-tree",
+	-- 				"notify",
+	-- 				"toggleterm",
+	-- 				"Trouble",
+	-- 				"trouble",
+	-- 			},
+	-- 			callback = function()
+	-- 				vim.b.miniindentscope_disable = true
+	-- 			end,
 	-- 		})
-	--
-	-- 		wilder.set_option(
-	-- 			"renderer",
-	-- 			wilder.popupmenu_renderer(wilder.popupmenu_palette_theme({
-	-- 				border = "single",
-	-- 				left = { " ", wilder.popupmenu_devicons() },
-	-- 				right = { " ", wilder.popupmenu_scrollbar() },
-	-- 				max_height = "25%", -- max height of the palette
-	-- 				max_width = "50%", -- max width of the palette
-	-- 				highlighter = wilder.basic_highlighter(),
-	-- 				highlights = {
-	-- 					default = text_highlight,
-	-- 					border = "TelescopeBorder",
-	-- 					accent = mauve_highlight,
-	-- 				},
-	-- 				prompt_position = "top", -- 'top' or 'bottom' to set the location of the prompt
-	-- 			}))
-	-- 		)
 	-- 	end,
 	-- },
+
+	{
+		"goolord/alpha-nvim",
+		enabled = true,
+		lazy = false,
+		config = function()
+			local alpha = require("alpha")
+			local dashboard = require("alpha.themes.dashboard")
+
+			-- Set header
+			dashboard.section.header.val = {
+				"                                                     ",
+				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+				"                                                     ",
+			}
+
+			-- Set menu
+			dashboard.section.buttons.val = {
+				dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
+				dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
+				dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+				dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+				dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
+			}
+			alpha.setup(dashboard.opts)
+			vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
+		end,
+	},
+	{
+		"marcussimonsen/let-it-snow.nvim",
+		cmd = "LetItSnow", -- Wait with loading until command is run
+		opts = {},
+	},
+	{
+		"eandrju/cellular-automaton.nvim",
+		cmd = "CellularAutomation",
+	},
 }
 
 return ui

@@ -1,5 +1,6 @@
 local vim = vim
 local utils = {
+
 	{
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
@@ -12,16 +13,11 @@ local utils = {
 		opts = {},
 		lazy = false,
 	},
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	enabled = false,
-	-- 	cmd = "Copilot",
-	-- 	event = "InsertEnter",
-	-- 	config = function()
-	-- 		local config = require("plugins.config.copilot-config")
-	-- 		require("copilot").setup(config)
-	-- 	end,
-	-- },
+	{
+		"folke/which-key.nvim", -- Load the which-key plugin
+		-- optional = true, -- This plugin is optional
+		opts = require("plugins.config.whichkey-config"),
+	},
 	{
 		"m4xshen/autoclose.nvim",
 		event = "BufRead",
@@ -54,7 +50,6 @@ local utils = {
 		config = function()
 			require("nvim-highlight-colors").setup({
 				render = "background",
-				virtual_symbol = "  ",
 				enable_tailwind = true,
 			})
 		end,
@@ -70,7 +65,6 @@ local utils = {
 		},
 		config = function()
 			local opts = require("plugins.config.obsidian-config")
-
 			require("obsidian").setup(opts)
 
 			vim.cmd("set conceallevel=1")
@@ -85,7 +79,6 @@ local utils = {
 		"OXY2DEV/markview.nvim",
 		-- lazy = false, -- Recommended
 		ft = "markdown", -- If you decide to lazy-load anyway
-
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -128,11 +121,7 @@ local utils = {
 	},
 	{
 		"Wansmer/treesj",
-		keys = {
-			"<space>m",
-			"<space>j",
-			"<space>s",
-		},
+		keys = { "<space>m", "<space>j" },
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			require("treesj").setup({})
@@ -214,6 +203,82 @@ local utils = {
 		config = function()
 			require("copy-tree").setup()
 		end,
+	},
+	{ "nvzone/volt", lazy = true },
+
+	-- {
+	-- 	"nvzone/minty",
+	-- 	cmd = { "Shades", "Huefy" },
+	-- },
+	{
+		"amrbashir/nvim-docs-view",
+		lazy = true, -- Load this plugin lazily
+		cmd = "DocsViewToggle", -- Command to toggle the documentation view
+		opts = {
+			position = "right", -- Position the documentation view on the right
+			width = 60, -- Set the width of the documentation view
+		},
+	},
+	{
+		"philosofonusus/ecolog.nvim",
+		dependencies = {
+			"hrsh7th/nvim-cmp", -- Optional, for autocompletion support
+		},
+		-- Optionally reccommend adding keybinds (lsp integration supposed to handle some of them automatically so please check it out)
+		opts = {
+			-- Enables shelter mode for sensitive values
+			-- shelter = {
+			-- 	configuration = {
+			-- 		partial_mode = true, -- Disables partial mode see shelter configuration below
+			-- 		mask_char = "*", -- Character used for masking
+			-- 	},
+			-- 	modules = {
+			-- 		cmp = false, -- Mask values in completion
+			-- 		peek = false, -- Mask values in peek view
+			-- 		files = false, -- Mask values in files
+			-- 		telescope = false, -- Mask values in telescope
+			-- 	},
+			-- },
+			types = {
+				-- Built-in types
+				url = true, -- URLs (http/https)
+				localhost = true, -- Localhost URLs
+				ipv4 = true, -- IPv4 addresses
+				database_url = true, -- Database connection strings
+				number = true, -- Integers and decimals
+				boolean = true, -- true/false/yes/no/1/0
+				json = true, -- JSON objects and arrays
+				iso_date = true, -- ISO 8601 dates (YYYY-MM-DD)
+				iso_time = true, -- ISO 8601 times (HH:MM:SS)
+				hex_color = true, -- Hex color codes (#RGB or #RRGGBB)
+
+				-- Custom types
+				semver = {
+					pattern = "^v?(%d+)%.(%d+)%.(%d+)([%-+].+)?$",
+					validate = function(value)
+						local major, minor, patch = value:match("^v?(%d+)%.(%d+)%.(%d+)")
+						return major and minor and patch
+					end,
+					transform = function(value)
+						return value:gsub("^v", "")
+					end,
+				},
+
+				aws_region = {
+					pattern = "^[a-z]{2}%-[a-z]+%-[0-9]$",
+					validate = function(value)
+						local valid_regions = {
+							["us-east-1"] = true,
+							["us-west-2"] = true,
+							-- ... etc
+						}
+						return valid_regions[value] == true
+					end,
+				},
+			},
+			path = vim.fn.getcwd(), -- Path to search for .env files
+			preferred_environment = "development", -- Optional: prioritize specific env files
+		},
 	},
 }
 

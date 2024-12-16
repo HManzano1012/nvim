@@ -46,13 +46,15 @@ vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
 vim.cmd("hi NormalFloat guibg=NONE ctermbg=NONE")
 vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
 
+vim.cmd("hi EcologNormal guibg=NONE ctermbg=NONE")
+
 -- enable treesitter
 vim.cmd("TSEnable highlight")
 
 -- hide virtual text from diagnostics
 vim.diagnostic.config({ virtual_text = false })
 
-vim.cmd("intro")
+-- vim.cmd("intro")
 
 local separator = "   "
 
