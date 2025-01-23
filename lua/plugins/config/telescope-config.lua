@@ -17,8 +17,8 @@ require("telescope").setup({
 		layout_config = {
 			vertical = { width = 0.5 },
 			width = function(_, cols, _)
-				local min = 80
-				local max = 100
+				local min = 90
+				local max = 110
 				return math.min(math.max(min, cols), max)
 			end,
 			height = function(_, _, max_lines)

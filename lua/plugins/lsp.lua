@@ -8,12 +8,12 @@ local lsp = {
 	{
 		"stevearc/conform.nvim",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = require("plugins.config.comform-config"),
+		opts = require("plugins.config.conform-config"),
 		setup = function() end,
 	},
 	{
 		"mfussenegger/nvim-lint",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("plugins.config.nvim-lint-config")
 		end,

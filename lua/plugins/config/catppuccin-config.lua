@@ -1,4 +1,8 @@
 local catppuccin_config = {
+	-- no_italic = true, -- Force no italic
+	styles = {
+		comments = {},
+	},
 	integrations = {
 		barbar = true,
 		treesitter = true,
@@ -126,6 +130,11 @@ local catppuccin_config = {
 			fg_purple = { fg = C.mauve },
 			fg_yellow = { fg = C.yellow },
 			fg_gray = { fg = C.overlay2 },
+
+			AlphaShortcut = { fg = C.red, bg = C.mauve },
+			AlphaHeader = { fg = C.red, bg = C.mauve },
+
+			AlphaFooter = { fg = C.red, bg = C.mauve },
 		}
 	end,
 }

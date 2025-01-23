@@ -5,8 +5,8 @@ local colors = {
 	yellow = "#ECBE7B",
 	cyan = "#008080",
 	darkblue = "#081633",
-	green = "#98be65",
-	orange = "#FF8800",
+	green = "#a6da95",
+	orange = "#f5a97f",
 	violet = "#a9a1e1",
 	magenta = "#c678dd",
 	blue = "#51afef",
@@ -94,7 +94,7 @@ end
 ins_left({
 	function()
 		-- return "▊"
-		return " "
+		return ""
 	end,
 	color = function()
 		-- auto change color according to neovim's mode
@@ -120,7 +120,7 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		return { bg = "none", fg = mode_color[vim.fn.mode()] }
+		return { bg = "", fg = mode_color[vim.fn.mode()] }
 	end,
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
@@ -129,8 +129,31 @@ ins_left({
 
 	-- mode component
 	function()
+		local mode_label = {
+			n = "NORMAL",
+			i = "INSERT",
+			v = "VISUAL",
+			["␖"] = colors.blue,
+			V = colors.blue,
+			c = colors.magenta,
+			no = "NORMAL",
+			s = colors.orange,
+			S = colors.orange,
+			["␓"] = colors.orange,
+			ic = colors.yellow,
+			R = colors.violet,
+			Rv = colors.violet,
+			cv = colors.red,
+			ce = colors.red,
+			r = colors.cyan,
+			rm = colors.cyan,
+			["r?"] = colors.cyan,
+			["!"] = colors.red,
+			t = colors.red,
+		}
 		-- return "󰯙  "
-		return " "
+		-- return "   "
+		return "   "
 	end,
 	color = function()
 		-- auto change color according to neovim's mode
@@ -156,25 +179,25 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		return { fg = mode_color[vim.fn.mode()], bg = "none" }
+		return { fg = mode_color[vim.fn.mode()], bg = "" }
 	end,
 	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
 
 ins_left({
 	"branch",
-	icon = { "󰊢", color = { fg = "#ec5f67" } },
+	icon = { "󰘬", color = { fg = colors["fg"] } },
 	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_left({
 	"diff",
 	-- Is it me or the symbol for modified us really weird
-	symbols = { added = " ", modified = "󰝤 ", removed = " " },
+	symbols = { added = "󰐗 ", modified = "󰀚 ", removed = "󰍶 " },
 	diff_color = {
-		added = { fg = colors.green },
-		modified = { fg = colors.orange },
-		removed = { fg = colors.red },
+		added = { fg = colors.fg },
+		modified = { fg = colors.fg },
+		removed = { fg = colors.fg },
 	},
 	cond = conditions.hide_in_width,
 	color = { fg = "#ffffff", bg = "NONE" },
@@ -214,40 +237,23 @@ ins_right({
 ins_right({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " " },
+	symbols = { error = " ", warn = " ", info = " " },
 	diagnostics_color = {
-		color_error = { fg = colors.red },
-		color_warn = { fg = colors.yellow },
-		color_info = { fg = colors.cyan },
+		color_error = { fg = colors.fg },
+		color_warn = { fg = colors.fg },
+		color_info = { fg = colors.fg },
 	},
-	color = { bg = "none" },
+	color = { bg = "none", fg = colors.fg },
 })
 
 ins_right({
-	"copilot",
-	-- Default values
-	symbols = {
-		status = {
-			icons = {
-				enabled = " ",
-				sleep = " ", -- auto-trigger disabled
-				disabled = " ",
-				warning = " ",
-				unknown = "",
-			},
-			hl = {
-				enabled = "#50FA7B",
-				sleep = "#AEB7D0",
-				disabled = "#6272A4",
-				warning = "#FFB86C",
-				unknown = "#FF5555",
-			},
-		},
-		spinners = require("copilot-lualine.spinners").dots,
-		spinner_color = "#6272A4",
-	},
-	show_colors = false,
-	show_loading = true,
+	function()
+		local linters = require("lint").linters_by_ft[vim.bo.filetype] or {}
+		if #linters == 0 then
+			return ""
+		end
+		return "󰨮 " .. table.concat(linters, ", ")
+	end,
 
 	color = { fg = colors["fg"], bg = "NONE" },
 })
@@ -269,19 +275,7 @@ ins_right({
 		end
 		return msg
 	end,
-	icon = " [lsp]:",
-	color = { fg = colors["fg"], bg = "NONE" },
-})
-
-ins_right({
-	function()
-		local linters = require("lint").linters_by_ft[vim.bo.filetype] or {}
-		if #linters == 0 then
-			return ""
-		end
-		return "󰨮 " .. table.concat(linters, ", ")
-	end,
-
+	icon = " ",
 	color = { fg = colors["fg"], bg = "NONE" },
 })
 
@@ -301,16 +295,16 @@ ins_right({
 			end
 		end
 
-		return "󰉢 " .. current_formatter
+		return "󰅩 " .. current_formatter
 	end,
 
 	color = { fg = colors["fg"], bg = "NONE" },
 })
 
 ins_right({
-	"fancy_filetype",
+	"filetype",
 	ts_icon = "",
-	color = { fg = colors.mint, bg = "none" },
+	color = { fg = colors.fg, bg = "" },
 })
 
 return config

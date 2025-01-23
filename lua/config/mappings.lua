@@ -149,21 +149,21 @@ vim.keymap.set("n", "gf", function()
 	end
 end, { noremap = false, expr = true })
 
--- DAP
-vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { silent = true })
-vim.keymap.set("n", "<leader>dus", function()
-	local widgets = require("dap.ui.widgets")
-	local sidebar = widgets.sidebar(widgets.scopes)
-	sidebar.open()
-end, { silent = true })
-vim.keymap.set("n", "<leader>dgt", function()
-	require("dap-go").debug_test()
-end, { silent = true })
-vim.keymap.set("n", "<leader>dgt", function()
-	require("dap-go").debug_last()
-end, { silent = true })
-
-vim.keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", { silent = true })
+-- -- DAP
+-- vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>dus", function()
+-- 	local widgets = require("dap.ui.widgets")
+-- 	local sidebar = widgets.sidebar(widgets.scopes)
+-- 	sidebar.open()
+-- end, { silent = true })
+-- vim.keymap.set("n", "<leader>dgt", function()
+-- 	require("dap-go").debug_test()
+-- end, { silent = true })
+-- vim.keymap.set("n", "<leader>dgt", function()
+-- 	require("dap-go").debug_last()
+-- end, { silent = true })
+--
+-- vim.keymap.set("n", "<leader>dc", "<cmd>DapContinue<CR>", { silent = true })
 -- vim.keymap.set("n", "<leader>dpr", "<cmd>:lua require('dap-python').test_method() <CR>", { silent = true })
 
 -- Trouble
@@ -196,3 +196,38 @@ vim.keymap.set("n", "<leader>y", '"+y', { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>vg", "<cmd>EcologGoto<cr>", { desc = "Go to env file" })
 vim.keymap.set("n", "<leader>vp", "<cmd>EcologPeek<cr>", { desc = "Ecolog peek variable" })
 vim.keymap.set("n", "<leader>vs", "<cmd>EcologSelect<cr>", { desc = "Switch env file" })
+
+-- PHPCFB
+vim.keymap.set(
+	"n",
+	"<leader>pf",
+	"<cmd> !phpcbf --standard=PSR12 %<cr>",
+	{ desc = "Fix current file PHPCFB (standard PSR12)" }
+)
+
+-- DADBOD
+vim.keymap.set("n", "<leader>db", "<cmd> DBUIToggle<cr>", { desc = "DADBOD UI TToggle" })
+
+local key = vim.keymap.set
+local silent = { noremap = true, silent = true }
+
+-- Toggle all folds
+key("n", "<Leader><Tab>", function()
+	local get_opt = vim.api.nvim_win_get_option
+	local set_opt = vim.api.nvim_win_set_option
+
+	if get_opt(0, "foldlevel") >= 20 then
+		set_opt(0, "foldlevel", 0)
+	else
+		set_opt(0, "foldlevel", 20)
+	end
+end, silent)
+
+local Terminal = require("toggleterm.terminal").Terminal
+local DBUIToggle = Terminal:new({ cmd = "nvim -c DBUIToggle", hidden = true, direction = "float" })
+
+function _DBUI_toggle()
+	DBUIToggle:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua _DBUI_toggle()<CR>", { noremap = true, silent = true })

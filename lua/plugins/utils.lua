@@ -1,17 +1,30 @@
 local vim = vim
 local utils = {
-
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = true },
-	},
 	{
 		"numToStr/Comment.nvim",
 		event = "BufRead",
 		opts = {},
 		lazy = false,
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+	{
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			bigfile = {
+				-- your bigfile configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			},
+		},
 	},
 	{
 		"folke/which-key.nvim", -- Load the which-key plugin
@@ -23,13 +36,6 @@ local utils = {
 		event = "BufRead",
 		config = function()
 			require("autoclose").setup()
-		end,
-	},
-	{
-		"max397574/better-escape.nvim",
-		event = "InsertEnter",
-		config = function()
-			require("better_escape").setup()
 		end,
 	},
 	{
@@ -49,7 +55,27 @@ local utils = {
 		event = "BufRead",
 		config = function()
 			require("nvim-highlight-colors").setup({
-				render = "background",
+				render = "virtual",
+				virtual_symbol = " ",
+				---Highlight hex colors, e.g. '#FFFFFF'
+				enable_hex = true,
+
+				---Highlight short hex colors e.g. '#fff'
+				enable_short_hex = true,
+
+				---Highlight rgb colors, e.g. 'rgb(0 0 0)'
+				enable_rgb = true,
+
+				---Highlight hsl colors, e.g. 'hsl(150deg 30% 40%)'
+				enable_hsl = true,
+
+				---Highlight CSS variables, e.g. 'var(--testing-color)'
+				enable_var_usage = true,
+
+				---Highlight named colors, e.g. 'green'
+				enable_named_colors = true,
+
+				---Highlight tailwind colors, e.g. 'bg-blue-500'
 				enable_tailwind = true,
 			})
 		end,
@@ -69,11 +95,6 @@ local utils = {
 
 			vim.cmd("set conceallevel=1")
 		end,
-	},
-	{
-		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
-		cmd = "Trouble",
 	},
 	{
 		"OXY2DEV/markview.nvim",
@@ -120,47 +141,8 @@ local utils = {
 		},
 	},
 	{
-		"Wansmer/treesj",
-		keys = { "<space>m", "<space>j" },
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("treesj").setup({})
-		end,
-	},
-	{
-		"tris203/precognition.nvim",
-		cmd = "Precognition",
-
-		--event = "VeryLazy",
-		opts = {
-			startVisible = true,
-			showBlankVirtLine = true,
-			highlightColor = { link = "Comment" },
-			hints = {
-				Caret = { text = "^", prio = 2 },
-				Dollar = { text = "$", prio = 1 },
-				MatchingPair = { text = "%", prio = 5 },
-				Zero = { text = "0", prio = 1 },
-				w = { text = "w", prio = 10 },
-				b = { text = "b", prio = 9 },
-				e = { text = "e", prio = 8 },
-				W = { text = "W", prio = 7 },
-				B = { text = "B", prio = 6 },
-				E = { text = "E", prio = 5 },
-			},
-			gutterHints = {
-				G = { text = "G", prio = 10 },
-				gg = { text = "gg", prio = 9 },
-				PrevParagraph = { text = "{", prio = 8 },
-				NextParagraph = { text = "}", prio = 8 },
-			},
-			disabled_fts = {
-				"startify",
-			},
-		},
-	},
-	{
 		"aznhe21/actions-preview.nvim",
+		event = "BufRead",
 		config = function()
 			require("actions-preview").setup({
 				backend = { "telescope" },
@@ -196,88 +178,41 @@ local utils = {
 			bg_padding = 20,
 		},
 	},
-	{ "meznaric/key-analyzer.nvim", opts = {} },
-	{
-		"AdiY00/copy-tree.nvim",
-		cmd = "CopyTree",
-		config = function()
-			require("copy-tree").setup()
-		end,
-	},
 	{ "nvzone/volt", lazy = true },
-
-	-- {
-	-- 	"nvzone/minty",
-	-- 	cmd = { "Shades", "Huefy" },
-	-- },
-	{
-		"amrbashir/nvim-docs-view",
-		lazy = true, -- Load this plugin lazily
-		cmd = "DocsViewToggle", -- Command to toggle the documentation view
-		opts = {
-			position = "right", -- Position the documentation view on the right
-			width = 60, -- Set the width of the documentation view
-		},
-	},
 	{
 		"philosofonusus/ecolog.nvim",
 		dependencies = {
 			"hrsh7th/nvim-cmp", -- Optional, for autocompletion support
 		},
-		-- Optionally reccommend adding keybinds (lsp integration supposed to handle some of them automatically so please check it out)
 		opts = {
-			-- Enables shelter mode for sensitive values
-			-- shelter = {
-			-- 	configuration = {
-			-- 		partial_mode = true, -- Disables partial mode see shelter configuration below
-			-- 		mask_char = "*", -- Character used for masking
-			-- 	},
-			-- 	modules = {
-			-- 		cmp = false, -- Mask values in completion
-			-- 		peek = false, -- Mask values in peek view
-			-- 		files = false, -- Mask values in files
-			-- 		telescope = false, -- Mask values in telescope
-			-- 	},
-			-- },
-			types = {
-				-- Built-in types
-				url = true, -- URLs (http/https)
-				localhost = true, -- Localhost URLs
-				ipv4 = true, -- IPv4 addresses
-				database_url = true, -- Database connection strings
-				number = true, -- Integers and decimals
-				boolean = true, -- true/false/yes/no/1/0
-				json = true, -- JSON objects and arrays
-				iso_date = true, -- ISO 8601 dates (YYYY-MM-DD)
-				iso_time = true, -- ISO 8601 times (HH:MM:SS)
-				hex_color = true, -- Hex color codes (#RGB or #RRGGBB)
-
-				-- Custom types
-				semver = {
-					pattern = "^v?(%d+)%.(%d+)%.(%d+)([%-+].+)?$",
-					validate = function(value)
-						local major, minor, patch = value:match("^v?(%d+)%.(%d+)%.(%d+)")
-						return major and minor and patch
-					end,
-					transform = function(value)
-						return value:gsub("^v", "")
-					end,
-				},
-
-				aws_region = {
-					pattern = "^[a-z]{2}%-[a-z]+%-[0-9]$",
-					validate = function(value)
-						local valid_regions = {
-							["us-east-1"] = true,
-							["us-west-2"] = true,
-							-- ... etc
-						}
-						return valid_regions[value] == true
-					end,
-				},
+			integrations = {
+				nvim_cmp = true, -- If you dont plan to use nvim_cmp set to false, enabled by default
 			},
-			path = vim.fn.getcwd(), -- Path to search for .env files
-			preferred_environment = "development", -- Optional: prioritize specific env files
+			provider_patterns = {
+				extract = false, -- Extract any word as potential var
+				cmp = true, -- Complete anywhere
+			},
+
+			-- path = vim.fn.getcwd(), -- Path to search for .env files
+			-- preferred_environment = "development", -- Optional: prioritize specific env files
+		},
+	},
+	{
+		"nvim-orgmode/orgmode",
+		event = "VeryLazy",
+		ft = { "org" },
+		config = function()
+			-- Setup orgmode
+			require("orgmode").setup({
+				org_agenda_files = "~/Obsidian/org/**/*",
+				org_default_notes_file = "~/Obsidian/org/refile.org",
+			})
+		end,
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {--[[ things you want to change go here]]
 		},
 	},
 }

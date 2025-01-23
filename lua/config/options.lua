@@ -26,13 +26,11 @@ opt.smartcase = true
 opt.mouse = "a"
 
 vim.o.timeout = true
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 1000
 vim.o.cmdheight = 1
 
 vim.o.conceallevel = 1
 opt.cmdheight = 0
--- vim.o.showtabline = 0
--- opt.showtabline = 0
 
 -- Numbers
 opt.number = true

@@ -16,29 +16,31 @@ local prompts = {
 	Spelling = "Please correct any grammar and spelling errors in the following text.", -- Prompt to correct spelling and grammar
 	Wording = "Please improve the grammar and wording of the following text.", -- Prompt to improve wording
 	Concise = "Please rewrite the following text to make it more concise.", -- Prompt to make text concise
+	PhpDocs = "Generate a PHPDoc comment for a PHP file that includes information about the file's purpose, package, subpackage, author, copyright, and versioning. Follow the standard PHPDoc format.",
+	WrapFixPHP = "Fix the code to make it do not go over 79 characters per line",
 }
 
 local copilot = {
 	{
 		"CopilotC-Nvim/CopilotChat.nvim", -- Load the Copilot Chat plugin
-		branch = "canary", -- Use the 'canary' branch
+		branch = "main", -- Use the 'canary' branch
 		dependencies = {
 			{ "nvim-telescope/telescope.nvim" }, -- Dependency on Telescope plugin
 			{ "nvim-lua/plenary.nvim" }, -- Dependency on Plenary plugin
 		},
 		opts = {
-			mappings = {
-				complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" }, -- Keybinding for completion
-				close = { normal = "q", insert = "<C-c>" }, -- Keybinding to close chat
-				reset = { normal = "<C-x>", insert = "<C-x>" }, -- Keybinding to reset chat
-				submit_prompt = { normal = "<CR>", insert = "<C-CR>" }, -- Keybinding to submit prompt
-				accept_diff = { normal = "<C-y>", insert = "<C-y>" }, -- Keybinding to accept diff
-				yank_diff = { normal = "gmy" }, -- Keybinding to yank diff
-				show_diff = { normal = "gmd" }, -- Keybinding to show diff
-				show_system_prompt = { normal = "gmp" }, -- Keybinding to show system prompt
-				show_user_selection = { normal = "gms" }, -- Keybinding to show user selection
-				show_help = { normal = "gmh" }, -- Keybinding to show help
-			},
+			-- mappings = {
+			-- 	complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" }, -- Keybinding for completion
+			-- 	close = { normal = "q", insert = "<C-c>" }, -- Keybinding to close chat
+			-- 	reset = { normal = "<C-x>", insert = "<C-x>" }, -- Keybinding to reset chat
+			-- 	submit_prompt = { normal = "<CR>", insert = "<C-CR>" }, -- Keybinding to submit prompt
+			-- 	accept_diff = { normal = "<C-y>", insert = "<C-y>" }, -- Keybinding to accept diff
+			-- 	yank_diff = { normal = "gmy" }, -- Keybinding to yank diff
+			-- 	show_diff = { normal = "gmd" }, -- Keybinding to show diff
+			-- 	show_system_prompt = { normal = "gmp" }, -- Keybinding to show system prompt
+			-- 	show_user_selection = { normal = "gms" }, -- Keybinding to show user selection
+			-- 	show_help = { normal = "gmh" }, -- Keybinding to show help
+			-- },
 		},
 		config = function(_, opts)
 			local chat = require("CopilotChat")
@@ -121,6 +123,47 @@ local copilot = {
 	-- 		require("copilot").setup(config)
 	-- 	end,
 	-- },
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+		opts = {
+			-- add any opts here
+		},
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		build = "make",
+		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+		dependencies = {
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					provider = "copilot",
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+		},
+	},
 }
 
 return copilot

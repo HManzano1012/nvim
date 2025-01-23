@@ -61,11 +61,12 @@ local cmp_config = {
 	},
 	sources = {
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
 		{ name = "nvim_lua" },
+		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "luasnip" },
 		{ name = "ecolog" },
+		{ name = "vim-dadbod-completion" },
 	},
 	formatting = {
 		format = function(entry, item)

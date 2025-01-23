@@ -30,14 +30,13 @@ vim.cmd("hi! @markup.heading.3.markdown guifg=#f5a980 ")
 vim.cmd("hi! @markup.heading.4.markdown guifg=#eed4a0 ")
 vim.cmd("hi! @markup.heading.5.markdown guifg=#edb6df ")
 vim.cmd("hi! @markup.heading.6.markdown guifg=#c6a0f7 ")
+vim.cmd("hi! @markup.bold guifg=#ed8797")
+vim.cmd("hi! @markup.italic guifg=#88aaf1")
 --
 vim.cmd("hi! fg_yellow guifg=#eed4a0 ")
 vim.cmd("hi! fg_red guifg=#ed8797 ")
 vim.cmd("hi! fg_green guifg=#a6da95")
 vim.cmd("hi! fg_lavender guifg=#A7ADE3")
---
-vim.cmd("hi! @markup.bold guifg=#ed8797")
-vim.cmd("hi! @markup.italic guifg=#88aaf1")
 
 -- background opacity
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
@@ -106,3 +105,79 @@ vim.opt.statuscolumn = '%s%=%#CursorLineNr#%{(v:relnum == 0)?v:lua.CheckSymbolOr
 	.. '%#LineNr#%{(v:relnum != 0)?v:lua.CheckSymbolOrNumber(v:relnum)."'
 	.. separator
 	.. '":""}'
+
+-- vim.filetype.add({
+-- 	pattern = {
+-- 		[".*%.blade%.php"] = "blade",
+-- 	},
+-- })
+local augroup = vim.api.nvim_create_augroup("lsp_blade_workaround", { clear = true })
+
+-- Autocommand to temporarily change 'blade' filetype to 'php' when opening for LSP server activation
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = augroup,
+	pattern = "*.blade.php",
+	callback = function()
+		vim.bo.filetype = "php"
+	end,
+})
+-- Additional autocommand to switch back to 'blade' after LSP has attached
+vim.api.nvim_create_autocmd("LspAttach", {
+	pattern = "*.blade.php",
+	callback = function(args)
+		vim.schedule(function()
+			-- Check if the attached client is 'intelephense'
+			for _, client in ipairs(vim.lsp.get_active_clients()) do
+				if client.name == "intelephense" and client.attached_buffers[args.buf] then
+					vim.api.nvim_buf_set_option(args.buf, "filetype", "blade")
+					-- update treesitter parser to blade
+					vim.api.nvim_buf_set_option(args.buf, "syntax", "blade")
+					break
+				end
+			end
+		end)
+	end,
+})
+-- make $ part of the keyword for php.
+vim.api.nvim_exec(
+	[[
+autocmd FileType php set iskeyword+=$
+]],
+	false
+)
+
+vim.api.nvim_create_augroup("PHPCSGroup", { clear = true })
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	group = "PHPCSGroup",
+-- 	pattern = "*.php",
+-- 	command = "lua require'phpcs'.cs()",
+-- })
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+-- 	group = "PHPCSGroup",
+-- 	pattern = "*.php",
+-- 	command = "lua require'phpcs'.cbf()",
+-- })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "PHPCSGroup",
+	pattern = "*.php",
+	callback = function()
+		require("phpcs").cs()
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "PHPCSGroup",
+	pattern = "*.php",
+	callback = function()
+		require("phpcs").cbf()
+	end,
+})
+
+vim.keymap.set("n", "<leader>lp", function()
+	require("phpcs").cs()
+end, {
+	silent = true,
+	noremap = true,
+	desc = "PHP Fix",
+})

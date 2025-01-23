@@ -1,6 +1,5 @@
 local vim = vim
 local ui = {
-
 	{
 		"stevearc/oil.nvim",
 		cmd = "Oil",
@@ -9,6 +8,15 @@ local ui = {
 			local config = require("plugins.config.oil-config")
 			require("oil").setup(config)
 		end,
+	},
+	{
+		"refractalize/oil-git-status.nvim",
+
+		dependencies = {
+			"stevearc/oil.nvim",
+		},
+
+		config = true,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -48,8 +56,113 @@ local ui = {
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "BufRead",
 		config = function()
-			local config = require("plugins.config.inline-diagnostics-config")
-			require("tiny-inline-diagnostic").setup(config)
+			-- Default configuration
+			require("tiny-inline-diagnostic").setup({
+				preset = "classic", -- Can be: "modern", "classic", "minimal", "powerline", ghost", "simple", "nonerdfont", "amongus"
+				signs = {
+					left = "",
+					right = "",
+					diag = " ",
+					arrow = "   ",
+					up_arrow = "    ",
+					vertical = " │",
+					vertical_end = " └",
+				},
+				hi = {
+					error = "DiagnosticError",
+					warn = "DiagnosticWarn",
+					info = "DiagnosticInfo",
+					hint = "DiagnosticHint",
+					arrow = "NonText",
+					background = "CursorLine", -- Can be a highlight or a hexadecimal color (#RRGGBB)
+					mixing_color = "None", -- Can be None or a hexadecimal color (#RRGGBB). Used to blend the background color with the diagnostic background color with another color.
+				},
+				options = {
+					-- Show the source of the diagnostic.
+					show_source = false,
+
+					-- Use your defined signs in the diagnostic config table.
+					use_icons_from_diagnostic = false,
+
+					-- Add messages to the diagnostic when multilines is enabled
+					add_messages = true,
+
+					-- Throttle the update of the diagnostic when moving cursor, in milliseconds.
+					-- You can increase it if you have performance issues.
+					-- Or set it to 0 to have better visuals.
+					throttle = 20,
+
+					-- The minimum length of the message, otherwise it will be on a new line.
+					softwrap = 30,
+
+					-- If multiple diagnostics are under the cursor, display all of them.
+					multiple_diag_under_cursor = false,
+
+					-- Enable diagnostic message on all lines.
+					-- Can either be a boolean or a table with the following options:
+					--  multilines = {
+					-- 	-- Enable the multilines feature
+					-- 	enabled = false,
+					--
+					-- 	-- Always show diagnostic messages on all lines
+					--  	always_show = false,
+					--  }
+					--
+					-- If it is a boolean set as true, it will enable the feature with the default options:
+					--  multilines = {
+					-- 	enabled = true,
+					-- 	always_show = false,
+					-- }
+
+					multilines = {
+						enabled = false,
+						always_show = false,
+					},
+
+					-- Show all diagnostics on the cursor line.
+					show_all_diags_on_cursorline = false,
+
+					-- Enable diagnostics on Insert mode. You should also se the `throttle` option to 0, as some artefacts may appear.
+					enable_on_insert = false,
+
+					overflow = {
+						-- Manage the overflow of the message.
+						--    - wrap: when the message is too long, it is then displayed on multiple lines.
+						--    - none: the message will not be truncated.
+						--    - oneline: message will be displayed entirely on one line.
+						mode = "wrap",
+					},
+
+					-- Format the diagnostic message.
+					-- Example:
+					-- format = function(diagnostic)
+					--     return diagnostic.message .. " [" .. diagnostic.source .. "]"
+					-- end,
+					format = nil,
+
+					--- Enable it if you want to always have message with `after` characters length.
+					break_line = {
+						enabled = false,
+						after = 30,
+					},
+
+					virt_texts = {
+						priority = 2048,
+					},
+
+					-- Filter by severity.
+					severity = {
+						vim.diagnostic.severity.ERROR,
+						vim.diagnostic.severity.WARN,
+						vim.diagnostic.severity.INFO,
+						vim.diagnostic.severity.HINT,
+					},
+
+					-- Overwrite events to attach to a buffer. You should not change it, but if the plugin
+					-- does not works in your configuration, you may try to tweak it.
+					overwrite_events = nil,
+				},
+			})
 		end,
 	},
 	{
@@ -74,46 +187,6 @@ local ui = {
 			highlight = { "IblIndent" },
 		},
 	},
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	event = "BufRead",
-	-- 	main = "ibl",
-	-- 	opts = {
-	-- 		indent = { char = "▏" },
-	-- 		-- indent = { char = "│" },
-	-- 	},
-	-- },
-	-- {
-	-- 	"echasnovski/mini.indentscope",
-	-- 	version = false, -- wait till new 0.7.0 release to put it back on semver
-	-- 	opts = {
-	-- 		symbol = "▏",
-	-- 		-- symbol = "│",
-	-- 		options = { try_as_border = true },
-	-- 	},
-	-- 	init = function()
-	-- 		vim.api.nvim_create_autocmd("FileType", {
-	-- 			pattern = {
-	-- 				"alpha",
-	-- 				"dashboard",
-	-- 				"fzf",
-	-- 				"help",
-	-- 				"lazy",
-	-- 				"lazyterm",
-	-- 				"mason",
-	-- 				"neo-tree",
-	-- 				"notify",
-	-- 				"toggleterm",
-	-- 				"Trouble",
-	-- 				"trouble",
-	-- 			},
-	-- 			callback = function()
-	-- 				vim.b.miniindentscope_disable = true
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
-
 	{
 		"goolord/alpha-nvim",
 		enabled = true,
@@ -124,17 +197,18 @@ local ui = {
 
 			-- Set header
 			dashboard.section.header.val = {
-				"                                                     ",
-				"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-				"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-				"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-				"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-				"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-				"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-				"                                                     ",
+				"                            ",
+				"     ▄▄         ▄ ▄▄▄▄▄▄▄   ",
+				"   ▄▀███▄     ▄██ █████▀    ",
+				"   ██▄▀███▄   ███           ",
+				"   ███  ▀███▄ ███           ",
+				"   ███    ▀██ ███           ",
+				"   ███      ▀ ███           ",
+				"   ▀██ █████▄▀█▀▄██████▄    ",
+				"    ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀    ",
+				"     Powered By  eovim    ",
+				"                            ",
 			}
-
-			-- Set menu
 			dashboard.section.buttons.val = {
 				dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
 				dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
@@ -142,19 +216,13 @@ local ui = {
 				dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
 				dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
 			}
+			dashboard.section.header.opts.hl = "fg_lavender"
+
 			alpha.setup(dashboard.opts)
-			vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
+			-- vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
 		end,
 	},
-	{
-		"marcussimonsen/let-it-snow.nvim",
-		cmd = "LetItSnow", -- Wait with loading until command is run
-		opts = {},
-	},
-	{
-		"eandrju/cellular-automaton.nvim",
-		cmd = "CellularAutomation",
-	},
+	{ "LudoPinelli/comment-box.nvim" },
 }
 
 return ui
