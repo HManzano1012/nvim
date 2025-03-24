@@ -1,6 +1,5 @@
 local vim = vim
 
--- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -9,43 +8,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.cmd.colorscheme("catppuccin-macchiato")
-
--- change background color for floating windows
-local modes = { "normal", "insert", "visual", "replace", "terminal", "command" }
-for _, mode in ipairs(modes) do
-	vim.api.nvim_command("hi lualine_c_" .. mode .. "  guibg=NONE")
-	vim.api.nvim_command("hi lualine_x_" .. mode .. "  guibg=NONE")
-end
-
 -- signcolumn icons
 vim.cmd("sign define DiagnosticSignError text=  texthl=TextError linehl= numhl=")
 vim.cmd("sign define DiagnosticSignInfo text=󰀨  texthl=TextInfo linehl= numhl=")
 vim.cmd("sign define DiagnosticSignHint text=  texthl=TextHint linehl= numhl=")
 vim.cmd("sign define DiagnosticSignWarn text= texthl=TextWarn linehl= numhl=")
-
-vim.cmd("hi! @markup.heading.1.markdown guifg=#8bd5cb")
-vim.cmd("hi! @markup.heading.2.markdown guifg=#88aaf1 ")
-vim.cmd("hi! @markup.heading.3.markdown guifg=#f5a980 ")
-vim.cmd("hi! @markup.heading.4.markdown guifg=#eed4a0 ")
-vim.cmd("hi! @markup.heading.5.markdown guifg=#edb6df ")
-vim.cmd("hi! @markup.heading.6.markdown guifg=#c6a0f7 ")
-vim.cmd("hi! @markup.bold guifg=#ed8797")
-vim.cmd("hi! @markup.italic guifg=#88aaf1")
 --
 vim.cmd("hi! fg_yellow guifg=#eed4a0 ")
 vim.cmd("hi! fg_red guifg=#ed8797 ")
 vim.cmd("hi! fg_green guifg=#a6da95")
 vim.cmd("hi! fg_lavender guifg=#A7ADE3")
-
--- background opacity
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
-vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
-vim.cmd("hi NormalFloat guibg=NONE ctermbg=NONE")
-vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
-
-vim.cmd("hi EcologNormal guibg=NONE ctermbg=NONE")
 
 -- enable treesitter
 vim.cmd("TSEnable highlight")
@@ -121,6 +93,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.bo.filetype = "php"
 	end,
 })
+
 -- Additional autocommand to switch back to 'blade' after LSP has attached
 vim.api.nvim_create_autocmd("LspAttach", {
 	pattern = "*.blade.php",
@@ -146,17 +119,42 @@ autocmd FileType php set iskeyword+=$
 	false
 )
 
+local env_augroup = vim.api.nvim_create_augroup("envfiles", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = env_augroup,
+	pattern = ".env.*",
+	callback = function()
+		vim.bo.filetype = "sh"
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = env_augroup,
+	pattern = "conf",
+	callback = function()
+		vim.bo.filetype = "sh"
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = env_augroup,
+	pattern = "*.conf",
+	callback = function()
+		vim.bo.filetype = "sh"
+	end,
+})
+
 vim.api.nvim_create_augroup("PHPCSGroup", { clear = true })
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
--- 	group = "PHPCSGroup",
--- 	pattern = "*.php",
--- 	command = "lua require'phpcs'.cs()",
--- })
--- vim.api.nvim_create_autocmd("BufWritePost", {
--- 	group = "PHPCSGroup",
--- 	pattern = "*.php",
--- 	command = "lua require'phpcs'.cbf()",
--- })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+	group = "PHPCSGroup",
+	pattern = "*.php",
+	command = "lua require'phpcs'.cs()",
+})
+vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "PHPCSGroup",
+	pattern = "*.php",
+	command = "lua require'phpcs'.cbf()",
+})
 
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = "PHPCSGroup",
@@ -181,3 +179,25 @@ end, {
 	noremap = true,
 	desc = "PHP Fix",
 })
+
+-- change background color for floating windows
+local modes = { "normal", "insert", "visual", "replace", "terminal", "command" }
+for _, mode in ipairs(modes) do
+	vim.api.nvim_command("hi lualine_c_" .. mode .. "  guibg=NONE")
+	vim.api.nvim_command("hi lualine_x_" .. mode .. "  guibg=NONE")
+end
+
+-- background opacity
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
+vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
+vim.cmd.colorscheme("catppuccin-macchiato")
+vim.cmd("hi NormalFloat guibg=NONE ctermbg=NONE")
+vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
+
+vim.cmd("hi EcologNormal guibg=NONE ctermbg=NONE")
+
+-- if vim.g.neovide then
+-- 	vim.cmd.colorscheme("catppuccin-macchiato")
+-- 	vim.o.guifont = "VictorMono Nerd Font:h13" -- text below applies for VimScript
+-- end

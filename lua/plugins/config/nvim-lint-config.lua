@@ -9,19 +9,32 @@ require("lint").linters_by_ft = {
 	typescriptreact = { "eslint_d" },
 	go = { "golangcilint" },
 	php = { "phpcs" },
-	python = { "ruff" },
+	python = { "mypy" },
 	html = { "htmlhint" },
 	css = { "stylelint" },
 	vue = { "eslint_d" },
 	groovy = { "npm-groovy-lint" },
 }
-local phpcs = require("lint").linters.phpcs
+local linters = require("lint").linters
+local phpcs = linters.phpcs
 phpcs.cmd = "/home/haroldm/.config/composer/vendor/bin/phpcs"
 phpcs.args = {
 	"-q",
 	"--standard=PSR12",
 	"--report=json",
 	"-",
+}
+
+local eslint_d = linters.eslint_d
+eslint_d.args = {
+	"--no-warn-ignored", -- <-- this is the key argument
+	"--format",
+	"json",
+	"--stdin",
+	"--stdin-filename",
+	function()
+		return vim.api.nvim_buf_get_name(0)
+	end,
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

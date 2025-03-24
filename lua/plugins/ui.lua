@@ -10,20 +10,9 @@ local ui = {
 		end,
 	},
 	{
-		"refractalize/oil-git-status.nvim",
-
-		dependencies = {
-			"stevearc/oil.nvim",
-		},
-
-		config = true,
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
-			"meuter/lualine-so-fancy.nvim",
-			"AndreM222/copilot-lualine",
 		},
 		config = function()
 			local config = require("plugins.config.lualine-config")
@@ -58,7 +47,7 @@ local ui = {
 		config = function()
 			-- Default configuration
 			require("tiny-inline-diagnostic").setup({
-				preset = "classic", -- Can be: "modern", "classic", "minimal", "powerline", ghost", "simple", "nonerdfont", "amongus"
+				preset = "classic",
 				signs = {
 					left = "",
 					right = "",
@@ -79,7 +68,7 @@ local ui = {
 				},
 				options = {
 					-- Show the source of the diagnostic.
-					show_source = false,
+					show_source = true,
 
 					-- Use your defined signs in the diagnostic config table.
 					use_icons_from_diagnostic = false,
@@ -166,19 +155,6 @@ local ui = {
 		end,
 	},
 	{
-		"rachartier/tiny-devicons-auto-colors.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		event = "VeryLazy",
-		config = function()
-			local theme_colors = require("catppuccin.palettes").get_palette("macchiato")
-			require("tiny-devicons-auto-colors").setup({
-				colors = theme_colors,
-			})
-		end,
-	},
-	{
 		"lukas-reineke/virt-column.nvim",
 		event = "BufRead",
 		opts = {
@@ -187,42 +163,6 @@ local ui = {
 			highlight = { "IblIndent" },
 		},
 	},
-	{
-		"goolord/alpha-nvim",
-		enabled = true,
-		lazy = false,
-		config = function()
-			local alpha = require("alpha")
-			local dashboard = require("alpha.themes.dashboard")
-
-			-- Set header
-			dashboard.section.header.val = {
-				"                            ",
-				"     ▄▄         ▄ ▄▄▄▄▄▄▄   ",
-				"   ▄▀███▄     ▄██ █████▀    ",
-				"   ██▄▀███▄   ███           ",
-				"   ███  ▀███▄ ███           ",
-				"   ███    ▀██ ███           ",
-				"   ███      ▀ ███           ",
-				"   ▀██ █████▄▀█▀▄██████▄    ",
-				"    ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀    ",
-				"     Powered By  eovim    ",
-				"                            ",
-			}
-			dashboard.section.buttons.val = {
-				dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-				dashboard.button("f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
-				dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
-				dashboard.button("s", "  > Settings", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-				dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
-			}
-			dashboard.section.header.opts.hl = "fg_lavender"
-
-			alpha.setup(dashboard.opts)
-			-- vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
-		end,
-	},
-	{ "LudoPinelli/comment-box.nvim" },
 }
 
 return ui

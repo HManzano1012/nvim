@@ -1,23 +1,24 @@
 local prompts = {
-	Explain = "Please explain how the following code works.", -- Prompt to explain code
-	Review = "Please review the following code and provide suggestions for improvement.", -- Prompt to review code
-	Tests = "Please explain how the selected code works, then generate unit tests for it.", -- Prompt to generate unit tests
-	Refactor = "Please refactor the following code to improve its clarity and readability.", -- Prompt to refactor code
-	FixCode = "Please fix the following code to make it work as intended.", -- Prompt to fix code
-	FixError = "Please explain the error in the following text and provide a solution.", -- Prompt to fix errors
-	BetterNamings = "Please provide better names for the following variables and functions.", -- Prompt to suggest better names
-	Documentation = "Please provide documentation for the following code.", -- Prompt to generate documentation
-	JsDocs = "Please provide JsDocs for the following code.", -- Prompt to generate JsDocs
-	DocumentationForGithub = "Please provide documentation for the following code ready for GitHub using markdown.", -- Prompt to generate GitHub documentation
-	CreateAPost = "Please provide documentation for the following code to post it in social media, like Linkedin, it has be deep, well explained and easy to understand. Also do it in a fun and engaging way.", -- Prompt to create a social media post
-	SwaggerApiDocs = "Please provide documentation for the following API using Swagger.", -- Prompt to generate Swagger API docs
-	SwaggerJsDocs = "Please write JSDoc for the following API using Swagger.", -- Prompt to generate Swagger JsDocs
-	Summarize = "Please summarize the following text.", -- Prompt to summarize text
-	Spelling = "Please correct any grammar and spelling errors in the following text.", -- Prompt to correct spelling and grammar
-	Wording = "Please improve the grammar and wording of the following text.", -- Prompt to improve wording
-	Concise = "Please rewrite the following text to make it more concise.", -- Prompt to make text concise
+	Explain = "Please explain how the following code works.",
+	Review = "Please review the following code and provide suggestions for improvement.",
+	Tests = "Please explain how the selected code works, then generate unit tests for it.",
+	Refactor = "Please refactor the following code to improve its clarity and readability.",
+	FixCode = "Please fix the following code to make it work as intended.",
+	FixError = "Please explain the error in the following text and provide a solution.",
+	BetterNamings = "Please provide better names for the following variables and functions.",
+	Documentation = "Please provide documentation for the following code.",
+	JsDocs = "Please provide JsDocs for the following code.",
+	DocumentationForGithub = "Please provide documentation for the following code ready for GitHub using markdown.",
+	CreateAPost = "Please provide documentation for the following code to post it in social media, like Linkedin, it has be deep, well explained and easy to understand. Also do it in a fun and engaging way.",
+	SwaggerApiDocs = "Please provide documentation for the following API using Swagger.",
+	SwaggerJsDocs = "Please write JSDoc for the following API using Swagger.",
+	Summarize = "Please summarize the following text.",
+	Spelling = "Please correct any grammar and spelling errors in the following text.",
+	Wording = "Please improve the grammar and wording of the following text.",
+	Concise = "Please rewrite the following text to make it more concise.",
 	PhpDocs = "Generate a PHPDoc comment for a PHP file that includes information about the file's purpose, package, subpackage, author, copyright, and versioning. Follow the standard PHPDoc format.",
-	WrapFixPHP = "Fix the code to make it do not go over 79 characters per line",
+	PyDocs = 'Generate a  comment for the code. Follow the PEP 8 docstring convention but replace the \'"""\' with comments with  "#".',
+	WrapFix = "Fix the code to make it do not go over 79 characters per line",
 }
 
 local copilot = {
@@ -27,20 +28,6 @@ local copilot = {
 		dependencies = {
 			{ "nvim-telescope/telescope.nvim" }, -- Dependency on Telescope plugin
 			{ "nvim-lua/plenary.nvim" }, -- Dependency on Plenary plugin
-		},
-		opts = {
-			-- mappings = {
-			-- 	complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" }, -- Keybinding for completion
-			-- 	close = { normal = "q", insert = "<C-c>" }, -- Keybinding to close chat
-			-- 	reset = { normal = "<C-x>", insert = "<C-x>" }, -- Keybinding to reset chat
-			-- 	submit_prompt = { normal = "<CR>", insert = "<C-CR>" }, -- Keybinding to submit prompt
-			-- 	accept_diff = { normal = "<C-y>", insert = "<C-y>" }, -- Keybinding to accept diff
-			-- 	yank_diff = { normal = "gmy" }, -- Keybinding to yank diff
-			-- 	show_diff = { normal = "gmd" }, -- Keybinding to show diff
-			-- 	show_system_prompt = { normal = "gmp" }, -- Keybinding to show system prompt
-			-- 	show_user_selection = { normal = "gms" }, -- Keybinding to show user selection
-			-- 	show_help = { normal = "gmh" }, -- Keybinding to show help
-			-- },
 		},
 		config = function(_, opts)
 			local chat = require("CopilotChat")
@@ -113,24 +100,21 @@ local copilot = {
 		event = "VeryLazy", -- Load this plugin on the 'VeryLazy' event
 	},
 
-	-- {
-	-- 	"zbirenbaum/copilot.lua",
-	-- 	enabled = false,
-	-- 	cmd = "Copilot",
-	--  	event = "InsertEnter",
-	-- 	config = function()
-	-- 		local config = require("plugins.config.copilot-config")
-	-- 		require("copilot").setup(config)
-	-- 	end,
-	-- },
+	{
+		"zbirenbaum/copilot.lua",
+		enabled = true,
+		ft = "lua",
+		event = "InsertEnter",
+		config = function()
+			local config = require("plugins.config.copilot-config")
+			require("copilot").setup(config)
+		end,
+	},
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		lazy = false,
 		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
-		opts = {
-			-- add any opts here
-		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
 		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
@@ -147,20 +131,19 @@ local copilot = {
 			{
 				-- support for image pasting
 				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					provider = "copilot",
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
+			},
+		},
+		opts = {
+			provider = "copilot",
+			-- recommended settings
+			default = {
+				embed_image_as_base64 = false,
+				prompt_for_file_name = false,
+				drag_and_drop = {
+					insert_mode = true,
 				},
+				-- required for Windows users
+				use_absolute_path = true,
 			},
 		},
 	},

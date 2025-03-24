@@ -2,6 +2,9 @@ require("telescope").setup({
 	defaults = {
 		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		file_ignore_patterns = {
+			-- "*.png",
+			-- "*.jpg",
+			-- "*.svg",
 			"node_modules/*",
 			"build",
 			"dist",
@@ -18,7 +21,7 @@ require("telescope").setup({
 			vertical = { width = 0.5 },
 			width = function(_, cols, _)
 				local min = 90
-				local max = 110
+				local max = 150
 				return math.min(math.max(min, cols), max)
 			end,
 			height = function(_, _, max_lines)

@@ -2,7 +2,7 @@ local vim = vim
 local cmp = {
 	{
 		"hrsh7th/nvim-cmp",
-		event = "insertenter",
+		event = "InsertEnter",
 		dependencies = {
 			{
 				"l3mon4d3/luasnip",

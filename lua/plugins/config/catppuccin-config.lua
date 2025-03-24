@@ -1,5 +1,5 @@
 local catppuccin_config = {
-	-- no_italic = true, -- Force no italic
+	no_italic = true, -- Force no italic
 	styles = {
 		comments = {},
 	},
@@ -37,6 +37,7 @@ local catppuccin_config = {
 		fidget = true,
 		noice = true,
 		treesitter_context = false,
+		markdown = true,
 		alpha = true,
 		barbecue = {
 			dim_dirname = true, -- directory name is dimmed by default
@@ -44,7 +45,7 @@ local catppuccin_config = {
 			dim_context = false,
 			alt_background = false,
 		},
-		render_markdown = false,
+		render_markdown = true,
 		lsp_trouble = true,
 	},
 	custom_highlights = function(C)
@@ -54,14 +55,18 @@ local catppuccin_config = {
 		require("lspconfig.ui.windows").default_options.border = "single"
 		return {
 			-- Normal
-			NormalFloat = { bg = C.bg, fg = catppuccin_hightlight },
 			FloatBorder = { fg = catppuccin_hightlight },
 			TextError = { fg = C.red },
 			TextWarning = { fg = C.yellow },
 			TextInfo = { fg = C.blue },
 			TextHint = { fg = C.green },
-			InlayHint = { fg = C.blue, bg = background_hightlight },
-			LspInlayHint = { fg = C.blue, bg = background_hightlight },
+			InlayHint = { fg = "#484C63", bg = "None" },
+			LspInlayHint = { fg = "#484C63", bg = "None" },
+
+			DiagnosticError = { bg = "None" },
+			DiagnosticWarn = { bg = "None" },
+			DiagnosticInfo = { bg = "None" },
+			DiagnosticHint = { bg = "None" },
 
 			-- Singcolumn numbers
 			LineNr = { fg = "#717790" },
@@ -135,6 +140,34 @@ local catppuccin_config = {
 			AlphaHeader = { fg = C.red, bg = C.mauve },
 
 			AlphaFooter = { fg = C.red, bg = C.mauve },
+
+			-- -- lualine
+			-- --
+			-- lualine_a_normal = { fg = C.base, bg = C.bg },
+			-- lualine_a_insert = { fg = C.base, bg = C.bg },
+			-- lualine_a_visual = { fg = C.base, bg = C.bg },
+			--
+			-- lualine_b_normal = { fg = C.base, bg = C.bg },
+			-- lualine_b_insert = { fg = C.base, bg = C.bg },
+			-- lualine_b_visual = { fg = C.base, bg = C.bg },
+			--
+			-- lualine_c_normal = { fg = C.base, bg = C.bg },
+			-- lualine_c_insert = { fg = C.base, bg = C.bg },
+			-- lualine_c_visual = { fg = C.base, bg = C.bg },
+			-- lualine_x_normal = { fg = C.base, bg = C.bg },
+			-- lualine_x_insert = { fg = C.base, bg = C.bg },
+			-- lualine_x_visual = { fg = C.base, bg = C.bg },
+			--
+			-- Normal = { bg = "None" },
+			-- NormalNC = { bg = "None" },
+			-- NormalNCFloat = { bg = "None" },
+			-- NormalFloat = { bg = "None" },
+			-- NonText = { bg = "None" },
+			--
+			-- MarkviewCode = { bg = C.lavender },
+			-- MarkviewCodeBlock = { bg = C.base },
+			-- MarkviewCodeBlockLine = { bg = C.base },
+			-- MarkviewCodeInfo = { bg = C.base },
 		}
 	end,
 }

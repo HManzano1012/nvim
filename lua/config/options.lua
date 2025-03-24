@@ -32,6 +32,7 @@ vim.o.cmdheight = 1
 vim.o.conceallevel = 1
 opt.cmdheight = 0
 
+vim.diagnostic.config({ virtual_lines = true })
 -- Numbers
 opt.number = true
 opt.numberwidth = 2
@@ -66,3 +67,5 @@ opt.guicursor = {
 	"a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
 	"sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
+opt.spell = true
+opt.spelllang = { "en_us", "es" }

@@ -5,6 +5,14 @@ local whichkey = {
 	},
 	spec = {
 		{ "<leader>a", group = "AI" }, -- Define a group for AI-related commands
+		{ "<leader>l", group = "Laravel" }, -- Define a group for AI-related commands
+		{ "<leader>f", group = "Telescope" }, -- Define a group for AI-related commands
+		{ "<leader>g", group = "Git" }, -- Define a group for AI-related commands
+		{ "<leader>gc", group = "Git Conflicts" }, -- Define a group for AI-related commands
+		{ "<leader>n", group = "Notes" }, -- Define a group for AI-related commands
+		{ "<leader>p", group = "PHP" }, -- Define a group for AI-related commands
+		{ "<leader>d", group = "DADBOD" }, -- Define a group for AI-related commands
+		{ "<leader>v", group = "Ecolog" }, -- Define a group for AI-related commands
 		{
 			"<leader>ah",
 			function()
@@ -32,8 +40,8 @@ local whichkey = {
 		{ "<leader>ar", "<cmd>CopilotChatReview<cr>", desc = "CopilotChat - Review code" },
 		{ "<leader>aR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
 		{ "<leader>an", "<cmd>CopilotChatBetterNamings<cr>", desc = "CopilotChat - Better Naming" },
-		{ "<leader>av", ":CopilotChatVisual", mode = "x", desc = "CopilotChat - Open in vertical split" },
-		{ "<leader>ax", ":CopilotChatInline<cr>", mode = "x", desc = "CopilotChat - Inline chat" },
+		{ "<leader>av", "<cmd>CopilotChatVisual<cr>", mode = "x", desc = "CopilotChat - Open in vertical split" },
+		{ "<leader>ax", "<cmd>CopilotChatInline<cr>", mode = "x", desc = "CopilotChat - Inline chat" },
 		{
 			"<leader>ai",
 			function()
@@ -65,11 +73,6 @@ local whichkey = {
 		{ "<leader>al", "<cmd>CopilotChatReset<cr>", desc = "CopilotChat - Clear buffer and chat history" },
 		{ "<leader>av", "<cmd>CopilotChatToggle<cr>", desc = "CopilotChat - Toggle" },
 		{ "<leader>a?", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat - Select Models" },
-
-		{ "<leader>f", group = "Telescope" }, -- Define a group for AI-related commands
-		{ "<leader>g", group = "Git" }, -- Define a group for AI-related commands
-		{ "<leader>gc", group = "Git Conflicts" }, -- Define a group for AI-related commands
-		{ "<leader>n", group = "Git" }, -- Define a group for AI-related commands
 	},
 }
 

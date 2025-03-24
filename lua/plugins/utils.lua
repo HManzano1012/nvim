@@ -16,17 +16,6 @@ local utils = {
 		},
 	},
 	{
-		"folke/snacks.nvim",
-		---@type snacks.Config
-		opts = {
-			bigfile = {
-				-- your bigfile configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			},
-		},
-	},
-	{
 		"folke/which-key.nvim", -- Load the which-key plugin
 		-- optional = true, -- This plugin is optional
 		opts = require("plugins.config.whichkey-config"),
@@ -109,15 +98,8 @@ local utils = {
 			require("markview").setup(config)
 		end,
 	},
-	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-			vim.cmd("set conceallevel=1")
-		end,
-	},
+	-- { "echasnovski/mini.nvim", version = "*" },
+
 	{
 		"echasnovski/mini.surround",
 		opts = {
@@ -166,21 +148,8 @@ local utils = {
 		end,
 	},
 	{
-		"mistricky/codesnap.nvim",
-		build = "make",
-		opts = {
-			save_path = "~/Pictures",
-			has_breadcrumbs = true,
-			has_line_number = true,
-			bg_color = "#A7ADE3",
-			watermark = "",
-			code_font_family = "VictorMono Nerd Font",
-			bg_padding = 20,
-		},
-	},
-	{ "nvzone/volt", lazy = true },
-	{
 		"philosofonusus/ecolog.nvim",
+		cmd = { "EcologGoto", "EcologPeek", "EcologSelect" },
 		dependencies = {
 			"hrsh7th/nvim-cmp", -- Optional, for autocompletion support
 		},
@@ -195,24 +164,6 @@ local utils = {
 
 			-- path = vim.fn.getcwd(), -- Path to search for .env files
 			-- preferred_environment = "development", -- Optional: prioritize specific env files
-		},
-	},
-	{
-		"nvim-orgmode/orgmode",
-		event = "VeryLazy",
-		ft = { "org" },
-		config = function()
-			-- Setup orgmode
-			require("orgmode").setup({
-				org_agenda_files = "~/Obsidian/org/**/*",
-				org_default_notes_file = "~/Obsidian/org/refile.org",
-			})
-		end,
-	},
-	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		opts = {--[[ things you want to change go here]]
 		},
 	},
 }

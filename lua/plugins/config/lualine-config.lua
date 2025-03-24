@@ -1,6 +1,6 @@
 local vim = vim
 local colors = {
-	bg = "#181825",
+	bg = "#24273A",
 	fg = "#bbc2cf",
 	yellow = "#ECBE7B",
 	cyan = "#008080",
@@ -32,6 +32,66 @@ local conditions = {
 local custom_gruvbox = require("lualine.themes.gruvbox")
 custom_gruvbox.normal.c.bg = "NONE"
 
+local custom_catpuccin = function()
+	local flavour = "latte"
+	local C = require("catppuccin.palettes").get_palette(flavour)
+	local O = require("catppuccin").options
+	local catppuccin = {}
+
+	local transparent_bg = colors.bg
+
+	catppuccin.normal = {
+		a = { bg = C.blue, fg = C.mantle, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.blue },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.insert = {
+		a = { bg = C.green, fg = C.base, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.green },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.terminal = {
+		a = { bg = C.green, fg = C.base, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.green },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.command = {
+		a = { bg = C.peach, fg = C.base, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.peach },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.visual = {
+		a = { bg = C.mauve, fg = C.base, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.mauve },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.replace = {
+		a = { bg = C.red, fg = C.base, gui = "bold" },
+		b = { bg = transparent_bg, fg = C.red },
+		c = { bg = transparent_bg, fg = C.text },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	catppuccin.inactive = {
+		a = { bg = transparent_bg, fg = C.blue },
+		b = { bg = transparent_bg, fg = C.surface1, gui = "bold" },
+		c = { bg = transparent_bg, fg = C.overlay0 },
+		x = { bg = transparent_bg, fg = C.text },
+	}
+
+	return catppuccin
+end
+
 -- Config
 local config = {
 	options = {
@@ -58,7 +118,7 @@ local config = {
 				"lazygit",
 			},
 		},
-		theme = custom_gruvbox,
+		theme = custom_catpuccin(),
 	},
 	sections = {
 		-- these are to remove the defaults
