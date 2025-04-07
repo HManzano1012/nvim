@@ -88,7 +88,7 @@ local utils = {
 	{
 		"OXY2DEV/markview.nvim",
 		-- lazy = false, -- Recommended
-		ft = "markdown", -- If you decide to lazy-load anyway
+		ft = { "markdown", "Avante" }, -- If you decide to lazy-load anyway
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-tree/nvim-web-devicons",
@@ -148,6 +148,13 @@ local utils = {
 		end,
 	},
 	{
+		"sindrets/diffview.nvim",
+		event = "BufRead",
+		config = function()
+			require("diffview").setup()
+		end,
+	},
+	{
 		"philosofonusus/ecolog.nvim",
 		cmd = { "EcologGoto", "EcologPeek", "EcologSelect" },
 		dependencies = {
@@ -164,6 +171,17 @@ local utils = {
 
 			-- path = vim.fn.getcwd(), -- Path to search for .env files
 			-- preferred_environment = "development", -- Optional: prioritize specific env files
+		},
+	},
+	{
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			bigfile = {
+				notify = true, -- show notification when big file detected
+				size = 3 * 1024 * 1024, -- 1.5MB
+				line_length = 1000, -- average line length (useful for minified files)
+			},
 		},
 	},
 }

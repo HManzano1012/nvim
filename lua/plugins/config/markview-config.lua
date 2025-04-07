@@ -1,5 +1,10 @@
 local presets = require("markview.presets")
 local markview = {
+	preview = {
+		filetypes = { "markdown", "Avante" },
+		ignore_buftypes = {},
+	},
+	max_length = 99999,
 
 	markdown = {
 		headings = {

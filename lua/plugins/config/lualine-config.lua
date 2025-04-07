@@ -213,7 +213,7 @@ ins_left({
 		}
 		-- return "󰯙  "
 		-- return "   "
-		return "   "
+		return "네오빔 "
 	end,
 	color = function()
 		-- auto change color according to neovim's mode

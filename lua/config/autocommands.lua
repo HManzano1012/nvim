@@ -188,14 +188,16 @@ for _, mode in ipairs(modes) do
 end
 
 -- background opacity
+
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("hi NonText guibg=NONE ctermbg=NONE")
 vim.cmd("hi NormalNC guibg=NONE ctermbg=NONE")
 vim.cmd.colorscheme("catppuccin-macchiato")
 vim.cmd("hi NormalFloat guibg=NONE ctermbg=NONE")
 vim.cmd("hi NormalNCFloat guibg=NONE ctermbg=NONE")
-
 vim.cmd("hi EcologNormal guibg=NONE ctermbg=NONE")
+vim.cmd("hi SnacksBackdrop guibg=#444444 ctermbg=NONE")
+vim.cmd("hi SnacksBackdrop_000000 guibg=#444444 ctermbg=NONE")
 
 -- if vim.g.neovide then
 -- 	vim.cmd.colorscheme("catppuccin-macchiato")

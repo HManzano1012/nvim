@@ -140,6 +140,8 @@ local catppuccin_config = {
 			AlphaHeader = { fg = C.red, bg = C.mauve },
 
 			AlphaFooter = { fg = C.red, bg = C.mauve },
+			SnacksBackdrop = { bg = C.bg },
+			SnacksBackdrop_000000 = { bg = C.bg },
 
 			-- -- lualine
 			-- --
