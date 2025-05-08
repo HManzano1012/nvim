@@ -10,6 +10,8 @@ opt.laststatus = 3 -- global statusline
 opt.showmode = false
 opt.timeoutlen = 1000
 
+vim.deprecate = function() end
+
 opt.clipboard = "unnamedplus"
 opt.cursorline = true
 
@@ -39,7 +41,7 @@ opt.numberwidth = 2
 opt.ruler = false
 opt.relativenumber = true
 opt.colorcolumn = "79"
-opt.scrolloff = 8
+opt.scrolloff = 15
 -- disable nvim intro
 opt.shortmess:append("s")
 opt.signcolumn = "yes"

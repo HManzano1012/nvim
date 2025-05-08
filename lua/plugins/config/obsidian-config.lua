@@ -26,7 +26,7 @@ local obsidian_config = {
 		},
 	},
 	templates = {
-		subdir = "templates",
+		subdir = "~/Obsidian/templates/",
 		date_format = "%Y-%m-%d-%a",
 		time_format = "%H:%M",
 	},

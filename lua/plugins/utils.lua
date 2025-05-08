@@ -9,11 +9,7 @@ local utils = {
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		opts = {},
 	},
 	{
 		"folke/which-key.nvim", -- Load the which-key plugin
@@ -98,7 +94,6 @@ local utils = {
 			require("markview").setup(config)
 		end,
 	},
-	-- { "echasnovski/mini.nvim", version = "*" },
 
 	{
 		"echasnovski/mini.surround",
@@ -122,68 +117,68 @@ local utils = {
 			silent = false,
 		},
 	},
-	{
-		"aznhe21/actions-preview.nvim",
-		event = "BufRead",
-		config = function()
-			require("actions-preview").setup({
-				backend = { "telescope" },
-				telescope = vim.tbl_extend(
-					"force",
-					-- telescope theme: https://github.com/nvim-telescope/telescope.nvim#themes
-					require("telescope.themes").get_ivy(),
-					-- a table for customizing content
-					{
-						-- a function to make a table containing the values to be displayed.
-						-- fun(action: Action): { title: string, client_name: string|nil }
-						make_value = nil,
-
-						-- a function to make a function to be used in `display` of a entry.
-						-- see also `:h telescope.make_entry` and `:h telescope.pickers.entry_display`.
-						-- fun(values: { index: integer, action: Action, title: string, client_name: string }[]): function
-						make_make_display = nil,
-					}
-				),
-			})
-		end,
-	},
-	{
-		"sindrets/diffview.nvim",
-		event = "BufRead",
-		config = function()
-			require("diffview").setup()
-		end,
-	},
-	{
-		"philosofonusus/ecolog.nvim",
-		cmd = { "EcologGoto", "EcologPeek", "EcologSelect" },
-		dependencies = {
-			"hrsh7th/nvim-cmp", -- Optional, for autocompletion support
-		},
-		opts = {
-			integrations = {
-				nvim_cmp = true, -- If you dont plan to use nvim_cmp set to false, enabled by default
-			},
-			provider_patterns = {
-				extract = false, -- Extract any word as potential var
-				cmp = true, -- Complete anywhere
-			},
-
-			-- path = vim.fn.getcwd(), -- Path to search for .env files
-			-- preferred_environment = "development", -- Optional: prioritize specific env files
-		},
-	},
-	{
-		"folke/snacks.nvim",
-		---@type snacks.Config
-		opts = {
-			bigfile = {
-				notify = true, -- show notification when big file detected
-				size = 3 * 1024 * 1024, -- 1.5MB
-				line_length = 1000, -- average line length (useful for minified files)
-			},
-		},
-	},
+	-- {
+	-- 	"aznhe21/actions-preview.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("actions-preview").setup({
+	-- 			backend = { "telescope" },
+	-- 			telescope = vim.tbl_extend(
+	-- 				"force",
+	-- 				-- telescope theme: https://github.com/nvim-telescope/telescope.nvim#themes
+	-- 				require("telescope.themes").get_ivy(),
+	-- 				-- a table for customizing content
+	-- 				{
+	-- 					-- a function to make a table containing the values to be displayed.
+	-- 					-- fun(action: Action): { title: string, client_name: string|nil }
+	-- 					make_value = nil,
+	--
+	-- 					-- a function to make a function to be used in `display` of a entry.
+	-- 					-- see also `:h telescope.make_entry` and `:h telescope.pickers.entry_display`.
+	-- 					-- fun(values: { index: integer, action: Action, title: string, client_name: string }[]): function
+	-- 					make_make_display = nil,
+	-- 				}
+	-- 			),
+	-- 		})
+	-- 	end,
+	-- },
+	-- {
+	-- 	"sindrets/diffview.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("diffview").setup()
+	-- 	end,
+	-- },
+	-- {
+	-- 	"philosofonusus/ecolog.nvim",
+	-- 	cmd = { "EcologGoto", "EcologPeek", "EcologSelect" },
+	-- 	dependencies = {
+	-- 		"hrsh7th/nvim-cmp", -- Optional, for autocompletion support
+	-- 	},
+	-- 	opts = {
+	-- 		integrations = {
+	-- 			nvim_cmp = true, -- If you dont plan to use nvim_cmp set to false, enabled by default
+	-- 		},
+	-- 		provider_patterns = {
+	-- 			extract = false, -- Extract any word as potential var
+	-- 			cmp = true, -- Complete anywhere
+	-- 		},
+	--
+	-- 		-- path = vim.fn.getcwd(), -- Path to search for .env files
+	-- 		-- preferred_environment = "development", -- Optional: prioritize specific env files
+	-- 	},
+	-- },
+	-- {
+	-- 	"folke/snacks.nvim",
+	-- 	---@type snacks.Config
+	-- 	opts = {
+	-- 		bigfile = {
+	-- 			notify = true, -- show notification when big file detected
+	-- 			size = 3 * 1024 * 1024, -- 1.5MB
+	-- 			line_length = 1000, -- average line length (useful for minified files)
+	-- 		},
+	-- 	},
+	-- },
 }
 
 return utils

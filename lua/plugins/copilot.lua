@@ -17,7 +17,7 @@ local prompts = {
 	Wording = "Please improve the grammar and wording of the following text.",
 	Concise = "Please rewrite the following text to make it more concise.",
 	PhpDocs = "Generate a PHPDoc comment for a PHP file that includes information about the file's purpose, package, subpackage, author, copyright, and versioning. Follow the standard PHPDoc format.",
-	PyDocs = 'Generate a  comment for the code. Follow the PEP 8 docstring convention but replace the \'"""\' with comments with  "#".',
+	PyDocs = "Generate a  comment for the code. Follow the PEP 8 docstring convention .",
 	WrapFix = "Fix the code to make it do not go over 79 characters per line",
 }
 

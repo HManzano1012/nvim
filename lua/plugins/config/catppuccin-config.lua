@@ -1,4 +1,5 @@
 local catppuccin_config = {
+	-- transparent_background = true, -- disables setting the background color.
 	no_italic = true, -- Force no italic
 	styles = {
 		comments = {},

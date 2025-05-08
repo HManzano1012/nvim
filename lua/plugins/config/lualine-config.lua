@@ -30,7 +30,7 @@ local conditions = {
 
 -- Transparent lualine
 local custom_gruvbox = require("lualine.themes.gruvbox")
-custom_gruvbox.normal.c.bg = "NONE"
+custom_gruvbox.normal.c.bg = colors.bg
 
 local custom_catpuccin = function()
 	local flavour = "latte"
@@ -180,7 +180,7 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		return { bg = "", fg = mode_color[vim.fn.mode()] }
+		return { bg = colors.bg, fg = mode_color[vim.fn.mode()] }
 	end,
 	padding = { left = 0, right = 1 }, -- We don't need space before this
 })
@@ -239,7 +239,7 @@ ins_left({
 			["!"] = colors.red,
 			t = colors.red,
 		}
-		return { fg = mode_color[vim.fn.mode()], bg = "" }
+		return { fg = mode_color[vim.fn.mode()], bg = colors.bg }
 	end,
 	padding = { left = 0, right = 0 }, -- We don't need space before this
 })
@@ -247,7 +247,7 @@ ins_left({
 ins_left({
 	"branch",
 	icon = { "󰘬", color = { fg = colors["fg"] } },
-	color = { fg = colors["fg"], bg = "NONE" },
+	color = { fg = colors["fg"], bg = colors.bg },
 })
 
 ins_left({
@@ -260,14 +260,14 @@ ins_left({
 		removed = { fg = colors.fg },
 	},
 	cond = conditions.hide_in_width,
-	color = { fg = "#ffffff", bg = "NONE" },
+	color = { fg = "#ffffff", bg = colors.bg },
 })
 
 ins_left({
 	function()
 		return "%="
 	end,
-	color = { bg = "NONE" },
+	color = { bg = colors.bg },
 })
 
 ins_left({
@@ -275,7 +275,7 @@ ins_left({
 		return "%="
 	end,
 
-	color = { bg = "NONE" },
+	color = { bg = colors.bg },
 })
 
 ins_right({
@@ -283,7 +283,7 @@ ins_right({
 		return "%="
 	end,
 
-	color = { bg = "NONE" },
+	color = { bg = colors.bg },
 })
 
 ins_right({
@@ -291,7 +291,7 @@ ins_right({
 		return "%="
 	end,
 
-	color = { bg = "NONE" },
+	color = { bg = colors.bg },
 })
 
 ins_right({
@@ -303,7 +303,7 @@ ins_right({
 		color_warn = { fg = colors.fg },
 		color_info = { fg = colors.fg },
 	},
-	color = { bg = "none", fg = colors.fg },
+	color = { bg = colors.bg, fg = colors.fg },
 })
 
 ins_right({
@@ -315,7 +315,7 @@ ins_right({
 		return "󰨮 " .. table.concat(linters, ", ")
 	end,
 
-	color = { fg = colors["fg"], bg = "NONE" },
+	color = { fg = colors["fg"], bg = colors.bg },
 })
 
 ins_right({
@@ -336,7 +336,7 @@ ins_right({
 		return msg
 	end,
 	icon = " ",
-	color = { fg = colors["fg"], bg = "NONE" },
+	color = { fg = colors["fg"], bg = colors.bg },
 })
 
 ins_right({
@@ -358,13 +358,13 @@ ins_right({
 		return "󰅩 " .. current_formatter
 	end,
 
-	color = { fg = colors["fg"], bg = "NONE" },
+	color = { fg = colors["fg"], bg = colors.bg },
 })
 
 ins_right({
 	"filetype",
 	ts_icon = "",
-	color = { fg = colors.fg, bg = "" },
+	color = { fg = colors.fg, bg = colors.bg },
 })
 
 return config

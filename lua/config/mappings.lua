@@ -119,7 +119,7 @@ create_keymap({ "v" }, "J", ":m '>+1<CR>gv=gv", "", true)
 create_keymap({ "v" }, "K", ":m '<-2<CR>gv=gv", "", true)
 
 --[[ LSP (Language Server Protocol) ]]
-create_keymap({ "v", "n" }, "ca", require("actions-preview").code_actions, "Show code actions", false)
+-- create_keymap({ "v", "n" }, "ca", require("actions-preview").code_actions, "Show code actions", false)
 create_keymap({ "n" }, "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "", false)
 create_keymap({ "n" }, "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "", false)
 create_keymap({ "n" }, "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "", false)

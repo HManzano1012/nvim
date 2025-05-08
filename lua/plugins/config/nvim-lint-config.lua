@@ -8,7 +8,7 @@ require("lint").linters_by_ft = {
 	javascriptreact = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
 	go = { "golangcilint" },
-	php = { "phpcs" },
+	-- php = { "phpcs" },
 	python = { "mypy" },
 	html = { "htmlhint" },
 	css = { "stylelint" },
@@ -17,7 +17,7 @@ require("lint").linters_by_ft = {
 }
 local linters = require("lint").linters
 local phpcs = linters.phpcs
-phpcs.cmd = "/home/haroldm/.config/composer/vendor/bin/phpcs"
+phpcs.cmd = "~/.composer/vendor/bin/phpcs"
 phpcs.args = {
 	"-q",
 	"--standard=PSR12",
