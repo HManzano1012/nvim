@@ -168,17 +168,19 @@ local utils = {
 	-- 		-- preferred_environment = "development", -- Optional: prioritize specific env files
 	-- 	},
 	-- },
-	-- {
-	-- 	"folke/snacks.nvim",
-	-- 	---@type snacks.Config
-	-- 	opts = {
-	-- 		bigfile = {
-	-- 			notify = true, -- show notification when big file detected
-	-- 			size = 3 * 1024 * 1024, -- 1.5MB
-	-- 			line_length = 1000, -- average line length (useful for minified files)
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"folke/snacks.nvim",
+		opts = {
+			bigfile = {
+				notify = true, -- show notification when big file detected
+				size = 3 * 1024 * 1024, -- 1.5MB
+				line_length = 1000, -- average line length (useful for minified files)
+			},
+		},
+	},
+	{
+		"kopecmaciej/vi-mongo.nvim",
+	},
 }
 
 return utils
