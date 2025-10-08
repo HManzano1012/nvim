@@ -2,14 +2,14 @@ local conform_config = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 		json = { "prettierd" },
-		python = { "black", "isort" },
+		python = { "autopep8", "isort" },
 		javascript = { "prettierd" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		go = { "gofmt", "goimports-reviser", "golines" },
-		-- php = { "php" },
+		php = { "php-cs-fixer" },
 		blade = { "blade-formatter" },
-		html = { "prettierd" },
+		-- html = { "prettierd" },
 		css = { "prettierd" },
 		xml = { "xmlformatter" },
 		vue = { "prettierd" },
@@ -18,22 +18,20 @@ local conform_config = {
 		yaml = { "yamlfmt" },
 		-- sql = { "sqlformat" },
 	},
-	-- formatters = {
-	-- 	["php"] = {
-	-- 		command = "php-cs-fixer",
-	-- 		args = {
-	-- 			"fix",
-	-- 			"--rules=@PSR12", -- Formatting preset. Other presets are available, see the php-cs-fixer docs.
-	-- 			"$FILENAME",
-	-- 		},
-	-- 		stdin = false,
-	-- 	},
-	-- },
-	format_on_save = function(bufnr)
-		local ignore_filetypes = { "php" }
-		if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-			return
-		end
+	formatters = {
+		["php-cs-fixer"] = {
+			command = "php-cs-fixer",
+			args = {
+				"fix",
+				"$FILENAME",
+				"--config=/home/hmanzano1012/.config/nvim/utils/config-php-formmatter.php",
+				"--allow-risky=yes", -- if you have risky stuff in config, if not you dont need it.
+			},
+			stdin = false,
+		},
+	},
+
+	format_on_save = function()
 		return { timeout_ms = 700, quiet = true, lsp_fallback = false }
 	end,
 

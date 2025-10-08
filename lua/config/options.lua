@@ -34,7 +34,7 @@ vim.o.cmdheight = 1
 vim.o.conceallevel = 1
 opt.cmdheight = 0
 
-vim.diagnostic.config({ virtual_lines = true })
+-- vim.diagnostic.config({ virtual_lines = true })
 -- Numbers
 opt.number = true
 opt.numberwidth = 2

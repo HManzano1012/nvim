@@ -38,7 +38,8 @@ local catppuccin_config = {
 		fidget = true,
 		noice = true,
 		treesitter_context = false,
-		markdown = true,
+		-- markdown = true,
+		-- markview = true,
 		alpha = true,
 		barbecue = {
 			dim_dirname = true, -- directory name is dimmed by default
@@ -46,7 +47,7 @@ local catppuccin_config = {
 			dim_context = false,
 			alt_background = false,
 		},
-		render_markdown = true,
+		-- render_markdown = true,
 		lsp_trouble = true,
 	},
 	custom_highlights = function(C)
@@ -120,22 +121,24 @@ local catppuccin_config = {
 			CmpItemKindCopilot = { fg = C.teal },
 
 			-- Markdown preview
-			markdownH1 = { fg = C.teal },
-			markdownH2 = { fg = C.blue },
-			markdownH3 = { fg = C.peach },
-			markdownH4 = { fg = C.yellow },
-			markdownH5 = { fg = C.pink },
-			markdownH6 = { fg = C.mauve },
-			RenderMarkdownProccess = { fg = C.pink },
+			-- markdownH1 = { fg = C.teal },
+			-- markdownH2 = { fg = C.blue },
+			-- markdownH3 = { fg = C.peach },
+			-- markdownH4 = { fg = C.yellow },
+			-- markdownH5 = { fg = C.pink },
+			-- markdownH6 = { fg = C.mauve },
+			-- RenderMarkdownProccess = { fg = C.pink },
 
-			-- Markview
-			fg_cyan = { fg = C.sky },
-			fg_pink = { fg = C.pink },
-			fg_green = { fg = C.green },
-			fg_red = { fg = C.red },
-			fg_purple = { fg = C.mauve },
-			fg_yellow = { fg = C.yellow },
-			fg_gray = { fg = C.overlay2 },
+			-- -- Markview
+			-- fg_cyan = { fg = C.sky },
+			-- fg_pink = { fg = C.pink },
+			-- fg_green = { fg = C.green },
+			-- fg_red = { fg = C.red },
+			-- fg_purple = { fg = C.mauve },
+			-- fg_yellow = { fg = C.yellow },
+			-- fg_gray = { fg = C.overlay2 },
+			markdownH1 = { fg = C.text, bg = C.yellow },
+			RenderMarkdownH1 = { fg = C.text, bg = C.yellow },
 
 			AlphaShortcut = { fg = C.red, bg = C.mauve },
 			AlphaHeader = { fg = C.red, bg = C.mauve },
@@ -143,34 +146,6 @@ local catppuccin_config = {
 			AlphaFooter = { fg = C.red, bg = C.mauve },
 			SnacksBackdrop = { bg = C.bg },
 			SnacksBackdrop_000000 = { bg = C.bg },
-
-			-- -- lualine
-			-- --
-			-- lualine_a_normal = { fg = C.base, bg = C.bg },
-			-- lualine_a_insert = { fg = C.base, bg = C.bg },
-			-- lualine_a_visual = { fg = C.base, bg = C.bg },
-			--
-			-- lualine_b_normal = { fg = C.base, bg = C.bg },
-			-- lualine_b_insert = { fg = C.base, bg = C.bg },
-			-- lualine_b_visual = { fg = C.base, bg = C.bg },
-			--
-			-- lualine_c_normal = { fg = C.base, bg = C.bg },
-			-- lualine_c_insert = { fg = C.base, bg = C.bg },
-			-- lualine_c_visual = { fg = C.base, bg = C.bg },
-			-- lualine_x_normal = { fg = C.base, bg = C.bg },
-			-- lualine_x_insert = { fg = C.base, bg = C.bg },
-			-- lualine_x_visual = { fg = C.base, bg = C.bg },
-			--
-			-- Normal = { bg = "None" },
-			-- NormalNC = { bg = "None" },
-			-- NormalNCFloat = { bg = "None" },
-			-- NormalFloat = { bg = "None" },
-			-- NonText = { bg = "None" },
-			--
-			-- MarkviewCode = { bg = C.lavender },
-			-- MarkviewCodeBlock = { bg = C.base },
-			-- MarkviewCodeBlockLine = { bg = C.base },
-			-- MarkviewCodeInfo = { bg = C.base },
 		}
 	end,
 }

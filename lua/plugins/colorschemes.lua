@@ -7,6 +7,16 @@ local theme = {
 			vim.cmd.colorscheme("catppuccin-macchiato")
 		end,
 	},
+	{
+		"mcauley-penney/phobos-anomaly.nvim",
+		priority = 1000,
+		init = function()
+			vim.cmd.colorscheme("phobos-anomaly")
+		end,
+	},
+	{
+		"zenbones-theme/zenbones.nvim",
+	},
 }
 
 return theme

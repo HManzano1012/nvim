@@ -66,7 +66,6 @@ local cmp_config = {
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "ecolog" },
-		{ name = "vim-dadbod-completion" },
 	},
 	formatting = {
 		format = function(entry, item)
@@ -82,4 +81,5 @@ local cmp_config = {
 		end,
 	},
 }
+
 return cmp_config

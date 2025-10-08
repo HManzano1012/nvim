@@ -9,16 +9,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- signcolumn icons
-vim.cmd("sign define DiagnosticSignError text=  texthl=TextError linehl= numhl=")
-vim.cmd("sign define DiagnosticSignInfo text=󰀨  texthl=TextInfo linehl= numhl=")
-vim.cmd("sign define DiagnosticSignHint text=  texthl=TextHint linehl= numhl=")
-vim.cmd("sign define DiagnosticSignWarn text= texthl=TextWarn linehl= numhl=")
+vim.cmd("sign define DiagnosticSignError text= texthl=TextError linehl= numhl=")
+vim.cmd("sign define DiagnosticSignInfo text=  texthl=TextInfo linehl= numhl=")
+vim.cmd("sign define DiagnosticSignHint text=  texthl=TextHint linehl= numhl=")
+vim.cmd("sign define DiagnosticSignWarn text= texthl=TextWarn linehl= numhl=")
 --
 vim.cmd("hi! fg_yellow guifg=#eed4a0 ")
 vim.cmd("hi! fg_red guifg=#ed8797 ")
 vim.cmd("hi! fg_green guifg=#a6da95")
 vim.cmd("hi! fg_lavender guifg=#A7ADE3")
 
+-- @markdow.heading.1 = { fg = C.text, bg = C.yellow },
 -- enable treesitter
 vim.cmd("TSEnable highlight")
 
@@ -144,42 +145,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
-vim.api.nvim_create_augroup("PHPCSGroup", { clear = true })
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	group = "PHPCSGroup",
-	pattern = "*.php",
-	command = "lua require'phpcs'.cs()",
-})
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = "PHPCSGroup",
-	pattern = "*.php",
-	command = "lua require'phpcs'.cbf()",
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = "PHPCSGroup",
-	pattern = "*.php",
-	callback = function()
-		require("phpcs").cs()
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePost", {
-	group = "PHPCSGroup",
-	pattern = "*.php",
-	callback = function()
-		require("phpcs").cbf()
-	end,
-})
-
-vim.keymap.set("n", "<leader>lp", function()
-	require("phpcs").cs()
-end, {
-	silent = true,
-	noremap = true,
-	desc = "PHP Fix",
-})
-
 -- change background color for floating windows
 local modes = { "normal", "insert", "visual", "replace", "terminal", "command" }
 for _, mode in ipairs(modes) do
@@ -199,7 +164,48 @@ vim.cmd("hi EcologNormal guibg=NONE ctermbg=NONE")
 vim.cmd("hi SnacksBackdrop guibg=#444444 ctermbg=NONE")
 vim.cmd("hi SnacksBackdrop_000000 guibg=#444444 ctermbg=NONE")
 
+-- Show errors and warnings in a floating window
+-- vim.api.nvim_create_autocmd("CursorHold", {
+-- 	callback = function()
+-- 		vim.diagnostic.open_float(nil, { focusable = false, source = "if_many" })
+-- 		vim.diagnostic.config({
+-- 			underline = true,
+-- 			signs = true,
+-- 			virtual_text = false,
+-- 			float = {
+-- 				show_header = true,
+-- 				source = "always",
+-- 				border = "single",
+-- 				focusable = false,
+-- 			},
+-- 			update_in_insert = false, -- default to false
+-- 			severity_sort = false, -- default to false
+--
+-- 		})
+-- 	end,
+-- })
+--
 -- if vim.g.neovide then
 -- 	vim.cmd.colorscheme("catppuccin-macchiato")
 -- 	vim.o.guifont = "VictorMono Nerd Font:h13" -- text below applies for VimScript
 -- end
+--
+vim.cmd("hi! @markup.heading.1.markdown guifg=#24273A guibg=#A7ADE3 gui=bold")
+vim.cmd("hi! @markup.heading.2.markdown guifg=#A7ADE3 gui=bold")
+vim.cmd("hi! @markup.heading.3.markdown guifg=#A7ADE3 gui=bold")
+vim.cmd("hi! @markup.heading.4.markdown guifg=#A7ADE3 gui=bold")
+vim.cmd("hi! @markup.heading.5.markdown guifg=#A7ADE3 gui=bold")
+vim.cmd("hi! @markup.heading.6.markdown guifg=#A7ADE3 gui=bold")
+
+-- Enable wrap only for markdown
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.opt_local.linebreak = true
+		vim.opt_local.textwidth = 80
+	end,
+})
+
+vim.cmd("LspStart copilot")

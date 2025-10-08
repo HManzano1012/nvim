@@ -1,10 +1,5 @@
 local vim = vim
 
----@param modes table Listeof modes (e.g., {'n', 'v'})
----@param key_combination string Key combination to map
----@param key_function string|function The command or function to execute
----@param description string Description of the mapping
----@param silent_key boolean Whether the mapping should be silent
 local function create_keymap(modes, key_combination, key_function, description, silent_key)
 	for _, mode in ipairs(modes) do
 		vim.keymap.set(mode, key_combination, key_function, { desc = description, silent = silent_key })
@@ -119,7 +114,9 @@ create_keymap({ "v" }, "J", ":m '>+1<CR>gv=gv", "", true)
 create_keymap({ "v" }, "K", ":m '<-2<CR>gv=gv", "", true)
 
 --[[ LSP (Language Server Protocol) ]]
--- create_keymap({ "v", "n" }, "ca", require("actions-preview").code_actions, "Show code actions", false)
+create_keymap({ "v", "n" }, "ca", function()
+	require("tiny-code-action").code_action()
+end, "Show code actions", false)
 create_keymap({ "n" }, "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", "", false)
 create_keymap({ "n" }, "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", "", false)
 create_keymap({ "n" }, "gr", "<cmd>lua vim.lsp.buf.references()<CR>", "", false)
@@ -142,12 +139,13 @@ create_keymap({ "n" }, "<leader>gcl", "<cmd>:GitConflictListQf<CR>", "Show confl
 create_keymap({ "n" }, "<leader>nn", "<cmd>:ObsidianNew<CR>", "Create new note", false)
 create_keymap({ "n" }, "<leader>nf", function()
 	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
-		cwd = "~/Obsidian",
+		cwd = "~/NotesPersonal",
 		search_file = "*.md",
 	}))
 end, "Search on notes", false)
 create_keymap({ "n" }, "<leader>ns", "<cmd>:ObsidianQuickSwitch<CR>", "Notes Quick switch", false)
 create_keymap({ "n" }, "<leader>nb", "<cmd>:ObsidianBacklinks<CR>", "Follow backlink", false)
+create_keymap({ "n" }, "<leader>nt", "<cmd>:ObsidianNewFromTemplate<CR>", "Open Obsidian templates", false)
 create_keymap({ "n" }, "gf", function()
 	if require("obsidian").util.cursor_on_markdown_link() then
 		return "<cmd>ObsidianFollowLink<CR>"

@@ -4,7 +4,7 @@ local markview = {
 		filetypes = { "markdown", "Avante" },
 		ignore_buftypes = {},
 	},
-	max_length = 99999,
+	max_length = 79,
 
 	markdown = {
 		headings = {
@@ -18,19 +18,19 @@ local markview = {
 			},
 			heading_2 = {
 				style = "label",
-				icon = "▋▋",
+				icon = "## ",
 				sign_hl = "col_2_fg",
 				hl = "@markup.heading.2.markdown",
 			},
 			heading_3 = {
 				style = "label",
-				icon = "▋▋▋",
+				icon = "### ",
 				sign_hl = "col_1_fg",
 				hl = "@markup.heading.3.markdown",
 			},
 			heading_4 = {
 				style = "label",
-				icon = "▋▋▋▋",
+				icon = "#### ",
 				sign_hl = "col_1_fg",
 				hl = "@markup.heading.4.markdown",
 			},
@@ -50,7 +50,7 @@ local markview = {
 		code_blocks = {
 			enable = true,
 
-			style = "block",
+			style = "simple",
 
 			label_direction = "right",
 
@@ -70,6 +70,7 @@ local markview = {
 		},
 		list_items = {
 			enable = true,
+			wrap = true,
 			indent_size = 2,
 			shift_width = 4,
 			marker_minus = {
@@ -115,21 +116,89 @@ local markview = {
 				vim.wo[win].concealcursor = "nivc"
 			end,
 		},
+
 		horizontal_rules = {
+			enable = true,
+
 			parts = {
 				{
 					type = "repeating",
-					text = "─",
-					repeat_amount = function()
-						return vim.o.colorcolumn - 1
+					direction = "left",
+
+					repeat_amount = function(buffer)
+						local utils = require("markview.utils")
+						local window = utils.buf_getwin(buffer)
+
+						local width = vim.api.nvim_win_get_width(window)
+						local textoff = vim.fn.getwininfo(window)[1].textoff
+
+						return math.floor((width - textoff - 3) / 2)
 					end,
+
+					text = "─",
+
+					hl = {
+						"MarkviewGradient1",
+						"MarkviewGradient1",
+						"MarkviewGradient2",
+						"MarkviewGradient2",
+						"MarkviewGradient3",
+						"MarkviewGradient3",
+						"MarkviewGradient4",
+						"MarkviewGradient4",
+						"MarkviewGradient5",
+						"MarkviewGradient5",
+						"MarkviewGradient6",
+						"MarkviewGradient6",
+						"MarkviewGradient7",
+						"MarkviewGradient7",
+						"MarkviewGradient8",
+						"MarkviewGradient8",
+						"MarkviewGradient9",
+						"MarkviewGradient9",
+					},
 				},
 				{
 					type = "text",
-					text = "  ",
 
-					---@type string?
-					hl = "MarkviewGradient10",
+					text = "  ",
+					hl = "MarkviewIcon3Fg",
+				},
+				{
+					type = "repeating",
+					direction = "right",
+
+					repeat_amount = function(buffer) --[[@as function]]
+						local utils = require("markview.utils")
+						local window = utils.buf_getwin(buffer)
+
+						local width = vim.api.nvim_win_get_width(window)
+						local textoff = vim.fn.getwininfo(window)[1].textoff
+
+						return math.ceil((width - textoff - 3) / 2)
+					end,
+
+					text = "─",
+					hl = {
+						"MarkviewGradient1",
+						"MarkviewGradient1",
+						"MarkviewGradient2",
+						"MarkviewGradient2",
+						"MarkviewGradient3",
+						"MarkviewGradient3",
+						"MarkviewGradient4",
+						"MarkviewGradient4",
+						"MarkviewGradient5",
+						"MarkviewGradient5",
+						"MarkviewGradient6",
+						"MarkviewGradient6",
+						"MarkviewGradient7",
+						"MarkviewGradient7",
+						"MarkviewGradient8",
+						"MarkviewGradient8",
+						"MarkviewGradient9",
+						"MarkviewGradient9",
+					},
 				},
 			},
 		},
@@ -140,17 +209,17 @@ local markview = {
 			text = {
 				{
 					--    Main parts    Seperators
-					"╭",
+					"",
 					"─",
-					"╮",
+					"",
 					"┬",
 					"├",
 					"│",
 					"┤",
 					"┼",
-					"╰",
+					"",
 					"─",
-					"╯",
+					"",
 					"┴",
 					"╼",
 					"╾",
@@ -160,6 +229,7 @@ local markview = {
 			},
 		},
 		block_quotes = {
+			wrap = true,
 			enable = true,
 
 			default = {

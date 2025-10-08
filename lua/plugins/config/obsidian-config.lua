@@ -22,12 +22,12 @@ local obsidian_config = {
 	workspaces = {
 		{
 			name = "Obsidian",
-			path = "~/Obsidian/",
+			path = "~/NotesPersonal/",
 		},
 	},
 	templates = {
-		subdir = "~/Obsidian/templates/",
-		date_format = "%Y-%m-%d-%a",
+		subdir = "~/NotesPersonal/Templates/",
+		date_format = "%Y-%m-%d",
 		time_format = "%H:%M",
 	},
 	note_id_func = function(title)
@@ -42,7 +42,7 @@ local obsidian_config = {
 		return tostring(os.time()) .. "-" .. suffix
 	end,
 
-	new_notes_location = "~/Obsidian/",
+	new_notes_location = "~/NotesPersonal/",
 	picker = {
 		name = "telescope.nvim",
 		mappings = {

@@ -2,14 +2,14 @@ local vim = vim
 local M = {}
 
 M.on_attach = function(client, bufnr)
-	client.server_capabilities.documentFormattingProvider = false
-	client.server_capabilities.documentRangeFormattingProvider = false
-	client.server_capabilities.semanticTokensProvider = nil
+	client.server_capabilities.documentFormattingProvider = true
+	client.server_capabilities.documentRangeFormattingProvider = true
+	client.server_capabilities.semanticTokensProvider = true
 end
 
 M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.foldingRange = {
-	dynamicRegistration = false,
+	dynamicRegistration = true,
 	lineFoldingOnly = true,
 }
 M.capabilities.textDocument.completion.completionItem = {
@@ -19,8 +19,6 @@ M.capabilities.textDocument.completion.completionItem = {
 	insertReplaceSupport = true,
 	labelDetailsSupport = true,
 	deprecatedSupport = true,
-	commitCharactersSupport = true,
-	tagSupport = { valueSet = { 1 } },
 	resolveSupport = {
 		properties = {
 			"documentation",
@@ -47,11 +45,15 @@ local servers = {
 	"jsonls",
 	"dockerls",
 	"jsonls",
-	"html",
+	-- "html",
 	"cssls",
 	"groovyls",
 	"yamlls",
 	"bashls",
+	-- "pylsp",
+	"jedi_language_server",
+	"marksman",
+	"copilotlsp",
 }
 local util = require("lspconfig/util")
 
@@ -59,6 +61,13 @@ lspconfig.harper_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	filetypes = { "toml" },
+})
+
+lspconfig.html.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { "html", "htmldjango" },
+	root_dir = util.root_pattern("index.html", "index.htm", ".git"),
 })
 
 lspconfig.intelephense.setup({
@@ -121,22 +130,22 @@ lspconfig.gopls.setup({
 	},
 })
 
-lspconfig.basedpyright.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		basedpyright = {
-			inlayHints = {
-				callArgumentNames = false,
-			},
-			disableOrganizeImports = false,
-			disableTaggedHints = false,
-			analysis = {
-				typeCheckingMode = "off",
-			},
-		},
-	},
-})
+-- lspconfig.basedpyright.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		basedpyright = {
+-- 			inlayHints = {
+-- 				callArgumentNames = false,
+-- 			},
+-- 			disableOrganizeImports = false,
+-- 			disableTaggedHints = false,
+-- 			analysis = {
+-- 				typeCheckingMode = "off",
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({

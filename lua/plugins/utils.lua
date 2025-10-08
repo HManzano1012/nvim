@@ -69,7 +69,7 @@ local utils = {
 		"epwalsh/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
 		lazy = true,
-		cmd = { "ObsidianQuickSwitch", "ObsidianNew", "ObsidianBacklinks" },
+		cmd = { "ObsidianQuickSwitch", "ObsidianNew", "ObsidianBacklinks", "ObsidianNewFromTemplate" },
 		ft = "markdown",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -179,7 +179,94 @@ local utils = {
 		},
 	},
 	{
-		"kopecmaciej/vi-mongo.nvim",
+		"rachartier/tiny-code-action.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim" },
+
+			-- optional picker via telescope
+			{ "nvim-telescope/telescope.nvim" },
+			-- optional picker via fzf-lua
+			{ "ibhagwan/fzf-lua" },
+			-- .. or via snacks
+			{
+				"folke/snacks.nvim",
+				opts = {
+					terminal = {},
+				},
+			},
+		},
+		event = "LspAttach",
+		opts = {
+			picker = {
+				"telescope",
+				opts = {
+					layout_strategy = "horizontal",
+					layout_config = {
+						width = 0.7,
+						height = 0.9,
+						preview_cutoff = 1,
+						preview_height = function(_, _, max_lines)
+							local h = math.floor(max_lines * 0.5)
+							return math.max(h, 10)
+						end,
+					},
+				},
+			},
+		},
+	},
+	{
+		"folke/trouble.nvim",
+		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		cmd = "Trouble",
+		keys = {
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xX",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cl",
+				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>xL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xQ",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
+	},
+	{
+		"rrethy/vim-illuminate",
+		config = function()
+			require("illuminate").configure({
+				delay = 350,
+				filetypes_denylist = {
+					"aerial",
+					"neo-tree",
+				},
+				modes_denylist = { "v", "V" },
+				under_cursor = false,
+			})
+		end,
+	},
+	{
+		"rareitems/hl_match_area.nvim",
 	},
 }
 

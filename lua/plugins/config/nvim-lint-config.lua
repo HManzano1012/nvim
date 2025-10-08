@@ -8,8 +8,8 @@ require("lint").linters_by_ft = {
 	javascriptreact = { "eslint_d" },
 	typescriptreact = { "eslint_d" },
 	go = { "golangcilint" },
-	-- php = { "phpcs" },
-	python = { "mypy" },
+	php = { "phpcs" },
+	python = { "flake8" },
 	html = { "htmlhint" },
 	css = { "stylelint" },
 	vue = { "eslint_d" },
@@ -17,9 +17,10 @@ require("lint").linters_by_ft = {
 }
 local linters = require("lint").linters
 local phpcs = linters.phpcs
-phpcs.cmd = "~/.composer/vendor/bin/phpcs"
+-- phpcs.cmd = "~/.composer/vendor/bin/phpcs"
 phpcs.args = {
 	"-q",
+	-- <- Add a new parameter here
 	"--standard=PSR12",
 	"--report=json",
 	"-",
