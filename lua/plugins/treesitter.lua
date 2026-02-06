@@ -3,44 +3,35 @@ local treesitter = {
 		"nvim-treesitter/nvim-treesitter",
 		enabled = true,
 		lazy = false,
-		opts = function()
-			local opts = {
-				ensure_installed = {
-					"lua",
-					"javascript",
-					"typescript",
-					"tsx",
-					"go",
-					"python",
-					"php",
-					"vue",
-					"json",
-					"yaml",
-					"html",
-					"css",
-					"markdown",
-					"markdown_inline",
-					"bash",
-				},
-				sync_install = true,
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-				autotag = { enable = false },
-			}
+		opts = {
+			ensure_installed = {
+				"lua",
+				"javascript",
+				"typescript",
+				"tsx",
+				"go",
+				"python",
+        "php_only",
+				"php",
+				"vue",
+				"json",
+				"yaml",
+				"html",
+				"css",
+				"markdown",
+				"markdown_inline",
+				"bash",
+			},
+			sync_install = true,
+			auto_install = true,
+      highlight = { enable = true },
+			indent = { enable = true },
+			autotag = { enable = false },
+		},
+    config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
+      end,
 
-			require("nvim-treesitter.configs").setup(opts)
-
-			-- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			-- parser_config.blade = {
-			-- 	install_info = {
-			-- 		url = "https://github.com/EmranMR/tree-sitter-blade",
-			-- 		files = { "src/parser.c" },
-			-- 		branch = "main",
-			-- 	},
-			-- 	filetype = "blade",
-			-- }
-		end,
 	},
 	{
 		"windwp/nvim-ts-autotag",

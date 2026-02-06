@@ -53,7 +53,7 @@ local servers = {
 	-- "pylsp",
 	"jedi_language_server",
 	"marksman",
-	"copilotlsp",
+	-- "copilotlsp",
 }
 local util = require("lspconfig/util")
 

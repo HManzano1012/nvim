@@ -1,6 +1,96 @@
 local vim = vim
 
 local ia = {
+	-- {
+	-- 	"ThePrimeagen/99",
+	-- 	config = function()
+	-- 		local _99 = require("99")
+	--
+	-- 		-- For logging that is to a file if you wish to trace through requests
+	-- 		-- for reporting bugs, i would not rely on this, but instead the provided
+	-- 		-- logging mechanisms within 99.  This is for more debugging purposes
+	-- 		local cwd = vim.uv.cwd()
+	-- 		local basename = vim.fs.basename(cwd)
+	-- 		_99.setup({
+	-- 			logger = {
+	-- 				level = _99.DEBUG,
+	-- 				path = "/tmp/" .. basename .. ".99.debug",
+	-- 				print_on_error = true,
+	-- 			},
+	--
+	-- 			--- A new feature that is centered around tags
+	-- 			completion = {
+	-- 				--- Defaults to .cursor/rules
+	-- 				-- I am going to disable these until i understand the
+	-- 				-- problem better.  Inside of cursor rules there is also
+	-- 				-- application rules, which means i need to apply these
+	-- 				-- differently
+	-- 				-- cursor_rules = "<custom path to cursor rules>"
+	--
+	-- 				--- A list of folders where you have your own SKILL.md
+	-- 				--- Expected format:
+	-- 				--- /path/to/dir/<skill_name>/SKILL.md
+	-- 				---
+	-- 				--- Example:
+	-- 				--- Input Path:
+	-- 				--- "scratch/custom_rules/"
+	-- 				---
+	-- 				--- Output Rules:
+	-- 				--- {path = "scratch/custom_rules/vim/SKILL.md", name = "vim"},
+	-- 				--- ... the other rules in that dir ...
+	-- 				---
+	-- 				custom_rules = {
+	-- 					"scratch/custom_rules/",
+	-- 				},
+	--
+	-- 				--- What autocomplete do you use.  We currently only
+	-- 				--- support cmp right now
+	-- 				source = "cmp",
+	-- 			},
+	--
+	-- 			--- WARNING: if you change cwd then this is likely broken
+	-- 			--- ill likely fix this in a later change
+	-- 			---
+	-- 			--- md_files is a list of files to look for and auto add based on the location
+	-- 			--- of the originating request.  That means if you are at /foo/bar/baz.lua
+	-- 			--- the system will automagically look for:
+	-- 			--- /foo/bar/AGENT.md
+	-- 			--- /foo/AGENT.md
+	-- 			--- assuming that /foo is project root (based on cwd)
+	-- 			md_files = {
+	-- 				"AGENT.md",
+	-- 			},
+	-- 		})
+	--
+	-- 		-- Create your own short cuts for the different types of actions
+	-- 		vim.keymap.set("n", "<leader>9f", function()
+	-- 			_99.fill_in_function()
+	-- 		end)
+	-- 		-- take extra note that i have visual selection only in v mode
+	-- 		-- technically whatever your last visual selection is, will be used
+	-- 		-- so i have this set to visual mode so i dont screw up and use an
+	-- 		-- old visual selection
+	-- 		--
+	-- 		-- likely ill add a mode check and assert on required visual mode
+	-- 		-- so just prepare for it now
+	-- 		vim.keymap.set("v", "<leader>av", function()
+	-- 			_99.visual()
+	-- 		end)
+	--
+	-- 		--- if you have a request you dont want to make any changes, just cancel it
+	-- 		vim.keymap.set("v", "<leader>a<esc>", function()
+	-- 			_99.stop_all_requests()
+	-- 		end)
+	--
+	-- 		--- Example: Using rules + actions for custom behaviors
+	-- 		--- Create a rule file like ~/.rules/debug.md that defines custom behavior.
+	-- 		--- For instance, a "debug" rule could automatically add printf statements
+	-- 		--- throughout a function to help debug its execution flow.
+	-- 		vim.keymap.set("n", "<leader>aa", function()
+	-- 			_99.fill_in_function()
+	-- 		end)
+	-- 	end,
+	-- },
 
 	{
 		"zbirenbaum/copilot.lua",
@@ -11,155 +101,6 @@ local ia = {
 			local config = require("plugins.config.copilot-config")
 			require("copilot").setup(config)
 		end,
-	},
-	{
-		"NickvanDyke/opencode.nvim",
-		dependencies = {
-			-- Recommended for better prompt input, and required to use `opencode.nvim`'s embedded terminal — otherwise optional
-			{ "folke/snacks.nvim", opts = { input = { enabled = true } } },
-		},
-		config = function()
-			vim.g.opencode_opts = {
-				env = {
-					OPENCODE_THEME = "catppuccin",
-				},
-			}
-
-			-- Required for `opts.auto_reload`
-			-- vim.opt.autoread = true
-
-			-- Recommended keymaps
-			vim.keymap.set("n", "<leader>ot", function()
-				require("opencode").toggle()
-			end, { desc = "Toggle opencode" })
-			vim.keymap.set("n", "<leader>oA", function()
-				require("opencode").ask()
-			end, { desc = "Ask opencode" })
-			vim.keymap.set("n", "<leader>oa", function()
-				require("opencode").ask("@cursor: ")
-			end, { desc = "Ask opencode about this" })
-			vim.keymap.set("v", "<leader>oa", function()
-				require("opencode").ask("@selection: ")
-			end, { desc = "Ask opencode about selection" })
-			vim.keymap.set("n", "<leader>on", function()
-				require("opencode").command("session_new")
-			end, { desc = "New opencode session" })
-			vim.keymap.set("n", "<leader>oy", function()
-				require("opencode").command("messages_copy")
-			end, { desc = "Copy last opencode response" })
-			vim.keymap.set("n", "<S-C-u>", function()
-				require("opencode").command("messages_half_page_up")
-			end, { desc = "Messages half page up" })
-			vim.keymap.set("n", "<S-C-d>", function()
-				require("opencode").command("messages_half_page_down")
-			end, { desc = "Messages half page down" })
-			vim.keymap.set({ "n", "v" }, "<leader>os", function()
-				require("opencode").select()
-			end, { desc = "Select opencode prompt" })
-
-			-- Example: keymap for custom prompt
-			vim.keymap.set("n", "<leader>oe", function()
-				require("opencode").prompt("Explain @cursor and its context")
-			end, { desc = "Explain this code" })
-		end,
-	},
-	{
-		"folke/sidekick.nvim",
-		enabled = true,
-		opts = {
-			-- add any options here
-			cli = {
-				mux = {
-					backend = "tmux",
-					enabled = true,
-				},
-			},
-			nes = {
-				enabled = true,
-				debounce = 100,
-				trigger = {
-					-- events that trigger sidekick next edit suggestions
-					events = { "InsertLeave", "TextChanged", "User SidekickNesDone" },
-				},
-			},
-		},
-
-		keys = {
-			{
-				"<Tab>",
-				function()
-					-- if there is a next edit, jump to it, otherwise apply it if any
-					if require("sidekick").nes_jump_or_apply() then
-						return -- jumped or applied
-					end
-
-					-- any other things (like snippets) you want to do on <tab> go here.
-
-					-- fall back to normal tab
-					return "<Tab>"
-				end,
-				mode = { "i", "n" },
-				expr = true,
-				desc = "Goto/Apply Next Edit Suggestion",
-			},
-			{
-				"<leader>aa",
-				function()
-					require("sidekick.cli").toggle()
-				end,
-				desc = "Sidekick Toggle CLI",
-			},
-			{
-				"<leader>as",
-				function()
-					require("sidekick.cli").select()
-				end,
-				-- Or to select only installed tools:
-				-- require("sidekick.cli").select({ filter = { installed = true } })
-				desc = "Select CLI",
-			},
-			{
-				"<leader>at",
-				function()
-					require("sidekick.cli").send({ msg = "{this}" })
-				end,
-				mode = { "x", "n" },
-				desc = "Send This",
-			},
-			{
-				"<leader>av",
-				function()
-					require("sidekick.cli").send({ msg = "{selection}" })
-				end,
-				mode = { "x" },
-				desc = "Send Visual Selection",
-			},
-			{
-				"<leader>ap",
-				function()
-					require("sidekick.cli").prompt()
-				end,
-				mode = { "n", "x" },
-				desc = "Sidekick Select Prompt",
-			},
-			{
-				"<c-.>",
-				function()
-					require("sidekick.cli").focus()
-				end,
-				mode = { "n", "x", "i", "t" },
-				desc = "Sidekick Switch Focus",
-			},
-			-- Example of a keybinding to open Claude directly
-			{
-				"<leader>ac",
-				function()
-					require("sidekick.cli").toggle({ name = "claude", focus = true })
-				end,
-				desc = "Sidekick Toggle Claude",
-			},
-		},
-		-- stylua: ignore
 	},
 }
 

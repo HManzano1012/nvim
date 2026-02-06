@@ -21,7 +21,7 @@ vim.cmd("hi! fg_lavender guifg=#A7ADE3")
 
 -- @markdow.heading.1 = { fg = C.text, bg = C.yellow },
 -- enable treesitter
-vim.cmd("TSEnable highlight")
+-- vim.cmd("TSEnable highlight")
 
 -- hide virtual text from diagnostics
 vim.diagnostic.config({ virtual_text = false })
